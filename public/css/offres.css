@@ -1,0 +1,317 @@
+@import url('https://fonts.googleapis.com/css2?family=Architects+Daughter&family=Pacifico&display=swap');
+
+* {
+  margin: 0;
+  padding: 0;
+  scroll-behavior: smooth;
+  /*border: black solid 2px;*/
+}
+
+html {
+  box-sizing: border-box;
+  font-size: 62.5%;
+}
+
+body {
+  font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, 'Open Sans', 'Helvetica Neue', sans-serif;
+  width: 100%;
+  background-color: #eee;
+}
+
+/*---------------favoris----------------*/
+#check{
+  display: none;
+}
+#icone{
+  cursor: pointer;
+  padding: 15px;
+  font-size: 30px;
+  position: fixed;
+  transition: all .2s linear;
+  right: 20px;
+  top: 100px;
+  z-index: 150;
+}
+#icone:hover{
+  transform: scale(2);
+}
+.favoris{
+  position: fixed;
+  transition: all .2s linear;
+  width: 300px;
+  top: 0;
+  right: -300px;
+  background-color: #fff;
+  height: 100%;
+  box-shadow: 2px 2px 6px rgba(0, 0, 0, 0.9);
+}
+.cart-item-image{
+width: 50px;
+}
+.favoris h3{
+  margin-top: 130px;
+  text-align: center;
+}
+.favoris table{
+  margin: 60px 5%;
+  width: 90%;
+  font-size: 1.2em;
+  border-collapse: collapse;
+}
+.favoris td, th
+{
+  border-bottom: 1px solid black;
+  padding: 5px;
+}
+.favoris .titre{
+  width: 60%;
+}
+.favoris th{
+  height: 3rem;  
+}
+.favoris td{
+  height: 5rem;
+}
+.favoris td button{
+background: none;
+border: none;
+outline: none;
+}
+.cart-item-icon{
+  width: 30px;
+}
+.favoris .fa-download{
+  width: 20px;
+  font-size: 20px;
+  cursor: pointer;
+}
+.favoris .fa-download:hover{
+  color: #3d3d3d;
+}
+.favoris .fa-download:active{
+  transform: scale(.9);
+  }
+.favoris .fa-pencil-square-o{
+  width: 20px;
+  font-size: 20px;
+  cursor: pointer;
+}
+.favoris .fa-pencil-square-o:hover{
+  color: #3d3d3d;
+}
+.favoris .fa-pencil-square-o:active{
+  transform: scale(.9);
+  }
+.favoris .fa-trash-o{
+  font-size: 20px;
+  cursor: pointer;
+}
+.favoris .fa-trash-o:hover{
+  color: #fe1b00;
+}
+.favoris .fa-trash-o:active{
+transform: scale(.9);
+}
+#check:checked ~ .favoris{
+  transform: translateX(-300px);
+}
+/*-------------banniere---------------*/
+
+.fancy{
+  height: 100vh;
+  background-color: #B8CFD9;
+  width: 100%;
+  margin: 0;
+}
+.catch{
+  text-align: center;
+  margin-top: 150px;
+}
+.catch p{
+  font-size: 3.8em;
+  font-family: 'Architects Daughter', cursive;
+  color: #474747;
+}
+.humans{
+  width: 90%;
+  margin-top: 90px;
+}
+
+/*-------BOUTON voir toutes les offres---------*/
+.viewoffres {
+  display: flex;
+  justify-content: center;
+}
+.viewoffres i{
+  margin-left: 10px;
+  margin-right: 5px;
+  animation: animm .8s infinite;
+}
+@keyframes animm {
+  0% {
+    transform: translateY(-5px);     
+  }
+  100% {
+    transform: translateY(10px);
+    color: transparent;
+  }
+}
+.viewoffresbtn {      
+  border: 3px solid #105F7F;
+  padding: 5px 10px;
+  margin: 20px;
+  background: none;
+  font-weight: bold;
+  font-size: 1.9em;
+  color: #105F7F;
+  cursor: pointer;
+  transition: .3s;
+}
+.viewoffresbtn:hover {
+  background: #105F7F;
+  opacity: 0.9;
+  text-decoration: none;  
+  border: 3px solid #105F7F;   
+  color: white;
+}
+/*--------------- CARTES Offres -------------*/
+.hey{
+  text-align: center;
+  margin-top: 80px;
+  margin-bottom: 60px;
+}
+.hey h1{
+  font-size: 3em;
+  font-weight: 700;
+}
+main {
+  padding: 0;
+  margin: 0;
+}
+#cont{
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  min-height: 100vh;
+  margin-bottom: 5%;
+}
+.grid {
+  display: grid;
+  width: 114em;
+  grid-gap: 6rem;
+  grid-template-columns: repeat(auto-fit, minmax(30rem, 1fr));
+  align-items: start; 
+}
+.grid-item {
+  background-color: #fff;
+  border-radius: 0.4rem;
+  overflow: hidden;
+  box-shadow: 0 1rem 5rem rgba(0, 0, 0, 0.1);
+  cursor: pointer;
+  transition: 0.2s;
+  max-width: 50rem;
+}
+.grid-item:hover {
+  transform: translateY(-0.5%);
+  box-shadow: 0 1.5rem 5rem rgba(0, 0, 0, 0.2);
+}
+.card{
+  padding-bottom: 2rem;
+}
+.card-header {
+  font-size: 3rem;
+  font-weight: 500;
+  color: #0d0d0d;
+  background-color: transparent;
+  text-align: center;
+  border: none;
+  padding: 1rem;
+}
+.coeur{
+  top: 5px;
+  right: 5px;
+  position: absolute;
+  cursor: pointer;
+  padding-right: 10px;
+
+}
+.card-header button{
+  background: none;
+  border: none;
+  outline: none;
+}
+.coeur:hover {
+  color: #000;
+  transform: scale(1.1);
+}
+.coeur:active {
+  color: rgb(221, 0, 0);
+  transform: scale(1);
+}
+.card-header img{
+  margin-top: 2rem;
+  padding: 0;
+}
+.card-header span{
+  font-size: 25px;
+  vertical-align: sub;
+}
+.details{
+  padding: 7px 0;
+  font-size: 16px;
+  border-bottom: solid 1px #ddd;
+  margin-bottom: 10px;
+  padding: 1rem 3rem;
+}
+td .fleche{
+  margin: .3em 1em;
+  animation: shimmy .8s infinite;
+  animation-direction: alternate;
+}
+@keyframes shimmy {
+  0% {
+    transform: translate(0, 0);    
+  }
+  100% {
+    transform: translateX(5px);
+  }
+}
+td a{
+  color: #0d0d0d;
+}
+td a:hover{
+  text-decoration: none;
+}
+.lien{
+  display: flex;
+  justify-content: space-between;
+}
+.lui{  
+  width: 100%;
+}
+.icon{
+  padding: 3px 10px 3px 3px ;
+  text-align: center;
+  font-size: 16px;
+}
+.card-text {
+  font-size: 1.4rem;
+  letter-spacing: 0.1rem;
+  line-height: 1.7;
+  color: #3d3d3d;
+  margin: 0 3rem 5.5rem 3rem;
+  text-align: justify; 
+  text-justify: inter-word
+}
+
+
+
+@media only screen and (max-width: 60em) {
+  body {
+    padding: 3rem;
+  }
+
+  .grid {
+    grid-gap: 3rem;
+  }
+}

@@ -1,0 +1,104 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
+    <link href="https://maxcdn.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css" rel="stylesheet">
+    <link rel="stylesheet" href="/public/css/navbar.css">
+    <link rel="stylesheet" href="/public/css/offres.css" />
+    <link rel="stylesheet" href="/public/css/profiles.css">
+    <link rel="icon" type="image/png" sizes="16x16" href="/public/img/logo.png">
+    <title>Profile de <%= etudiants.Nom %>
+            <%= etudiants.Prenom %>
+    </title>
+</head>
+
+<body>
+
+    <%- include ('../layouts/header.ejs') %>
+
+        <div class="entreprise">
+            <div>
+                <div class="px-4 pt-0 pb-4 cover">
+                    <div class="media align-items-end profile-head">
+                        <div class="profile mr-3 pb-4"><img src="/public/img/user.png" alt="..." width="150"
+                                class="rounded mb-2 img-thumbnail"></div>
+                        <div class="media-body mb-5 text-white">
+                            <h1 class="mt-0 mb-3 display-3">
+                                <%= etudiants.Nom %>
+                                    <%= etudiants.Prenom %>
+                            </h1>
+                        </div>
+                    </div>
+                </div>
+                <div class="bg-light p-4" style="height: 40px;">
+
+                </div>
+                <div class="px-0">
+                    <h3 class="m-4">A propos</h3>
+                    <div class="row ligne">
+                        <div class="p-4 rounded shadow-sm bg-light col-7 profilcard">
+                            <div class="apropos">
+                                <table>
+                                    <tr>
+                                        <td class="icon"><i class="fa fa-envelope-o" aria-hidden="true"></i></td>
+                                        <td><span>
+                                                <%= etudiants.Email%>
+                                            </span></td>
+                                    </tr>
+                                    <tr>
+                                        <td class="icon"><i class="fa fa-barcode" aria-hidden="true"></i></td>
+                                        <td><span>157758710025</span></td>
+                                    </tr>
+                                    <tr>
+                                        <td class="icon"><i class="fa fa-graduation-cap" aria-hidden="true"></i></td>
+                                        <td><span>L2</span></td>
+                                    </tr>
+                                    <tr>
+                                        <td class="icon"><i class="fa fa-university" aria-hidden="true"></i></td>
+                                        <td><span>Faculté d'électronique</span></td>
+                                    </tr>
+                                    <tr>
+                                        <td class="icon"><i class="fa fa-bookmark-o" aria-hidden="true"></i></td>
+                                        <td><span>Nom de la spécialité</span></td>
+                                    </tr>
+                                </table>
+                            </div>
+                        </div>
+                        <div class="p-4 rounded shadow-sm bg-light col">
+                            <h3 class="pt-4 pl-4 font-weight-light">Tu peux mettre a jours ton CV en cliquant ici :</h3>
+                            <!--upload button-->
+                            <div class="uploadimg d-flex flex-row">
+                                <div>
+                                    <img src="/public/img/cv.png" alt="..." width="150" class="p-4">
+                                </div>
+                                <div class="file-input">
+                                    <div>
+                                        <input type="file" name="sampleFile" id="file" class="file">
+                                        <label class="btn btn-dark btn btn-block" for="file">Choisir un fichier</label>
+                                    </div>
+                                    <div>
+                                        <button class="btn btn-dark btn btn-block showw">Afficher le CV actuel</button>
+                                    </div>
+                                </div>
+                            </div>
+                            <!--upload button-->
+                        </div>
+                    </div>
+                </div>
+
+            </div>
+        </div>
+
+        <%- include ('../layouts/footer.ejs') %>
+
+
+            <script src="https://code.jquery.com/jquery-3.4.1.slim.min.js"></script>
+            <script src="https://cdn.jsdelivr.net/npm/popper.js@1.16.0/dist/umd/popper.min.js"></script>
+            <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/js/bootstrap.min.js"></script>
+
+</body>
+
+</html>

@@ -1,0 +1,106 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>Form Pilote</title>
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
+    <link href="https://maxcdn.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css" rel="stylesheet">
+    <link rel="stylesheet" href="../public/css/form.css">
+    <link rel="stylesheet" href="../public/css/navbar.css">
+</head>
+
+<body>
+    <nav class="row navbar">
+        <div>
+            <img class="logo" src="../public/img/logo2.png" alt="LOGO">
+        </div>
+        <div class="dropdown show">
+            <a class="btn dropdown-toggle" href="#" role="button" id="dropdownMenuLink" data-toggle="dropdown"
+                aria-haspopup="true" aria-expanded="false"><span class="info-span">Nom Prénom</span>
+                <img width='40px' height='40px' src=" ../public/img/user.png"
+                    class="img-thumbnail rounded-circle navbar-brand pdp" alt="User">
+            </a>
+
+            <div class="dropdown-menu dropdown-menu-right" aria-labelledby="dropdownMenuLink">
+                <div class="info">
+                    <img width='40px' height='40px' src="../public/img/user.png"
+                        class="img-thumbnail rounded-circle navbar-brand pdp" alt="User">
+                    <br>
+                    <span>Nom Prénom</span>
+                    <br>
+                </div>
+                <div class="detail">
+                    <table>
+                        <tr>
+                            <td class="icone"><i class="fa fa-envelope-o" aria-hidden="true"></i></td>
+                            <td><span>monmail@gmail.com</span></td>
+                        </tr>
+                        <tr>
+                            <td class="icone"><i class="fa fa-barcode" aria-hidden="true"></i></td>
+                            <td><span>157758710025</span></td>
+                        </tr>
+                        <tr>
+                            <td class="icone"><i class="fa fa-graduation-cap" aria-hidden="true"></i></td>
+                            <td><span>L2</span></td>
+                        </tr>
+                        <tr>
+                            <td class="icone"><i class="fa fa-university" aria-hidden="true"></i></td>
+                            <td><span>Faculté d'électronique</span></td>
+                        </tr>
+                        <tr>
+                            <td class="icone"><i class="fa fa-bookmark-o" aria-hidden="true"></i></td>
+                            <td><span>Nom de la spécialité</span></td>
+                        </tr>
+                    </table>
+                </div>
+                <div class="logout">
+                    <a class="dropdown-item" href="login.html">Déconnexion<i class="fa fa-sign-out icone"
+                            aria-hidden="true"></i></a>
+
+                </div>
+            </div>
+        </div>
+    </nav>
+    <div class="container-fluid">
+        <div class="row">
+            <div class="col-lg-6 illus">
+                <img class="human" src="../public/img/create.png" alt="">
+            </div>
+            <div class="col-lg-6 col-sm-12 registration-form">
+                <form>
+                    <div class="titre">
+                        <h1>Creation Pilote</h1>
+                    </div>
+                    <div class="form-group">
+                        <input type="text" class="form-control item" name="titre" placeholder="Nom du pilote" required>
+                    </div>
+                    <div class="form-group">
+                        <input type="text" class="form-control item" name="duree" placeholder="Prénom du pilote"
+                            required>
+                    </div>
+                    <div class="form-group">
+                        <input type="text" class="form-control item" name="baserenum" placeholder="Username">
+                    </div>
+                    <div class="form-group">
+                        <input type="password" class="form-control item" name="nbplaces" placeholder="Password"
+                            required>
+                    </div>
+                    <div class="form-group">
+                        <button type="submit" class="btn btn-block create-company">Créer un pilote</button>
+                    </div>
+                </form>
+                <div class="zyada">
+                    <h5></h5>
+                </div>
+            </div>
+        </div>
+    </div>
+    <script src="https://code.jquery.com/jquery-3.4.1.slim.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/popper.js@1.16.0/dist/umd/popper.min.js"></script>
+    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/js/bootstrap.min.js"></script>
+</body>
+
+</html>

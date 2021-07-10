@@ -1,0 +1,144 @@
+<!-- Cette page sera visible par 
+    l'étudiant
+    le pilote
+    l'admin -->
+
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
+    <link href="https://maxcdn.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css" rel="stylesheet">
+    <link rel="stylesheet" href="/public/css/navbar.css">
+    <link rel="stylesheet" href="/public/css/offres.css" />
+    <link rel="icon" type="image/png" sizes="32x32" href="/public/img/logo.png">
+    <title>Offres de Stage</title>
+    <script src="/public/js/fav.js" async></script>
+</head>
+
+<body>
+
+    <%- include('../layouts/header.ejs') %>
+
+        <main>
+            <div class="fancy row">
+                <div class="col-md-6 catch">
+                    <p class="pt-5 mt-5"><strong>Dirige-toi</strong> maintenant<br>vers l'<strong>entreprise</strong>
+                        qui t'offrira<br>le
+                        <strong>stage</strong> correspondant au mieux<br>à ta filière et à ta spécialité...
+                    </p>
+                    <div class="viewoffres">
+                        <a href="#offres" class="viewoffresbtn">Voir toutes les offres <i
+                                class="fa fa-angle-double-down" aria-hidden="true"></i></a>
+                    </div>
+                </div>
+                <div class="humaans mt-5 col-md-6">
+                    <img class="humans" src="/public/img/HumaaansCharacters.png" alt="">
+                </div>
+            </div>
+            <div id="offres">
+                <div class="hey">
+                    <h1>Une sélection d'offres spécialement pour toi</h1>
+                </div>
+                <div id="cont">
+                    <div class="grid" id="card-body">
+
+
+                    </div>
+                </div>
+            </div>
+
+
+        </main>
+        <input type="checkbox" id="check">
+        <label id="icone" for="check"><i class="fa fa-heart" aria-hidden="true"></i></label>
+        <div class="favoris">
+            <div>
+                <h3>Favoris</h3>
+                <table class="cart-items">
+                    <tr>
+                        <th>Titre</th>
+                        <th></th>
+                        <th>Etat</th>
+                        <th></th>
+                        <th></th>
+                    </tr>
+                    <tr class="cart-row">
+
+                    </tr>
+                </table>
+            </div>
+
+        </div>
+
+        <%- include ('../layouts/footer.ejs') %>
+
+            <script>
+                var offre = new Array()
+                const card = (r) => {
+                    return `
+                    <div class="grid-item">
+                        <div class="card">
+                            <div class="card-header">
+                                <button class="coeur"><i class="fa fa-heart-o" aria-hidden="true"></i></button>
+                                <img width='80px' height='80px' src="${r.Entreprise.Logo}"
+                                    class="card-image img-thumbnail navbar-brand pdp" style="border: none; height:80px" alt="User">
+                                <br>
+                                <span class="card-title">${r.Titre}</span>
+                                <br>
+                            </div>
+                            <div class="details">
+                                <table>
+                                    <tr>
+                                        <td class="icon"><i class="fa fa-building-o" aria-hidden="true"></i></td>
+                                        <td class="lui"><a class="lien" href="/entreprise/${r.Entreprise.Id_entrepold}"
+                                                title="Voir détail de l'entreprise"><span>${r.Entreprise.Raison_social}</span><i class="fa fa-angle-double-right fleche"
+                                                    aria-hidden="true"></i></a></td>
+                                    </tr>
+                                    <tr>
+                                        <td class="icon"><i class="fa fa-calendar" aria-hidden="true"></i></td>
+                                        <td><span>${r.Duree_stage}</span> semaines</td>
+                                    </tr>
+                                    <tr>
+                                        <td class="icon"><i class="fa fa-users" aria-hidden="true"></i></td>
+                                        <td><span>${r.Nb_places}</span> places disponibles</td>
+                                    </tr>
+                                    <tr>
+                                        <td class="icon"><i class="fa fa-money" aria-hidden="true"></i></td>
+                                        <td><span>${r.Base_remuneration}</span> DA</td>
+                                    </tr>
+                                </table>
+                            </div>
+                            <p class="card-text">${r.Description}</p>
+                        </div>
+                    </div>`
+                }
+                const showcards = () => {
+                    $('#card-body').html(offre.map(element => {
+                        return card(element)
+                    }).join(''))
+                }
+                const getOffre = () => {
+                    let xhr = new XMLHttpRequest()
+                    xhr.open('get', 'offre?json=true')
+                    xhr.responseType = 'json'
+                    xhr.onload = () => {
+                        offre = xhr.response
+                        showcards()
+                    }
+
+                    xhr.send()
+                }
+                getOffre()
+            </script>
+
+
+            <script src="https://code.jquery.com/jquery-3.4.1.slim.min.js"></script>
+            <script src="https://cdn.jsdelivr.net/npm/popper.js@1.16.0/dist/umd/popper.min.js"></script>
+            <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/js/bootstrap.min.js"></script>
+
+</body>
+
+</html>

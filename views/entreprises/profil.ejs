@@ -1,0 +1,172 @@
+<!-- Cette page sera visible par 
+    l'étudiant
+    l'entreprise -->
+
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css">
+    <link rel="stylesheet" href="/public/css/navbar.css">
+    <link rel="stylesheet" href="/public/css/offres.css" />
+    <link rel="stylesheet" href="/public/css/profiles.css">
+    <link rel="icon" type="image/png" sizes="16x16" href="/public/img/logo.png">
+    <title>
+        <%= entreprises.Raison_social %>
+    </title>
+    <script src="/public/js/fav.js" async></script>
+
+</head>
+
+<body>
+    <%- include ('../layouts/header.ejs') %>
+        <div class="entreprise">
+            <div>
+                <div class="px-4 pt-0 pb-4 cover">
+                    <div class="media align-items-end profile-head">
+                        <div class="profile mr-3"><img src="<%= entreprises.Logo %>" alt="..." width="150"
+                                class="rounded mb-2 img-thumbnail"><a href="#offres"
+                                class="btn btn-outline-dark btn btn-block">Voir les offres</a></div>
+                        <div class="media-body mb-5 text-white">
+                            <h1 class="mt-0 mb-2 display-3">
+                                <%= entreprises.Raison_social %>
+                            </h1>
+                            <h3 class="mb-4 font-weight-light">
+                                <%= entreprises.Secteur_activite %>
+                            </h3>
+                            <!--Seulement pour l'entreprise--<a href="#" class="btn btn-outline-dark modifier">Modifier le profile</a>-->
+                        </div>
+                    </div>
+                </div>
+                <div class="bg-light p-4 d-flex justify-content-end text-center">
+                    <ul class="list-inline mb-0">
+                        <li class="mr-4 list-inline-item"><i class="fa fa-facebook fa-2x" aria-hidden="true"></i>
+                        </li>
+                        <li class="mr-4 list-inline-item"><i class="fa fa-instagram fa-2x" aria-hidden="true"></i>
+                        </li>
+                        <li class="mr-4 list-inline-item"><i class="fa fa-twitter fa-2x" aria-hidden="true"></i>
+                        </li>
+                    </ul>
+                </div>
+                <div class="px-0">
+                    <h3 class="m-4">A propos</h3>
+                    <div class="p-4 rounded shadow-sm bg-light">
+                        <h3 class="mb-4 mt-4 font-weight-light">Nous avons déjà accepté <span>
+                                <%= entreprises.Nb_stagiere_acceptes %>
+                            </span> stagières de l'USTHB, et serons ravis de vous accueillir parmis nous !</h3>
+                        <h3 class="mb-4 font-weight-light">Vous pouvez nous retrouver dans nos locaux au niveau de
+                            <span>
+                                <%= entreprises.Localite %>
+                            </span> ou sur notre site internet : <a class="siteLink" target='_blank'
+                                href="<%= entreprises.Site_web %>">
+                                <%= entreprises.Site_web %>
+                            </a>
+                        </h3>
+                        <h3 class="mb-4 font-weight-light">Ou contactez-nous au : <span>0560 57 79 18</span> </h3>
+                    </div>
+                </div>
+                <div class="px-0">
+                    <h3 class="m-4">Plus d'informations</h3>
+                    <div class="p-4 rounded shadow-sm bg-light">
+                        <p class="font-weight-light text-justify lead">
+                            <%= entreprises.Description %>
+                        </p>
+                    </div>
+                </div>
+                <!--Seulement pour l'entreprise--<div>
+                <a href="#" class="btn btn-dark btn btn-block creer">Creer une nouvelle offre</a>
+            </div>-->
+            </div>
+        </div>
+        <div class="hey">
+            <!--Pour tous les autres (sauf entreprise)-->
+            <h1 id="offres">Nous vous proposons :</h1>
+            <!--Seulement pour l'entreprise--<h1 id="offres">Nos offres :</h1>-->
+
+        </div>
+        <main>
+            <div id="cont">
+                <div class="grid">
+                    <% offres.forEach(element=> {%>
+                        <div class="grid-item">
+                            <div class="card">
+                                <div class="card-header">
+                                    <button class="coeur"><i class="fa fa-heart-o" aria-hidden="true"></i></button>
+                                    <img width='100px' height='100px' src="<%= entreprises.Logo %>"
+                                        class="card-image img-thumbnail navbar-brand pdp"
+                                        style="border: none; height:80px" alt="User">
+                                    <br>
+                                    <span class="card-title">
+                                        <%= element.Titre %>
+                                    </span>
+                                    <br>
+                                </div>
+                                <div class="details">
+                                    <table>
+                                        <tr>
+                                            <td class="icon"><i class="fa fa-calendar" aria-hidden="true"></i></td>
+                                            <td><span>
+                                                    <%= element.Duree_stage %>
+                                                </span> semaines</td>
+                                        </tr>
+                                        <tr>
+                                            <td class="icon"><i class="fa fa-users" aria-hidden="true"></i></td>
+                                            <td><span>
+                                                    <%= element.Nb_places%>
+                                                </span> places disponibles</td>
+                                        </tr>
+                                        <tr>
+                                            <td class="icon"><i class="fa fa-money" aria-hidden="true"></i></td>
+                                            <td><span>
+                                                    <%= element.Base_remuneration%>
+                                                </span> DA</td>
+                                        </tr>
+                                    </table>
+                                </div>
+                                <p class="card-text">
+                                    <%= element.Description%>
+                                </p>
+                            </div>
+                        </div>
+                        <%});%>
+                </div>
+            </div>
+        </main>
+        <input type="checkbox" id="check">
+        <label id="icone" for="check"><i class="fa fa-heart" aria-hidden="true"></i></label>
+
+        <div class="favoris">
+            <div>
+                <h3>Favoris</h3>
+                <table class="cart-items">
+                    <tr>
+                        <th>Titre</th>
+                        <th></th>
+                        <th>Etat</th>
+                        <th></th>
+                        <th></th>
+                    </tr>
+                    <tr class="cart-row">
+
+                    </tr>
+                </table>
+            </div>
+
+        </div>
+
+        <%- include ('../layouts/footer.ejs') %>
+
+
+            <script src="https://code.jquery.com/jquery-3.4.1.slim.min.js"></script>
+            <script src="https://cdn.jsdelivr.net/npm/popper.js@1.16.0/dist/umd/popper.min.js"></script>
+            <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/js/bootstrap.min.js"></script>
+
+
+
+
+</body>
+
+</html>

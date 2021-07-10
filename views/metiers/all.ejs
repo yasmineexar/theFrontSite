@@ -1,0 +1,103 @@
+<!-- Cette page sera visible par 
+    l'étudiant
+    le pilote
+    l'admin -->
+
+<!DOCTYPE html>
+<html lang="fr">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
+    <link href="https://maxcdn.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css" rel="stylesheet">
+    <link rel="stylesheet" href="/public/css/newsletter.css">
+    <link href="https://fonts.googleapis.com/css2?family=Architects+Daughter&family=Pacifico&display=swap"
+        rel="stylesheet">
+    <link rel="stylesheet" href="/public/css/navbar.css">
+    <link rel="icon" type="image/png" sizes="16x16" href="/public/img/logo.png">
+    <title>Métiers</title>
+</head>
+
+<body>
+    <%- include('../layouts/header.ejs') %>
+
+        <div class="viewoffres">
+            <a href="/offre" class="viewoffresbtn"> Consulter les offres de stage <i id="anim"
+                    class="fa fa-angle-double-right" aria-hidden="true"></i></a>
+        </div>
+
+
+
+        <div class="fancy row">
+            <div class="col-md-6 catch">
+                <p>Voici un large panel<br>de <strong>métiers</strong> en rapport
+                    avec<br>ta <strong>spécialité</strong> afin que tu puisses avoir<br>une idée des <strong>débouchés
+                        professionnels</strong> qui s'offrent à toi
+                </p>
+                <div class="suite">
+                    <a href="#metiers" class="suitebtn">Voir tous <i id="anim" class="fa fa-angle-double-down"
+                            aria-hidden="true"></i></a>
+                </div>
+            </div>
+            <div class="col-lg-6 humans">
+                <img class="humans" src="/public/img/Humaaans3Characters.png" alt="">
+            </div>
+        </div>
+        <div id="metiers">
+            <h1 class="cards">Les métiers de l'informatique</h1>
+            <ul class="job-cards" id="card-body">
+
+            </ul>
+        </div>
+
+        <%- include ('../layouts/footer.ejs') %>
+
+
+            <script>
+                var metier = new Array()
+                const card = (r) => {
+                    return `<li class="job-card"
+                    style="background-image: url(/public/img/imgmetier.jpg)">
+                    <div class="detail-container">
+                        <div class="content">
+                            <button class="btn">Détails</button>
+                        </div>
+                    </div>
+                    <div class="informations-container">
+                        <div class="headd"><h2 class="title">${r.Nom}</h2></div>
+                        <div class="more-information">
+                            <p class="disclaimer">${r.Description}</p>
+                        </div>
+                    </div>
+                </li>`
+                }
+                const showcards = () => {
+                    $('#card-body').html(metier.map(element => {
+                        return card(element)
+                    }).join(''))
+                }
+                const getMetier = () => {
+                    let xhr = new XMLHttpRequest()
+                    xhr.open('get', 'metier?json=true')
+                    xhr.responseType = 'json'
+                    xhr.onload = () => {
+                        metier = xhr.response
+                        showcards()
+                    }
+
+                    xhr.send()
+                }
+                getMetier()
+
+
+
+
+            </script>
+            <script src="https://code.jquery.com/jquery-3.4.1.slim.min.js"></script>
+            <script src="https://cdn.jsdelivr.net/npm/popper.js@1.16.0/dist/umd/popper.min.js"></script>
+            <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/js/bootstrap.min.js"></script>
+</body>
+
+</html>
