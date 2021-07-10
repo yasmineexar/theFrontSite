@@ -3,6 +3,7 @@ const etudiant = require('./etudiant')
 const faculte = require('./faculte')
 const offre = require('./offre')
 const metier = require('./metier')
+const user = require('./user')
 
 
 module.exports = {
@@ -11,4 +12,5 @@ module.exports = {
     etudiant,
     offre,
     metier,
+    user,
 }

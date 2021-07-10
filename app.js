@@ -17,7 +17,7 @@ app.use('/etudiant', routes.etudiant)
 app.use('/faculte', routes.faculte)
 app.use('/offre', routes.offre)
 app.use('/metier', routes.metier)
-
+app.use('/user', routes.user)
 
 app.use("/public", express.static("./public"));
 
