@@ -3,7 +3,7 @@ const User = require("../Models/User");
 
 
 exports.addpilote = (req, res) => {
-    return res.render('admin/addpilote')
+    return res.render('pilotes/add')
 }
 
 exports.create = (req, res) => {
