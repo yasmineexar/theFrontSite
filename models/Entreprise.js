@@ -30,17 +30,10 @@ module.exports = class Entreprise extends Model {
     }
 
     creat = () => {
-        console.log(8)
         return new Promise((resolve, reject) => {
-            console.log('5')
-
             this.dbconnection.query(`INSERT INTO ${this.tablename} SET Raison_social = ?, Secteur_activite = ?, Site_web = ?, Localite = ?, Description = ?`, [this.Raison_social, this.Secteur_activite, this.Site_web, this.Localite, this.Description], (error, results, fields) => {
-                console.log('6')
-
                 if (error) return reject(error)
                 resolve(results)
-                console.log('7')
-
             })
         })
     }
