@@ -47,6 +47,17 @@
                                 placeholder="Nombre de places disponible" required>
                         </div>
                         <div class="form-group">
+                            <select type="text" class="form-control item" name="Id_faculte" id="Faculte"
+                                placeholder="Faculté concernée" required>
+                                <option>Facultée concernée</option>
+                                <% faculte.forEach(element=> { %>
+                                    <option value="<%=element.Id_faculte%>">
+                                        <%=element.Nom%>
+                                    </option>
+                                    <% }) %>
+                            </select>
+                        </div>
+                        <div class="form-group">
                             <textarea class="form-control" name="Description" id="description" rows="5"
                                 placeholder="Description..." required></textarea>
                         </div>

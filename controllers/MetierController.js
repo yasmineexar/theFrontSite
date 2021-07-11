@@ -15,7 +15,6 @@ exports.delet = (req, res) => {
 };
 exports.add = (req, res) => {
     Faculte.getAll().then((rows) => {
-
         return res.render('metiers/add', { faculte: rows })
     })
 }
