@@ -21,7 +21,14 @@ module.exports = class User extends Model {
   read() { }
   update() { }
   delete() { }
-  static getAll() { }
+  static getAllPilote = () => {
+    return new Promise((resolve, reject) => {
+      this.dbconnection.query(`SELECT * from ${this.tablename} WHERE ROLE = 'pilote'`, (error, results, fields) => {
+        if (error) return reject(error)
+        resolve(results)
+      })
+    })
+  }
 
 };
 

@@ -1,11 +1,10 @@
 
 const User = require("../Models/User");
 
-
+//CRUD pilote
 exports.addpilote = (req, res) => {
     return res.render('pilotes/add')
 }
-
 exports.create = (req, res) => {
     const nomp = req.body.nomp
     const prenomp = req.body.prenomp
@@ -28,8 +27,13 @@ exports.create = (req, res) => {
 exports.update = (req, res) => {
 
 }
-exports.read = (req, res) => {
-
+exports.readpilote = (req, res) => {
+    if (req.query.json) {
+        return User.getAllPilote().then(rows => {
+            return res.json(rows)
+        })
+    }
+    return res.render('pilotes/all')
 };
 exports.delet = (req, res) => {
 

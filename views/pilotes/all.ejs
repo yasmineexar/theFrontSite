@@ -18,7 +18,7 @@
     <link rel="stylesheet" href="/public/css/sidenav.css">
     <link rel="stylesheet" href="/public/css/AllEtudiants.css">
     <link rel="icon" type="image/png" sizes="16x16" href="/public/img/logo.png">
-    <title>Liste des étudiants</title>
+    <title>Liste des pilotes</title>
 </head>
 
 <body>
@@ -34,40 +34,13 @@
                 <div class="database col-12">
                     <div class="row">
                         <div class="col">
-                            <h2>Etudiants</h2>
+                            <h2>Liste des Pilotes</h2>
                         </div>
                         <div class="viewoffres col">
                             <a href="/user/addpilote" type="button" class="viewoffresbtn"> Ajouter un Pilote </a>
                         </div>
                     </div>
-                    <section class="search-sec">
-                        <div class="container">
-                            <form action="#" method="post" novalidate="novalidate">
-                                <div class="row">
-                                    <div class="col-lg-12">
-                                        <div class="row">
-                                            <div class="col-lg-3 col-md-3 col-sm-12 p-0">
-                                                <input type="text" class="form-control search-slt" id="nom"
-                                                    placeholder="Nom">
-                                            </div>
-                                            <div class="col-lg-3 col-md-3 col-sm-12 p-0">
-                                                <input type="text" class="form-control search-slt" id="prenom"
-                                                    placeholder="Prénom">
-                                            </div>
-                                            <div class="col-lg-3 col-md-3 col-sm-12 p-0">
-                                                <select class="form-control search-slt" id="faculte">
-                                                </select>
-                                            </div>
-                                            <div class="col-lg-3 col-md-3 col-sm-12 p-0">
-                                                <button type="button" onclick="getEtudiant()"
-                                                    class="btn wrn-btn">Search</button>
-                                            </div>
-                                        </div>
-                                    </div>
-                                </div>
-                            </form>
-                        </div>
-                    </section>
+
                     <div class="grid" id="card-body">
 
 
@@ -97,84 +70,48 @@
                                         <img width='60px' height='60px' src="/public/img/user.png"
                                             class="img-thumbnail rounded-circle navbar-brand pdp" alt="User">
                                         <br>
-                                        <a class="lien" href="/etudiant/${r.Id_etudold}"
-                                                    title="Voir le profile de l'étudiant"><span>${r.Nom} ${r.Prenom}</span></a>
+                                        <span>${r.Username}</span>
                                         <br>
                                     </div>
                                     <div class="detail">
                                         <table>
                                             <tr>
                                                 <td class="icone"><i class="fa fa-envelope-o" aria-hidden="true"></i></td>
-                                                <td><span>${r.Email}</span></td>
+                                                <td><span>${r.Nom}</span></td>
                                             </tr>
                                             <tr>
                                                 <td class="icone"><i class="fa fa-barcode" aria-hidden="true"></i></td>
-                                                <td><span>${r.Matricule}</span></td>
+                                                <td><span> ${r.Prenom}</span></td>
                                             </tr>
                                             <tr>
                                                 <td class="icone"><i class="fa fa-graduation-cap" aria-hidden="true"></i>
                                                 </td>
-                                                <td><span>${r.Annee_etude}</span></td>
-                                            </tr>
-                                            <tr>
-                                                <td class="icone"><i class="fa fa-university" aria-hidden="true"></i></td>
-                                                <td><span>${r.faculte.Nom}</span></td>
-                                            </tr>
-                                            <tr>
-                                                <td class="icone"><i class="fa fa-bookmark-o" aria-hidden="true"></i></td>
-                                                <td><span>${r.Specialite}</span></td>
+                                                <td><span>${r.Email}</span></td>
                                             </tr>
                                         </table>
                                     </div>
                                 </div>
                             </div>
                     `}
-                const getEtudiant = () => {
+                const getPilote = () => {
                     let nom = $('#nom').val()
                     let prenom = $('#prenom').val()
-                    let fac = $("#faculte").val()
-                    console.log(nom, prenom, fac)
+                    console.log(nom, prenom)
                     let xhr = new XMLHttpRequest()
-                    xhr.open('get', 'etudiant?json=true')
+                    xhr.open('get', 'pilote?json=true')
                     xhr.responseType = 'json'
                     xhr.onload = () => {
-                        let etudiant = xhr.response
-                        console.log(etudiant.length)
-                        etudiant = etudiant.filter((e) => {
-                            let n = true;
-                            let p = true;
-                            let f = true;
-                            if (nom) n = new RegExp(nom).test(e.Nom)
-                            if (prenom) p = new RegExp(prenom).test(e.Prenom)
-                            if (fac) f = new RegExp("^" + fac + "$").test(e.Faculte)
-                            return n & p & f
-                        })
-                        console.log(etudiant.length)
-                        $('#card-body').html(etudiant.map(element => {
+                        let pilote = xhr.response
+                        console.log(pilote.length)
+                        $('#card-body').html(pilote.map(element => {
                             return card(element)
                         }).join(''))
 
                     }
                     xhr.send()
                 }
-                const getfaculte = () => {
-                    let xhr = new XMLHttpRequest()
-                    xhr.open('get', '/faculte?json=true')
-                    xhr.responseType = 'json'
-                    xhr.onload = () => {
-                        faculte = xhr.response
-                        $('#faculte').html(`
-                            <option value="">Choisir une Faculté</option>
-                            
-                            ${faculte.map((e) => { return `<option value="${e.Id_faculte}">${e.Nom}</option>` }).join('')}
-                            `)
-                    }
-                    xhr.send()
-                }
-                getfaculte()
-                getEtudiant()
 
-
+                getPilote()
 
                 //ScrollToTop button
                 //Get the button
