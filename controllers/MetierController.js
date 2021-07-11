@@ -18,4 +18,6 @@ exports.read = (req, res) => {
 exports.delet = (req, res) => {
 
 };
-
+exports.add = (req, res) => {
+    return res.render('metiers/add')
+}
