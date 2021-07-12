@@ -17,7 +17,14 @@ module.exports = class Metier extends Model {
       })
     })
   }
-
+  static getById(Id_metier) {
+    return new Promise((resolve, reject) => {
+      this.dbconnection.query(`SELECT * from ${this.tablename} where Id_metier = ${Id_metier} `, (error, results, fields) => {
+        if (error) return reject(error)
+        resolve(results)
+      })
+    })
+  }
   creat = () => {
     return new Promise((resolve, reject) => {
       this.dbconnection.query(`INSERT INTO ${this.tablename} SET Description = ?, Image = ?, Nom = ?, Id_faculte = ?`, [this.Description, this.Image, this.Nom, this.Id_faculte], (error, results, fields) => {

@@ -33,6 +33,13 @@ exports.creat = (req, res) => {
         return res.redirect('add')
     })
 };
+exports.edit = (req, res) => {
+    return Metier.getById(req.params.id).then((metiers) => {
+        Faculte.getAll().then((rows) => {
+            return res.render('metiers/edit', { metiers: metiers[0], faculte: rows })
+        })
+    })
+}
 exports.update = (req, res) => {
 
 }

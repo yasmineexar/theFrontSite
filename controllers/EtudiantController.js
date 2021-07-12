@@ -1,12 +1,6 @@
 const etudiant = require('../models/etudiant')
 const faculte = require('../models/faculte')
 
-exports.create = (req, res) => {
-
-};
-exports.update = (req, res) => {
-
-}
 exports.read = (req, res) => {
     if (req.query.json) {
         return etudiant.getAll().then(rows => {
@@ -30,6 +24,11 @@ exports.read = (req, res) => {
         })
     }
     return res.render('etudiants/all_admin')
+}
+exports.create = (req, res) => {
+
+};
+exports.update = (req, res) => {
 
 }
 exports.delet = (req, res) => {

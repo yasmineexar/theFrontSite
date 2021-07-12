@@ -16,7 +16,6 @@ exports.read = (req, res) => {
                 return res.render('entreprises/profil', { entreprises: entreprises[0], offres })
             })
         })
-
     }
     return res.render('entreprises/all')
 }

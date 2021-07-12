@@ -2,10 +2,18 @@
 const User = require("../Models/User");
 
 //CRUD pilote
+exports.readpilote = (req, res) => {
+    if (req.query.json) {
+        return User.getAllPilote().then(rows => {
+            return res.json(rows)
+        })
+    }
+    return res.render('pilotes/all')
+};
 exports.addpilote = (req, res) => {
     return res.render('pilotes/add')
 }
-exports.create = (req, res) => {
+exports.createpilote = (req, res) => {
     const nomp = req.body.nomp
     const prenomp = req.body.prenomp
     const emailp = req.body.emailp
@@ -20,22 +28,19 @@ exports.create = (req, res) => {
     pilote.Password = passwordp
     pilote.Role = rolep
     pilote.create().then(() => {
-        console.log('hello')
         return res.redirect('addpilote')
     })
 };
+exports.editpilote = (req, res) => {
+    return User.getPiloteById(req.params.id).then((pilotes) => {
+        return res.render('pilotes/edit', { pilotes: pilotes[0] })
+    })
+}
 exports.update = (req, res) => {
 
 }
-exports.readpilote = (req, res) => {
-    if (req.query.json) {
-        return User.getAllPilote().then(rows => {
-            return res.json(rows)
-        })
-    }
-    return res.render('pilotes/all')
-};
 exports.delet = (req, res) => {
 
 };
 
+//CRUD pilote

@@ -1,5 +1,5 @@
 const router = require('express').Router()
-const { add, read } = require('../controllers/etudiants')
+const { add, read } = require('../controllers/EtudiantController')
 
 
 router.get('/', read)

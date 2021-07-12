@@ -43,6 +43,13 @@ exports.creat = (req, res) => {
         return res.redirect('add')
     })
 };
+exports.edit = (req, res) => {
+    return Offre.getById(req.params.id).then((offres) => {
+        Faculte.getAll().then((rows) => {
+            return res.render('offres/edit', { offres: offres[0], faculte: rows })
+        })
+    })
+}
 exports.update = (req, res) => {
 
 }

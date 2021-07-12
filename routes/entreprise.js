@@ -1,5 +1,5 @@
 const router = require('express').Router()
-const { creat, add, edit, read, update, delet } = require('../controllers/entreprises')
+const { creat, add, edit, read, update, delet } = require('../controllers/EntrepriseController')
 
 router.get('/add', add)
 router.post('/add', creat)
