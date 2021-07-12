@@ -190,13 +190,14 @@
                             <div class="col-3" data-label="Adresse">${r.Localite}</div>
                             <div class="col-1" data-label="Site Internet"><a class="siteLink" href='${r.Site_web}' target='_blank'>ici</a></div>
                             <div class="col col-1 icons">
-                                <button class="ent modify"><i class="fa fa-pencil" data-toggle='modifier' data-target="${r.Id_entreprise}" aria-hidden="true"></i></button>
-                                <button class="ent bin"><i class="fa fa-trash-o" data-toggle='supprimer' data-target="${r.Id_entreprise}" aria-hidden="true"></i></button>
+                                <button class="ent modify"><i class="fa fa-pencil" data-toggle='modifier' data-target="${r.Id_entrepold}" aria-hidden="true"></i></button>
+                                <button class="ent bin"><i class="fa fa-trash-o" data-toggle='supprimer' data-target="${r.Id_entrepold}" aria-hidden="true"></i></button>
                             </div>
                     </li>
                 `}
                 const showcards = () => {
                     $('#card-body').html(entreprise.map(element => {
+                        console.log(element)
                         return card(element)
                     }).join(''))
                 }
@@ -260,7 +261,21 @@
                         items.hide().slice(showFrom, showTo).show();
                     }
                 });
-
+                $(document).on('click', (e) => {
+                    let d = $(e.target).data()
+                    if (d.toggle == 'modifier') {
+                        window.location.href = '/entreprise/edit/' + d.target
+                    }
+                    else if (d.toggle == 'supprimer') {
+                        let xhr = new XMLHttpRequest()
+                        xhr.open('delete', 'entreprise/' + d.target)
+                        xmlhttp.setRequestHeader("Content-Type", "application/json;charset=UTF-8");
+                        xhr.onload = () => {
+                            getEntreprise()
+                        }
+                        xhr.send()
+                    }
+                })
             </script>
 
 </body>
