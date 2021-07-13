@@ -37,7 +37,24 @@ exports.editpilote = (req, res) => {
     })
 }
 exports.updatepilote = (req, res) => {
-
+    const Nom = req.body.nomp
+    const Prenom = req.body.prenomp
+    const Email = req.body.emailp
+    const Username = req.body.usernamep
+    const Password = req.body.passwordp
+    const Id_utilisateur = req.params.id
+    let pilote = new User()
+    pilote.Nom = Nom
+    pilote.Prenom = Prenom
+    pilote.Email = Email
+    pilote.Username = Username
+    pilote.Password = Password
+    pilote.Id_utilisateur = Id_utilisateur
+    pilote.updatepilote(req.params.id).then(() => {
+        User.getPiloteById(req.params.id).then((pilotes) => {
+            return res.render('pilotes/edit', { pilotes: pilotes[0] })
+        })
+    })
 }
 exports.delet = (req, res) => {
 

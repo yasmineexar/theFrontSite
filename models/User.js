@@ -38,8 +38,14 @@ module.exports = class User extends Model {
     })
   }
 
-  update() { }
-
+  updatepilote = (Id_utilisateur) => {
+    return new Promise((resolve, reject) => {
+      this.dbconnection.query(`UPDATE ${this.tablename} SET Nom = ?, Prenom = ?, Email = ?, Username = ?, Password = ? WHERE Id_utilisateur =${Id_utilisateur} AND Role = 'pilote'`, [this.Nom, this.Prenom, this.Email, this.Username, this.Password], (error, results, fields) => {
+        if (error) return reject(error)
+        resolve(results)
+      })
+    })
+  }
   delete() { }
 };
 
