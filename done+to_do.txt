@@ -25,6 +25,7 @@ Edit pilote (en cours)
 
 ************résumé : CRU pour toutes les gestions************
 To do : 
+Gerer les erreur de confirmation formulaires (informations required pour pouvoir submit un formulaire)
 Delete by id pour toutes les gestions
 Image uploading pour les formulaires (logo entreprise, image metier)
 Recherche + Recherche avec filtres 
