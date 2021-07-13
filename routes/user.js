@@ -4,12 +4,12 @@ const { createpilote, editpilote, addpilote, readpilote, updatepilote, delet } =
 
 //routes pilote
 router.get('/addpilote', addpilote)
-router.post('/addpilote', function (req, res) { createpilote })
+router.post('/addpilote', createpilote)
 
 router.get('/allpilote', readpilote)
 router.get('/:id', readpilote)
 
-router.post('/editpilote/:id', function (req, res) { updatepilote })
+router.post('/editpilote/:id', updatepilote)
 router.get('/editpilote/:id', editpilote)
 
 router.delete('/:id', delet)

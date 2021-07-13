@@ -36,7 +36,7 @@ exports.editpilote = (req, res) => {
         return res.render('pilotes/edit', { pilotes: pilotes[0] })
     })
 }
-exports.update = (req, res) => {
+exports.updatepilote = (req, res) => {
 
 }
 exports.delet = (req, res) => {

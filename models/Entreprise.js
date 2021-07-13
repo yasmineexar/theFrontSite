@@ -38,9 +38,9 @@ module.exports = class Entreprise extends Model {
         })
     }
 
-    update = () => {
+    update = (Id_entrepold) => {
         return new Promise((resolve, reject) => {
-            this.dbconnection.query(`UPDATE ${this.tablename} SET Raison_social = ?, Secteur_activite = ?, Site_web = ?, Localite = ?, Description = ? WHERE Id_entrepold = ?`, [this.Raison_social, this.Secteur_activite, this.Site_web, this.Localite, this.Description, this.Id_entrepold], (error, results, fields) => {
+            this.dbconnection.query(`UPDATE ${this.tablename} SET Raison_social = ?, Secteur_activite = ?, Site_web = ?, Localite = ?, Description = ? where Id_entrepold = ${Id_entrepold}`, [this.Raison_social, this.Secteur_activite, this.Site_web, this.Localite, this.Description], (error, results, fields) => {
                 if (error) return reject(error)
                 resolve(results)
             })
