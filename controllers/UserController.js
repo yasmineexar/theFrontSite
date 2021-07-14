@@ -1,6 +1,6 @@
 
 const User = require("../Models/User");
-
+const bcrypt = require('bcryptjs')
 //CRUD pilote
 exports.readpilote = (req, res) => {
     if (req.query.json) {
@@ -18,16 +18,27 @@ exports.createpilote = (req, res) => {
     const prenomp = req.body.prenomp
     const emailp = req.body.emailp
     const usernamep = req.body.usernamep
-    const passwordp = req.body.passwordp
     const rolep = 'pilote'
+    const passwordp = req.body.passwordp
     let pilote = new User()
     pilote.Nom = nomp
     pilote.Prenom = prenomp
     pilote.Email = emailp
     pilote.Username = usernamep
-    pilote.Password = passwordp
     pilote.Role = rolep
+    pilote.Password = passwordp
+    //password hash function
+    /*let saltRounds = 10
+   bcrypt.genSalt(saltRounds, function (err, salt) {
+       bcrypt.hash(passwordp, salt, function (err, hash) {
+           console.log(hash)
+           
+           console.log(pilote.Password)
+       });
+   }); */
+    console.log('avant create')
     pilote.create().then(() => {
+        console.log('after create')
         return res.redirect('addpilote')
     })
 };
@@ -37,24 +48,7 @@ exports.editpilote = (req, res) => {
     })
 }
 exports.updatepilote = (req, res) => {
-    const Nom = req.body.nomp
-    const Prenom = req.body.prenomp
-    const Email = req.body.emailp
-    const Username = req.body.usernamep
-    const Password = req.body.passwordp
-    const Id_utilisateur = req.params.id
-    let pilote = new User()
-    pilote.Nom = Nom
-    pilote.Prenom = Prenom
-    pilote.Email = Email
-    pilote.Username = Username
-    pilote.Password = Password
-    pilote.Id_utilisateur = Id_utilisateur
-    pilote.updatepilote(req.params.id).then(() => {
-        User.getPiloteById(req.params.id).then((pilotes) => {
-            return res.render('pilotes/edit', { pilotes: pilotes[0] })
-        })
-    })
+
 }
 exports.delet = (req, res) => {
 

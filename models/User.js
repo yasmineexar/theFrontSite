@@ -31,8 +31,13 @@ module.exports = class User extends Model {
 
   create = () => {
     return new Promise((resolve, reject) => {
+      console.log('avant req')
       this.dbconnection.query(`INSERT INTO ${this.tablename} SET Nom = ?, Prenom = ?, Email = ?, Username = ?, Password = ?, Role = ?`, [this.Nom, this.Prenom, this.Email, this.Username, this.Password, this.Role], (error, results, fields) => {
-        if (error) return reject(error)
+        console.log('after req')
+        if (error) {
+          console.log(error)
+          return reject(error)
+        }
         resolve(results)
       })
     })
