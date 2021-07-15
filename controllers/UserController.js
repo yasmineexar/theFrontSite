@@ -21,12 +21,12 @@ exports.createpilote = (req, res) => {
     const rolep = 'pilote'
     const passwordp = req.body.passwordp
     let pilote = new User()
-    pilote.Nom = nomp
-    pilote.Prenom = prenomp
-    pilote.Email = emailp
-    pilote.Username = usernamep
-    pilote.Role = rolep
-    pilote.Password = passwordp
+    pilote.nom = nomp
+    pilote.prenom = prenomp
+    pilote.email = emailp
+    pilote.username = usernamep
+    pilote.role = rolep
+    pilote.password = passwordp
     //password hash function
     /*let saltRounds = 10
    bcrypt.genSalt(saltRounds, function (err, salt) {
@@ -58,14 +58,14 @@ exports.delet = (req, res) => {
 
 exports.login = (req, res) => {
     User.getByUsername(req.body.username).then((userrow) => {
-        if (!userrow) return res.render('login-register', { error: 'utilisateur introuvable' })
+        if (!userrow) return res.render('login/login-register', { error: 'utilisateur introuvable' })
         /* if (req.body.password == userrow.Password) return res.json(userrow) */
         bcrypt.compare(req.body.password, userrow.Password, function (err, result) {
             if (result == true) {
                 return res.json(userrow)
             } else {
                 res.send('Incorrect password')
-                res.redirect('login-register')
+                res.redirect('login')
             }
         })
     })
