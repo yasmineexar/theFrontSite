@@ -44,14 +44,28 @@ exports.creat = (req, res) => {
     })
 };
 exports.edit = (req, res) => {
-    return Offre.getById(req.params.id).then((offres) => {
-        Faculte.getAll().then((rows) => {
-            return res.render('offres/edit', { offres: offres[0], faculte: rows })
-        })
+    Promise.all([Offre.getById(req.params.id), Faculte.getAll()]).then((a) => {
+        offre = a[0]
+        facultes = a[1]
+        return res.render('offres/edit', { offre: offre[0], facultes })
     })
 }
 exports.update = (req, res) => {
-
+    let o = new Offre()
+    Offre.getById(req.params.id).then((offre) => {
+        console.log('body', req.body)
+        o.Id_offre = req.params.id
+        o.Base_remuneration = req.body.Base_remuneration || offre.Base_remuneration
+        o.Duree_stage = req.body.Duree_stage || offre.Duree_stage
+        o.Description = req.body.Description || offre.Description
+        o.Id_faculte = req.body.Id_faculte || offre.Id_faculte
+        o.Nb_places = req.body.Nb_places || offre.Nb_places
+        o.Titre = req.body.Titre || offre.Titre
+        console.log('offre', offre)
+        o.update().then(() => {
+            res.redirect('/offre/edit/' + req.params.id)
+        })
+    })
 }
 exports.delet = (req, res) => {
 

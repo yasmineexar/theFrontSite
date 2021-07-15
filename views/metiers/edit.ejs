@@ -13,6 +13,7 @@
     <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
     <link href="https://maxcdn.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css" rel="stylesheet">
     <link rel="stylesheet" href="/public/css/form.css">
+    <link rel="icon" type="image/png" sizes="32x32" href="/public/img/logo.png">
     <link rel="stylesheet" href="/public/css/navbar.css">
 </head>
 
@@ -27,13 +28,13 @@
                 <div class="col-lg-6 col-sm-12 registration-form">
                     <form class="needs-validation" method="POST" novalidate>
                         <div class="titre">
-                            <h1>Creation Fiche Metier</h1>
+                            <h1 style="line-height: 25px;">Mettre à jour <BR></BR> une Fiche Metier</h1>
                         </div>
                         <!--upload button-->
                         <div class="uploadimg row">
                             <div class="col-2">
                                 <img id="imgholder" class="uploadjs" src="http://placehold.it/100x150"
-                                    alt="your logo" />
+                                    alt="your image" />
                             </div>
                             <div class="file-input col-10">
                                 <input type="file" onchange="readURL(this);" name="Image" id="file" class="file">
@@ -41,24 +42,28 @@
                             </div>
                         </div>
                         <!--upload button-->
-                        <div class="form-group">
-                            <input type="text" class="form-control item" name="Nom" id="titre"
-                                value="<%= metiers.Nom %>" placeholder="Nom du métier" required>
+                        <div class="form-group mb-2">
+                            <label class="mb-0 pl-2 text-muted" for="titre">Métier</label>
+                            <input type="text" class="form-control item mb-0" name="Nom" id="titre"
+                                value="<%= metier.Nom %>" placeholder="Nom du métier" required>
                         </div>
-                        <div class="form-group">
-                            <select type="text" class="form-control item" name="Faculte" id="Faculte"
-                                value="<%= metiers.Faculte %>" placeholder="Faculté concernée" required>
-                                <option>Faculté concerné</option>
-                                <% faculte.forEach(element=> { %>
-                                    <option value="<%=element.Id_faculte%>">
+                        <div class="form-group mb-2">
+                            <label class="mb-0 pl-2 text-muted" for="Faculte">Faculté concernée</label>
+                            <select type="text" class="form-control item mb-0" name="Faculte" id="Faculte"
+                                value="<%= metier.Id_faculte %>" placeholder="Faculté concernée" required>
+                                <option></option>
+                                <% facultes.forEach(element=> { %>
+                                    <option value="<%=element.Id_faculte%>"
+                                        <%=element.Id_faculte==metier.Id_faculte?'selected':''%> >
                                         <%=element.Nom%>
                                     </option>
                                     <% }) %>
                             </select>
                         </div>
                         <div class="form-group">
-                            <textarea class="form-control" name="Description" name="Description" id="description"
-                                rows="5" placeholder="Description..." required><%= metiers.Description %></textarea>
+                            <label class="mb-0 pl-2 text-muted" for="description">Description</label>
+                            <textarea class="form-control" name="Description" id="description" rows="5"
+                                placeholder="Description..." required><%= metier.Description %></textarea>
                         </div>
                         <div class="form-group">
                             <button type="submit" class="btn btn-block create-company">Valider les

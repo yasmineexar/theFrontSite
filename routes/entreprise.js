@@ -7,7 +7,7 @@ router.post('/add', creat)
 router.get('/', read)
 router.get('/:id', read)
 
-router.post('/:id', update)
+router.post('/edit/:id', update)
 router.get('/edit/:id', edit)
 
 router.delete('/:id', delet)

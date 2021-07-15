@@ -32,14 +32,24 @@ exports.creat = (req, res) => {
     metier.creat().then(() => {
         return res.redirect('add')
     })
-};
+}
 exports.edit = (req, res) => {
-    return Metier.getById(req.params.id).then((metiers) => {
-        Faculte.getAll().then((rows) => {
-            return res.render('metiers/edit', { metiers: metiers[0], faculte: rows })
-        })
+    Promise.all([Metier.getById(req.params.id), Faculte.getAll()]).then((a) => {
+        metier = a[0]
+        facultes = a[1]
+        return res.render('metiers/edit', { metier: metier[0], facultes })
     })
 }
 exports.update = (req, res) => {
-
+    let m = new Metier()
+    Metier.getById(req.params.id).then((metier) => {
+        m.Id_metier = req.params.id
+        m.Description = req.body.Description || metier.Description
+        m.Id_faculte = req.body.Faculte || metier.Id_faculte
+        m.Image = req.body.Image || metier.Image
+        m.Nom = req.body.Nom || metier.Nom
+        m.update().then(() => {
+            res.redirect('/metier/edit/' + req.params.id)
+        })
+    })
 }
