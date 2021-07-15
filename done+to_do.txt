@@ -15,24 +15,25 @@ Création metier
 Création compte pilote (compte pilote(user))
 Création compte étudiant (l'étudiant se crée un compte (sign up))
 
-*Modifier (edit)
+*Modifier (edit + update)
 Edit offre
 Edit entreprise
 Edit metier
-Edit pilote (en cours)
+Edit pilote
 
 *Login (sign in)
 
 ************résumé : CRU pour toutes les gestions************
 To do : 
 Gerer les erreur de confirmation formulaires (informations required pour pouvoir submit un formulaire)
+Création d'un compte user entreprise (en utilisant la table entrepold avec vérification de la Raison_social)
+Fonction hash password pour toutes les personnes qui vont s'authentifier (bcrypt)
+Gestion des roles et permission : different redirect pour chaque role
+
 Delete by id pour toutes les gestions
 Image uploading pour les formulaires (logo entreprise, image metier)
 Recherche + Recherche avec filtres 
-Création d'un compte user entreprise (en utilisant la table entrepold avec vérification de la Raison_social)
-Fonction hash password pour toutes les personnes qui vont s'authentifier (bcrypt)
 Gestion des messages d'erreur : erreur d'authentification, meme username, utilisateur ayant déja crée un compte
-Gestion des roles et permission : different redirect pour chaque role
 Pagination pour tous les affichages 
 Gestion de la wishlist : ajouter, supprimer et postuler à une offre
 Gestion du déroulement de stage : etat =>{
@@ -41,7 +42,7 @@ Gestion du déroulement de stage : etat =>{
     Affichage des étudiants ayant déja postulé à une offre (pour l'entreprise)
     En cas d'acceptation, génération de la convention de stage (en pdf) : etat = accepté
 }
-//si le temps reste 
+//s'il nous reste temps  
 Gestion du déroulement de l'apres stage => {
     systeme de notation (etudiant-entreprise, entreprise-etudiant)
     affichage statistique etudiants ayant déja passé un stage dans cette entreprise

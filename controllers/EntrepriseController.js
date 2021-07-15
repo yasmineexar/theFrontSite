@@ -75,7 +75,6 @@ exports.createcompte = (req, res) => {
     const username = req.body.username
     const password = req.body.password
     const Raison_social = req.body.Raison_social
-
     let compte = new Entreprise()
     compte.nom = nom
     compte.prenom = prenom
@@ -85,16 +84,10 @@ exports.createcompte = (req, res) => {
     saltRounds = 10
     bcrypt.genSalt(saltRounds, function (err, salt) {
         bcrypt.hash(password, salt, function (err, hash) {
-            console.log(hash)
-            compte.password = hash
-            console.log(compte.password)
         });
     });
     compte.Raison_social = Raison_social
     compte.createcompte().then(() => {
-        console.log('hi bish')
         res.render('entreprises/compteentreprise')
     })
-
-
 }
