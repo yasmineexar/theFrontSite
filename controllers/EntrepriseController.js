@@ -58,7 +58,9 @@ exports.update = (req, res) => {
     entreprise.Description = Description
     entreprise.Id_entrepold = Id_entrepold
     entreprise.update(req.params.id).then(() => {
-        return res.redirect('/:id', { entreprises: entreprises[0] })
+        Entreprise.getById(req.params.id).then((entreprises) => {
+            return res.render('entreprises/edit', { entreprises: entreprises[0] })
+        })
     })
 }
 exports.delet = (req, res) => {

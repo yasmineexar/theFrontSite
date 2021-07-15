@@ -1,4 +1,3 @@
-
 const Model = require("./model");
 
 module.exports = class User extends Model {
@@ -46,6 +45,7 @@ module.exports = class User extends Model {
       })
     })
   }
+
   delete() { }
 };
 

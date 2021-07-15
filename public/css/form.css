@@ -12,27 +12,27 @@ body{
 .illus .human2{
     width: 80%;
     margin: 30% 10%;
-    }
-    .dropzone {
-        width: 100px;
-        height: 80px;
-        border: 1px dashed #999;
-        border-radius: 3px;
-        text-align: center;
-    }
-    
-    .upload-icon {
-        margin: 25px 2px 2px 2px;
-    }
-    
-    .upload-input {
-        position: relative;
-        top: -62px;
-        left: 0;
-        width: 100%;
-        height: 100%;
-        opacity: 0;
-    }
+}
+.dropzone {
+width: 100px;
+height: 80px;
+border: 1px dashed #999;
+border-radius: 3px;
+text-align: center;
+}
+
+.upload-icon {
+margin: 25px 2px 2px 2px;
+}
+
+.upload-input {
+position: relative;
+top: -62px;
+left: 0;
+width: 100%;
+height: 100%;
+opacity: 0;
+}
     
 .registration-form{
 	padding: 50px 0;
@@ -59,6 +59,9 @@ body{
 	text-align: center;
     margin: auto;
     margin-bottom: 50px;
+}
+.registration-form .form-group label{
+	font-size: small;
 }
 .form-icon img{
     width: 100px;

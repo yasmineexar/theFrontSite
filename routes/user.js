@@ -9,8 +9,8 @@ router.post('/addpilote', createpilote)
 router.get('/allpilote', readpilote)
 router.get('/:id', readpilote)
 
-router.post('/editpilote/:id', updatepilote)
 router.get('/editpilote/:id', editpilote)
+router.post('/editpilote/:id', updatepilote)
 
 router.delete('/:id', delet)
 
