@@ -28,16 +28,14 @@ module.exports = class User extends Model {
     })
   }
 
-  create = () => {
+  create() {
     return new Promise((resolve, reject) => {
-      console.log('avant req')
-      this.dbconnection.query(`INSERT INTO ${this.tablename} SET Nom = ?, Prenom = ?, Email = ?, Username = ?, Password = ?, Role = ?`, [this.Nom, this.Prenom, this.Email, this.Username, this.Password, this.Role], (error, results, fields) => {
-        console.log('after req')
+      this.dbconnection.query(`INSERT INTO utilisateur SET Nom = ?, Prenom = ?, Email = ?, Username = ?, Password = ?, Role = ?`, [this.nom, this.prenom, this.email, this.username, this.password, this.role], (error, results, fields) => {
         if (error) {
+          reject(error)
           console.log(error)
-          return reject(error)
         }
-        resolve(results)
+        resolve(results.insertId)
       })
     })
   }
@@ -52,5 +50,16 @@ module.exports = class User extends Model {
   }
 
   delete() { }
+
+  //login
+  static getByUsername(username) {
+    return new Promise((resolve, reject) => {
+      this.dbconnection.query(`select * from ${this.tablename} where Username = '${username}'`, (error, results, fields) => {
+        if (error) return reject(error)
+        resolve(results[0])
+        console.log(results)
+      })
+    })
+  }
 };
 

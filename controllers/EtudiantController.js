@@ -1,5 +1,6 @@
 const etudiant = require('../models/etudiant')
 const faculte = require('../models/faculte')
+const bcrypt = require('bcryptjs')
 
 exports.read = (req, res) => {
     if (req.query.json) {
@@ -25,7 +26,34 @@ exports.read = (req, res) => {
     }
     return res.render('etudiants/all_admin')
 }
+
+//register etudiant 
 exports.create = (req, res) => {
+    try {
+        //recupération des data 
+        const matricule = req.body.matricule;
+        const username = req.body.username;
+        var password = req.body.password;
+        let e = new etudiant()
+        e.matricule = matricule
+        e.username = username
+        //password hash function
+        saltRounds = 10
+        bcrypt.genSalt(saltRounds, function (err, salt) {
+            bcrypt.hash(password, salt, function (err, hash) {
+                console.log(hash)
+                e.password = hash
+                console.log(e.password)
+            });
+        });
+        e.create().then(() => {
+            console.log('aw ydkhol f create then')
+            res.render('login/login-register')
+        })
+    }
+    catch (error) {
+        console.log(error)
+    }
 
 };
 exports.update = (req, res) => {

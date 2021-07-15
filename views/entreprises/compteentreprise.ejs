@@ -1,0 +1,67 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>Formulaire entreprise</title>
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
+    <link href="https://maxcdn.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css" rel="stylesheet">
+    <link rel="stylesheet" href="/public/css/form.css">
+    <link rel="stylesheet" href="/public/css/navbar.css">
+</head>
+
+<body>
+    <%- include('../layouts/header.ejs') %>
+        <div class="container-fluid">
+            <div class="row">
+                <div class="col-lg-6 illus">
+                    <img class="human" src="/public/img/create.png" alt="">
+                </div>
+                <div class="col-lg-6 col-sm-12 registration-form">
+
+                    <form method="POST">
+                        <div class="titre">
+                            <h2>Creation Compte Entreprise</h2>
+                        </div>
+                        <div class="form-group">
+                            <input type="text" class="form-control item" name="Raison_social"
+                                placeholder="Veuillez entrer le nom de l'entreprise" required>
+                        </div>
+                        <div class="form-group">
+                            <input type="text" class="form-control item" name="nom" placeholder="Nom" required>
+                        </div>
+                        <div class="form-group">
+                            <input type="text" class="form-control item" name="prenom" placeholder="Prénom" required>
+                        </div>
+                        <div class="form-group">
+                            <input type="text" class="form-control item" name="email" placeholder="E-mail" required>
+                        </div>
+                        <div class="form-group">
+                            <input type="text" class="form-control item" name="username" placeholder="Username">
+                        </div>
+                        <div class="form-group">
+                            <input type="password" class="form-control item" name="password" placeholder="Mot de passe"
+                                required>
+                        </div>
+                        <div class="form-group">
+                            <button type="submit" class="btn btn-block create-company">Créer un compte
+                                entreprise</button>
+                        </div>
+                        <div class="form-group btns">
+                            <button type="submit" class="btn btn-previous create-company">Précedent</button>
+                        </div>
+                    </form>
+                </div>
+            </div>
+        </div>
+
+        <script src="/static/js/upload.js"></script>
+        <script src="/static/js/formentreprise.js"></script>
+        <script src="https://code.jquery.com/jquery-3.4.1.slim.min.js"></script>
+        <script src="https://cdn.jsdelivr.net/npm/popper.js@1.16.0/dist/umd/popper.min.js"></script>
+        <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/js/bootstrap.min.js"></script>
+</body>
+
+</html>

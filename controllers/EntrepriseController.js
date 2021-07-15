@@ -1,6 +1,6 @@
 const Entreprise = require('../models/Entreprise')
 const Offre = require("../Models/Offre");
-
+const bcrypt = require("bcryptjs")
 exports.read = (req, res) => {
     if (req.query.json) {
         return Entreprise.getAll().then(rows => {
@@ -64,5 +64,37 @@ exports.update = (req, res) => {
     })
 }
 exports.delet = (req, res) => {
+
+}
+
+//creer un compte entreprise
+exports.createcompte = (req, res) => {
+    const nom = req.body.nom
+    const prenom = req.body.prenom
+    const email = req.body.email
+    const username = req.body.username
+    const password = req.body.password
+    const Raison_social = req.body.Raison_social
+
+    let compte = new Entreprise()
+    compte.nom = nom
+    compte.prenom = prenom
+    compte.email = email
+    compte.username = username
+    //password hash function
+    saltRounds = 10
+    bcrypt.genSalt(saltRounds, function (err, salt) {
+        bcrypt.hash(password, salt, function (err, hash) {
+            console.log(hash)
+            compte.password = hash
+            console.log(compte.password)
+        });
+    });
+    compte.Raison_social = Raison_social
+    compte.createcompte().then(() => {
+        console.log('hi bish')
+        res.render('entreprises/compteentreprise')
+    })
+
 
 }

@@ -55,3 +55,18 @@ exports.delet = (req, res) => {
 };
 
 //CRUD pilote
+
+exports.login = (req, res) => {
+    User.getByUsername(req.body.username).then((userrow) => {
+        if (!userrow) return res.render('login-register', { error: 'utilisateur introuvable' })
+        /* if (req.body.password == userrow.Password) return res.json(userrow) */
+        bcrypt.compare(req.body.password, userrow.Password, function (err, result) {
+            if (result == true) {
+                return res.json(userrow)
+            } else {
+                res.send('Incorrect password')
+                res.redirect('login-register')
+            }
+        })
+    })
+}
