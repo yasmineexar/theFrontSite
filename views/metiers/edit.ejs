@@ -30,45 +30,57 @@
                         <div class="titre">
                             <h1 style="line-height: 25px;">Mettre à jour <BR></BR> une Fiche Metier</h1>
                         </div>
-                        <!--upload button-->
-                        <div class="uploadimg row">
-                            <div class="col-2">
-                                <img id="imgholder" class="uploadjs" src="http://placehold.it/100x150"
-                                    alt="your image" />
+                        <%if (message) {%>
+                            <div class="mt-5 alert alert-<%= message.type %>  alert-dismissible fade show" role="alert">
+                                <strong>
+                                    <%= message.intro %>
+                                </strong><br>
+                                <%= message.message %>
+                                    <button type="button" class="close" data-dismiss="alert" aria-label="Close">
+                                        <span aria-hidden="true">&times;</span>
+                                    </button>
                             </div>
-                            <div class="file-input col-10">
-                                <input type="file" onchange="readURL(this);" name="Image" id="file" class="file">
-                                <label for="file">Télécharger une image</label>
-                            </div>
-                        </div>
-                        <!--upload button-->
-                        <div class="form-group mb-2">
-                            <label class="mb-0 pl-2 text-muted" for="titre">Métier</label>
-                            <input type="text" class="form-control item mb-0" name="Nom" id="titre"
-                                value="<%= metier.Nom %>" placeholder="Nom du métier" required>
-                        </div>
-                        <div class="form-group mb-2">
-                            <label class="mb-0 pl-2 text-muted" for="Faculte">Faculté concernée</label>
-                            <select type="text" class="form-control item mb-0" name="Faculte" id="Faculte"
-                                value="<%= metier.Id_faculte %>" placeholder="Faculté concernée" required>
-                                <option></option>
-                                <% facultes.forEach(element=> { %>
-                                    <option value="<%=element.Id_faculte%>"
-                                        <%=element.Id_faculte==metier.Id_faculte?'selected':''%> >
-                                        <%=element.Nom%>
-                                    </option>
-                                    <% }) %>
-                            </select>
-                        </div>
-                        <div class="form-group">
-                            <label class="mb-0 pl-2 text-muted" for="description">Description</label>
-                            <textarea class="form-control" name="Description" id="description" rows="5"
-                                placeholder="Description..." required><%= metier.Description %></textarea>
-                        </div>
-                        <div class="form-group">
-                            <button type="submit" class="btn btn-block create-company">Valider les
-                                modifications</button>
-                        </div>
+                            <%}%>
+                                <!--upload button-->
+                                <div class="uploadimg row">
+                                    <div class="col-2">
+                                        <img id="imgholder" class="uploadjs" src="http://placehold.it/100x150"
+                                            alt="your image" />
+                                    </div>
+                                    <div class="file-input col-10">
+                                        <input type="file" onchange="readURL(this);" name="Image" id="file"
+                                            class="file">
+                                        <label for="file">Télécharger une image</label>
+                                    </div>
+                                </div>
+                                <!--upload button-->
+                                <div class="form-group mb-2">
+                                    <label class="mb-0 pl-2 text-muted" for="titre">Métier</label>
+                                    <input type="text" class="form-control item mb-0" name="Nom" id="titre"
+                                        value="<%= metier.Nom %>" placeholder="Nom du métier" required>
+                                </div>
+                                <div class="form-group mb-2">
+                                    <label class="mb-0 pl-2 text-muted" for="Faculte">Faculté concernée</label>
+                                    <select type="text" class="form-control item mb-0" name="Faculte" id="Faculte"
+                                        value="<%= metier.Id_faculte %>" placeholder="Faculté concernée" required>
+                                        <option></option>
+                                        <% facultes.forEach(element=> { %>
+                                            <option value="<%=element.Id_faculte%>"
+                                                <%=element.Id_faculte==metier.Id_faculte?'selected':''%> >
+                                                <%=element.Nom%>
+                                            </option>
+                                            <% }) %>
+                                    </select>
+                                </div>
+                                <div class="form-group">
+                                    <label class="mb-0 pl-2 text-muted" for="description">Description</label>
+                                    <textarea class="form-control" name="Description" id="description" rows="5"
+                                        placeholder="Description..." required><%= metier.Description %></textarea>
+                                </div>
+                                <div class="form-group">
+                                    <button type="submit" class="btn btn-block create-company">Valider les
+                                        modifications</button>
+                                </div>
                     </form>
                 </div>
             </div>

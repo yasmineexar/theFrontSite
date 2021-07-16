@@ -48,7 +48,7 @@
         <div id="metiers">
             <h1 class="cards">Les métiers de l'informatique</h1>
             <ul class="job-cards" id="card-body">
-
+                <a type="button" href="" class="btn p-2 mr-2">Modifier</a>
             </ul>
         </div>
 
@@ -62,7 +62,9 @@
                     style="background-image: url(/public/img/imgmetier.jpg)">
                     <div class="detail-container">
                         <div class="content">
-                            <button class="btn">Détails</button>
+                            <!--Eulement pour le pilote et l'admin-->
+                            <a type="button" href="/metier/edit/${r.Id_metier}" class="btn p-2 mr-2">Modifier</a>
+                            <a type="button" href="/metier/delete/${r.Id_metier}" class="btn p-2">Supprimer</a>
                         </div>
                     </div>
                     <div class="informations-container">

@@ -1,6 +1,7 @@
 
 const Metier = require("../Models/Metier");
-const Faculte = require("../Models/Faculte")
+const Faculte = require("../Models/Faculte");
+const { request } = require("express");
 
 exports.read = (req, res) => {
     if (req.query.json) {
@@ -11,7 +12,9 @@ exports.read = (req, res) => {
     return res.render('metiers/all')
 };
 exports.delet = (req, res) => {
-
+    return Metier.delet(req.params.id).then(() => {
+        return res.send({ message: `Ce Métier a été supprimé avec succés` })
+    })
 };
 exports.add = (req, res) => {
     Faculte.getAll().then((rows) => {
@@ -29,9 +32,29 @@ exports.creat = (req, res) => {
     metier.Image = Image
     metier.Nom = Nom
     metier.Id_faculte = Id_faculte
-    metier.creat().then(() => {
-        return res.redirect('add')
-    })
+    if (req.body.Description == '' || req.body.Nom == '' || req.body.Id_faculte == '') {
+        req.session.message = {
+            type: 'danger',
+            intro: 'Champs vides!',
+            message: 'Veuillez insérer les informations requises.'
+        }
+    } else if (req.body.Description == 'jsp') {
+        req.session.message = {
+            type: 'warning',
+            intro: 'Ce métier existe déja!',
+            message: 'Veuillez insérer de nouvelles informations.'
+        }
+    }
+    else {
+        metier.creat().then(() => {
+            req.session.message = {
+                type: 'success',
+                intro: 'Succés !',
+                message: 'Métier a bien été créé.'
+            }
+            return res.redirect('add')
+        })
+    }
 }
 exports.edit = (req, res) => {
     Promise.all([Metier.getById(req.params.id), Faculte.getAll()]).then((a) => {
@@ -48,8 +71,21 @@ exports.update = (req, res) => {
         m.Id_faculte = req.body.Faculte || metier.Id_faculte
         m.Image = req.body.Image || metier.Image
         m.Nom = req.body.Nom || metier.Nom
-        m.update().then(() => {
-            res.redirect('/metier/edit/' + req.params.id)
-        })
+        if (req.body.Description == '' || req.body.Nom == '' || req.body.Id_faculte == '') {
+            req.session.message = {
+                type: 'danger',
+                intro: 'Champs vides !',
+                message: 'Veuillez insérer les informations requises.'
+            }
+        } else {
+            m.update().then(() => {
+                req.session.message = {
+                    type: 'success',
+                    intro: 'Succés !',
+                    message: 'Métier a bien été modifié.'
+                }
+                res.redirect('/metier/edit/' + req.params.id)
+            })
+        }
     })
 }

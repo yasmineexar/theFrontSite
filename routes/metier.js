@@ -10,6 +10,6 @@ router.post('/edit/:id', update)
 router.get('/', read)
 router.get('/:id', read)
 
-router.delete('/:id', delet)
+router.get('/delete/:id', delet)
 
 module.exports = router

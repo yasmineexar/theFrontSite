@@ -55,6 +55,13 @@ module.exports = class Offre extends Model {
       })
     })
   }
-  delet() { }
+  delet = () => {
+    return new Promise((resolve, reject) => {
+      this.dbconnection.query(`DELETE FROM ${this.tablename} WHERE Id_Offre = ?`, [req.params.id], (error, results, fields) => {
+        if (error) return reject(error)
+        resolve(results)
+      })
+    })
+  }
 };
 

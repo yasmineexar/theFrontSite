@@ -69,10 +69,6 @@ body {
   display: inline;
   float: left;
   margin: 25px;
-  position:fixed; 
-  top: 2px; 
-  right: 250px; 
-  z-index: 99;
 }
 
 .viewoffres .viewoffresbtn {
@@ -285,10 +281,11 @@ body {
   -webkit-box-flex: 1;
       -ms-flex: 1 0 auto;
           flex: 1 0 auto;
+  min-height: 350px;
   padding: 20px;
   background: white;
-  -webkit-transform: translateY(206px);
-          transform: translateY(206px);
+  -webkit-transform: translateY(200px);
+          transform: translateY(200px);
   -webkit-transition: .3s;
   transition: .3s;
 }
@@ -296,8 +293,8 @@ body {
 .job-cards .job-card .informations-container .title {
   position: relative;
   padding-bottom: 10px;
-  margin-bottom: 10px;
-  padding-top: 40px;
+  margin-bottom: 30px;
+  padding-top: 20px;
   font-weight: bold;
   font-size: 1.6em;
 }

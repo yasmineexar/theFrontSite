@@ -10,7 +10,7 @@ Afficher profile d'une offre
 
 *Create (add)
 Création entreprise 
-Création offre (by id entreprise)
+Création offre (by id entreprise) pas fini
 Création metier 
 Création compte pilote (compte pilote(user))
 Création compte étudiant (l'étudiant se crée un compte (sign up))
@@ -23,6 +23,12 @@ Edit pilote
 
 *Login (sign in)
 
+*Delete (by id) 
+pour toutes les gestions
+Delete offre
+Delete entreprise
+Delete Fiche metier
+
 ************résumé : CRU pour toutes les gestions************
 To do : 
 Gerer les erreur de confirmation formulaires (informations required pour pouvoir submit un formulaire)
@@ -30,7 +36,6 @@ Création d'un compte user entreprise (en utilisant la table entrepold avec vér
 Fonction hash password pour toutes les personnes qui vont s'authentifier (bcrypt)
 Gestion des roles et permission : different redirect pour chaque role
 
-Delete by id pour toutes les gestions
 Image uploading pour les formulaires (logo entreprise, image metier)
 Recherche + Recherche avec filtres 
 Gestion des messages d'erreur : erreur d'authentification, meme username, utilisateur ayant déja crée un compte
