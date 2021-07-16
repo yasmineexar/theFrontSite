@@ -68,13 +68,17 @@ body {
 .viewoffres {
   display: inline;
   float: left;
-  margin: 25px;
+  position: fixed;
+  margin: 20px;
+  top: 0px;
+  left: 680px;
+  z-index: 10000;
 }
 
 .viewoffres .viewoffresbtn {
   border: 3px solid #105F7F;
   padding: 3px 20px 7px 10px;
-  margin: 20px;
+  position: fixed;
   background: none;
   font-weight: bold;
   font-size: 1.2em;
@@ -100,6 +104,29 @@ body {
 }
 
 .viewoffres .viewoffresbtn:hover {
+  background: #105F7F;
+  opacity: 0.9;
+  text-decoration: none;
+  border: 3px solid #105F7F;
+  color: white;
+}
+
+.nvmetier {
+  border: 3px solid #105F7F;
+  padding: 3px 20px 7px 10px;
+  background: none;
+  font-weight: bold;
+  font-size: 1.2em;
+  color: #105F7F;
+  cursor: pointer;
+  -webkit-transition: .3s;
+  transition: .3s;
+  float: right;
+  text-decoration: none;
+  margin: 50px 120px 10px 20px;
+}
+
+.nvmetier:hover {
   background: #105F7F;
   opacity: 0.9;
   text-decoration: none;

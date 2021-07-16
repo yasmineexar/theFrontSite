@@ -1,4 +1,3 @@
-
 const Metier = require("../Models/Metier");
 const Faculte = require("../Models/Faculte");
 const { request } = require("express");
@@ -13,7 +12,12 @@ exports.read = (req, res) => {
 };
 exports.delet = (req, res) => {
     return Metier.delet(req.params.id).then(() => {
-        return res.send({ message: `Ce Métier a été supprimé avec succés` })
+        req.session.message = {
+            type: 'success',
+            intro: 'Succés !',
+            message: 'Métier a bien été supprimé.'
+        }
+        return res.redirect('/metier')
     })
 };
 exports.add = (req, res) => {
@@ -38,12 +42,14 @@ exports.creat = (req, res) => {
             intro: 'Champs vides!',
             message: 'Veuillez insérer les informations requises.'
         }
-    } else if (req.body.Description == 'jsp') {
+        return res.redirect('add')
+    } else if (req.body.Nom == 'jsp') {
         req.session.message = {
             type: 'warning',
             intro: 'Ce métier existe déja!',
             message: 'Veuillez insérer de nouvelles informations.'
         }
+        return res.redirect('add')
     }
     else {
         metier.creat().then(() => {

@@ -34,9 +34,31 @@ exports.creat = (req, res) => {
     entreprise.Site_web = Site_web
     entreprise.Localite = Localite
     entreprise.Description = Description
-    entreprise.creat().then(() => {
+    if (req.body.Description == '' || req.body.Raison_social == '' || req.body.Secteur_activite == '' || req.body.Localite == '' || req.body.Site_web == '') {
+        req.session.message = {
+            type: 'danger',
+            intro: 'Champs vides!',
+            message: 'Veuillez insérer les informations requises.'
+        }
         return res.redirect('add')
-    })
+    } else if (req.body.Nom == 'jsp') {
+        req.session.message = {
+            type: 'warning',
+            intro: 'Ce métier existe déja!',
+            message: 'Veuillez insérer de nouvelles informations.'
+        }
+        return res.redirect('add')
+    }
+    else {
+        entreprise.creat().then(() => {
+            req.session.message = {
+                type: 'success',
+                intro: 'Succés !',
+                message: 'Métier a bien été créé.'
+            }
+            return res.redirect('add')
+        })
+    }
 }
 exports.edit = (req, res) => {
     return Entreprise.getById(req.params.id).then((entreprises) => {
@@ -57,11 +79,24 @@ exports.update = (req, res) => {
     entreprise.Localite = Localite
     entreprise.Description = Description
     entreprise.Id_entrepold = Id_entrepold
-    entreprise.update(req.params.id).then(() => {
-        Entreprise.getById(req.params.id).then((entreprises) => {
-            return res.render('entreprises/edit', { entreprises: entreprises[0] })
+    if (req.body.Description == '' || req.body.Nom == '' || req.body.Id_faculte == '') {
+        req.session.message = {
+            type: 'danger',
+            intro: 'Champs vides !',
+            message: 'Veuillez insérer les informations requises.'
+        }
+    } else {
+        entreprise.update(req.params.id).then(() => {
+            Entreprise.getById(req.params.id).then((entreprises) => {
+                req.session.message = {
+                    type: 'success',
+                    intro: 'Succés !',
+                    message: 'Métier a bien été modifié.'
+                }
+                return res.render('entreprises/edit', { entreprises: entreprises[0] })
+            })
         })
-    })
+    }
 }
 exports.delet = (req, res) => {
 
