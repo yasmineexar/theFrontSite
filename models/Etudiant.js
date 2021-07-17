@@ -28,7 +28,6 @@ module.exports = class Etudiant extends User {
                 this.Id_faculte = results.Id_faculte
                 this.specialite = results.Specialite
                 console.log(this.nom, this.prenom)
-
                 let u = new User()
                 u.nom = this.nom
                 u.prenom = this.prenom
@@ -57,7 +56,15 @@ module.exports = class Etudiant extends User {
         })
     }
 
-    read() { }
+    search() {
+        return new Promise((resolve, reject) => {
+            this.dbconnection.query(`SELECT * FROM etudold WHERE Nom LIKE ?`, ['%' + this.searchNom + '%'], (error, results, fields) => {
+                if (error) return reject(error)
+                resolve(results)
+                console.log(results)
+            })
+        })
+    }
     update() { }
     delet() { }
 

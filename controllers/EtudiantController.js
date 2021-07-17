@@ -59,6 +59,22 @@ exports.create = (req, res) => {
 exports.update = (req, res) => {
 
 }
+exports.find = (req, res) => {
+    console.log(1)
+    const searchNom = req.body.searchNom
+    const searchPrenom = req.body.searchPrenom
+    const searchFaculte = req.body.searchFaculte
+    let e = new etudiant()
+    e.searchNom = searchNom
+    e.searchPrenom = searchPrenom
+    e.searchFaculte = searchFaculte
+    console.log(2)
+    e.search().then((rows) => {
+        console.log(3)
+        console.log(rows)
+        return res.render('etudiants/all_admin', { rows })
+    })
+}
 exports.delet = (req, res) => {
 
 };

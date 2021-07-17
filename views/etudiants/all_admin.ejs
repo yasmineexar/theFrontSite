@@ -35,25 +35,27 @@
                     <h2>Etudiants</h2>
                     <section class="search-sec">
                         <div class="container">
-                            <form action="#" method="post" novalidate="novalidate">
+                            <form action="/etudiant" method="POST" novalidate="novalidate">
                                 <div class="row">
                                     <div class="col-lg-12">
                                         <div class="row">
                                             <div class="col-lg-3 col-md-3 col-sm-12 p-0">
-                                                <input type="text" class="form-control search-slt" id="nom"
-                                                    placeholder="Nom">
+                                                <input type="text" class="form-control search-slt" name="searchNom"
+                                                    id="nom" placeholder="Nom">
                                             </div>
                                             <div class="col-lg-3 col-md-3 col-sm-12 p-0">
-                                                <input type="text" class="form-control search-slt" id="prenom"
-                                                    placeholder="Prénom">
+                                                <input type="text" class="form-control search-slt" name="searchPrenom"
+                                                    id="prenom" placeholder="Prénom">
                                             </div>
                                             <div class="col-lg-3 col-md-3 col-sm-12 p-0">
-                                                <select class="form-control search-slt" id="faculte">
+                                                <select class="form-control search-slt" name="searchFaculte"
+                                                    id="faculte">
                                                 </select>
                                             </div>
                                             <div class="col-lg-3 col-md-3 col-sm-12 p-0">
-                                                <button type="button" onclick="getEtudiant()"
-                                                    class="btn wrn-btn">Search</button>
+                                                <button type="submit" class="btn wrn-btn">Search</button>
+                                                <!--   <button type="button" onclick="getEtudiant()"
+                                                    class="btn wrn-btn">Search</button> -->
                                             </div>
                                         </div>
                                     </div>

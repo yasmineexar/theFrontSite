@@ -1,8 +1,9 @@
 const router = require('express').Router()
-const { add, read } = require('../controllers/EtudiantController')
+const { read, find } = require('../controllers/EtudiantController')
 
 
 router.get('/', read)
+router.post('/', find)
 router.get('/:id', read)
 
 module.exports = router

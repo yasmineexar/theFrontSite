@@ -28,6 +28,66 @@ pour toutes les gestions
 Delete offre
 Delete entreprise
 Delete Fiche metier
+Delete pilote
+
+************Autorisations************
+*Comte Etudiant
+accueil/home (il peut se connecter ou se créer un compte(boutons))
+login/login-register (il peut se connecter ou se créer un compte)
+etudiants/profil (il peut mettre a jour son cv seulement)
+metiers/all (seulement ceux qui concernent sa faculté)
+offres/all (seulement ceux qui concernent sa faculté) => {
+    - Il peut ajouter une offre à sa wishlist
+    - Il peut supprimer une offre de sa wishlist
+    - Il peut postuler à une offre
+    - Il peut télécharger la demande de stage
+    - Il peut consulter le profile de l'entreprise qui a publié l'offre
+}
+entreprises/profil (selon l'offre sur laquelle il a cliqué + les autres offres de l'entreprise )
+
+*Compte Entreprise
+accueil/home (il peut juste se connecter (bouton) )
+login/login-register (il se connecte)
+entreprises/profil (il peut mettre a jour toutes les infos de son profil)
+etudiants/all (Il peut voir la liste de tous les étudiants + la liste de ceux qui ont postulés à une de ses offres + recherche)
+etudiants/profil (il peut consulterle profil des étudiants + leur CV)
+
+*Compte pilote
+accueil/home (il peut juste se connecter (bouton) )
+login/login-register (il se connecte)
+acceuil/homepilote (il a le choix entre toutes les gestions(sauf pilotes)) => {
+    metier{
+        metiers/all (   il peut voir tous les métiers + recherche
+                        il peut modifier ou supprimer un métier + bouton pour créer)
+        metiers/add (il peut ajouter un métier)
+        metiers/edit (il peut mettre à jour un métier)
+    }
+    entreprise{
+        entreprises/all (   il peut voir toutes les entreprises + recherche 
+                            il peut modifier ou supprimer une entreprise + bouton pour créer)
+        entreprises/add (il peut ajouter une entreprise)
+        entreprises/edit (il peut mettre à jour une entreprise)
+    }
+    offre{
+        offres/all (il peut voir toutes les offres + recherche)
+    }
+    etudiant{
+        etudiants/all (il peut voir toutes les etudiants + recherche)
+    }
+}
+
+*Compte admin
+accueil/home (il peut juste se connecter (bouton) )
+login/login-register (il se connecte)
+acceuil/homepilote (il a le choix entre toutes les gestions) => {
+    tout comme pilote + 
+    pilote{
+        pilotes/all (   il peut voir tous les pilotes + recherche
+                        il peut modifier ou supprimer un pilote + bouton pour créer)
+        pilotes/add (il peut ajouter un pilote)
+        pilotes/edit (il peut mettre à jour un pilote)
+    }
+}
 
 ************résumé : CRU pour toutes les gestions************
 To do : 
@@ -35,10 +95,10 @@ Gerer les erreur de confirmation formulaires (informations required pour pouvoir
 Création d'un compte user entreprise (en utilisant la table entrepold avec vérification de la Raison_social)
 Fonction hash password pour toutes les personnes qui vont s'authentifier (bcrypt)
 Gestion des roles et permission : different redirect pour chaque role
+Gestion des messages d'erreur : erreur d'authentification, meme username, utilisateur ayant déja crée un compte
 
 Image uploading pour les formulaires (logo entreprise, image metier)
 Recherche + Recherche avec filtres 
-Gestion des messages d'erreur : erreur d'authentification, meme username, utilisateur ayant déja crée un compte
 Pagination pour tous les affichages 
 Gestion de la wishlist : ajouter, supprimer et postuler à une offre
 Gestion du déroulement de stage : etat =>{
