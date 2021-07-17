@@ -41,9 +41,7 @@ exports.create = (req, res) => {
         saltRounds = 10
         bcrypt.genSalt(saltRounds, function (err, salt) {
             bcrypt.hash(password, salt, function (err, hash) {
-                console.log(hash)
                 e.password = hash
-                console.log(e.password)
             });
         });
         if (req.body.matricule == '' || req.body.username == '' || req.body.password == '') {
