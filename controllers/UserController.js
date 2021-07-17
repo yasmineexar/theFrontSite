@@ -13,29 +13,19 @@ exports.readpilote = (req, res) => {
 exports.addpilote = (req, res) => {
     return res.render('pilotes/add')
 }
-exports.createpilote = (req, res) => {
-    const nomp = req.body.nomp
-    const prenomp = req.body.prenomp
-    const emailp = req.body.emailp
-    const usernamep = req.body.usernamep
-    const rolep = 'pilote'
-    const passwordp = req.body.passwordp
+exports.createpilote = async (req, res) => {
+    var passwordp = req.body.passwordp
     let pilote = new User()
-    pilote.nom = nomp
-    pilote.prenom = prenomp
-    pilote.email = emailp
-    pilote.username = usernamep
-    pilote.role = rolep
+    pilote.nom = req.body.nomp
+    pilote.prenom = req.body.prenomp
+    pilote.email = req.body.emailp
+    pilote.username = req.body.usernamep
+    pilote.role = 'pilote'
+    //hash function
+    const salt = await bcrypt.genSalt(10);
+    passwordp = await bcrypt.hash(passwordp, salt);
     pilote.password = passwordp
-    //password hash function
-    /*let saltRounds = 10
-   bcrypt.genSalt(saltRounds, function (err, salt) {
-       bcrypt.hash(passwordp, salt, function (err, hash) {
-           console.log(hash)
-           
-           console.log(pilote.Password)
-       });
-   }); */
+
     if (req.body.nomp == '' || req.body.penomp == '' || req.body.emailp == '' || req.body.usernamep == '' || req.body.passwordp == '') {
         req.session.message = {
             type: 'danger',
@@ -52,13 +42,11 @@ exports.createpilote = (req, res) => {
         return res.redirect('addpilote')
     }
     else {
-        console.log('avant create')
         pilote.create().then(() => {
-            console.log('after create')
             req.session.message = {
                 type: 'success',
                 intro: 'Succés !',
-                message: 'Métier a bien été créé.'
+                message: 'Pilote a bien été créé.'
             }
             return res.redirect('addpilote')
         })
