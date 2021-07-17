@@ -58,7 +58,6 @@ module.exports = class Entreprise extends User {
     //creer un compte entreprise
     createcompte = () => {
         return new Promise((resolve, reject) => {
-            console.log('avant query select matricule')
             this.dbconnection.query(`SELECT * FROM entrepold WHERE Raison_social = '${this.Raison_social}'`, (error, results, fields) => {
                 if (error) return reject(error)
                 resolve(results)
@@ -78,15 +77,10 @@ module.exports = class Entreprise extends User {
                 user.username = this.username
                 user.password = this.password
                 user.role = 'entreprise'
-                console.log(user.role)
-                console.log("---------------")
-                console.log(user.nom, user.prenom, user.username)
                 user.create().then((id) => {
-                    console.log('aw yedkhol f create tae etudiants')
                     this.Id_utilisateur = id
-                    console.log(this.Id_utilisateur)
+                    console.log('Id_utilisateur: ', this.Id_utilisateur)
                     this.dbconnection.query(`INSERT INTO ${this.tablename} SET Nom = ?, Prenom = ?, Username = ?, Password = ?, Id_utilisateur = ?, Email = ?, Raison_social = ?, Description = ?, Site_web = ?, Nb_stagiere_acceptes = ?, Localite	 = ?, Secteur_activite = ?, Role = ?, Logo = ?`, [user.nom, user.prenom, user.username, user.password, id, this.email, this.Raison_social, this.Description, this.Site_web, this.Nb_stagiere_acceptes, this.Localite, this.Secteur_activite, user.role, this.Logo], (error, results, fields) => {
-                        console.log('aw ydir la requete')
                         if (error) {
                             reject(error);
                             console.log(error)
