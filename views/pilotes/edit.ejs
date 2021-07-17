@@ -26,35 +26,47 @@
                         <div class="titre">
                             <h1>Mettre à jour un Pilote</h1>
                         </div>
-                        <div class="form-group mb-2">
-                            <label class="mb-0 pl-2 text-muted" for="nomp">Nom</label>
-                            <input type="text" class="form-control item mb-0" id="nomp" name="nomp"
-                                value="<%= pilotes.Nom %>" placeholder="Nom du pilote" required>
-                        </div>
-                        <div class="form-group mb-2">
-                            <label class="mb-0 pl-2 text-muted" for="prenomp">Prénom</label>
-                            <input type="text" class="form-control item mb-0" id="prenomp" name="prenomp"
-                                value="<%= pilotes.Prenom %>" placeholder="Prénom du pilote" required>
-                        </div>
-                        <div class="form-group mb-2">
-                            <label class="mb-0 pl-2 text-muted" for="emailp">Adresse E-mail</label>
-                            <input type="text" class="form-control item mb-0" id="emailp" name="emailp"
-                                value="<%= pilotes.Email %>" placeholder="E-mail du pilote" required>
-                        </div>
-                        <div class="form-group mb-2">
-                            <label class="mb-0 pl-2 text-muted" for="usernamep">Nom d'utilisateur</label>
-                            <input type="text" class="form-control item mb-0" id="usernamep" name="usernamep"
-                                value="<%= pilotes.Username %>" placeholder="Username">
-                        </div>
-                        <div class="form-group mb-2">
-                            <label class="mb-0 pl-2 text-muted" for="passwordp">Mot de passe</label>
-                            <input type="password" class="form-control item mb-0" id="passwordp" name="passwordp"
-                                value="<%= pilotes.Password %>" placeholder="Password" required>
-                        </div>
-                        <div class="form-group">
-                            <button type="submit" class="btn btn-block create-company">Valider les
-                                modifications</button>
-                        </div>
+                        <%if (message) {%>
+                            <div class="mt-5 alert alert-<%= message.type %>  alert-dismissible fade show" role="alert">
+                                <strong>
+                                    <%= message.intro %>
+                                </strong><br>
+                                <%= message.message %>
+                                    <button type="button" class="close" data-dismiss="alert" aria-label="Close">
+                                        <span aria-hidden="true">&times;</span>
+                                    </button>
+                            </div>
+                            <%}%>
+                                <div class="form-group mb-2">
+                                    <label class="mb-0 pl-2 text-muted" for="nomp">Nom</label>
+                                    <input type="text" class="form-control item mb-0" id="nomp" name="nomp"
+                                        value="<%= pilotes.Nom %>" placeholder="Nom du pilote" required>
+                                </div>
+                                <div class="form-group mb-2">
+                                    <label class="mb-0 pl-2 text-muted" for="prenomp">Prénom</label>
+                                    <input type="text" class="form-control item mb-0" id="prenomp" name="prenomp"
+                                        value="<%= pilotes.Prenom %>" placeholder="Prénom du pilote" required>
+                                </div>
+                                <div class="form-group mb-2">
+                                    <label class="mb-0 pl-2 text-muted" for="emailp">Adresse E-mail</label>
+                                    <input type="text" class="form-control item mb-0" id="emailp" name="emailp"
+                                        value="<%= pilotes.Email %>" placeholder="E-mail du pilote" required>
+                                </div>
+                                <div class="form-group mb-2">
+                                    <label class="mb-0 pl-2 text-muted" for="usernamep">Nom d'utilisateur</label>
+                                    <input type="text" class="form-control item mb-0" id="usernamep" name="usernamep"
+                                        value="<%= pilotes.Username %>" placeholder="Username">
+                                </div>
+                                <div class="form-group mb-2">
+                                    <label class="mb-0 pl-2 text-muted" for="passwordp">Mot de passe</label>
+                                    <input type="password" class="form-control item mb-0" id="passwordp"
+                                        name="passwordp" value="<%= pilotes.Password %>" placeholder="Password"
+                                        required>
+                                </div>
+                                <div class="form-group">
+                                    <button type="submit" class="btn btn-block create-company">Valider les
+                                        modifications</button>
+                                </div>
                     </form>
                 </div>
             </div>

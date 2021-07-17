@@ -30,45 +30,60 @@
                         <div class="titre">
                             <h1>Mettre à jour une Entreprise</h1>
                         </div>
-                        <div class="uploadimg row">
-                            <div class="col-2">
-                                <img id="imgholder" class="uploadjs" src="http://placehold.it/100" alt="your logo" />
+                        <%if (message) {%>
+                            <div class="mt-5 alert alert-<%= message.type %>  alert-dismissible fade show">
+                                <strong>
+                                    <%= message.intro %>
+                                </strong><br>
+                                <%= message.message %>
+                                    <button type="button" class="close" data-dismiss="alert" aria-label="Close">
+                                        <span aria-hidden="true">&times;</span>
+                                    </button>
                             </div>
-                            <div class="file-input col-10">
-                                <input type="file" onchange="readURL(this);" name="Image" id="file" class="file">
-                                <label for="file">Télécharger une image (logo)</label>
-                            </div>
-                        </div>
-                        <div class="form-group mb-2">
-                            <label class="mb-0 pl-2 text-muted" for="Raison_social">Raison sociale</label>
-                            <input type="text" class="form-control item mb-0" name="Raison_social" id="Raison_social"
-                                value="<%= entreprises.Raison_social %>" placeholder="Raison sociale" required>
-                        </div>
-                        <div class="form-group mb-2">
-                            <label class="mb-0 pl-2 text-muted" for="Secteur_activite">Secteur d'activite</label>
-                            <input type="text" class="form-control item mb-0" name="Secteur_activite"
-                                id="Secteur_activite" value="<%= entreprises.Secteur_activite %>"
-                                placeholder="Secteur d'activite" required>
-                        </div>
-                        <div class="form-group mb-2">
-                            <label class="mb-0 pl-2 text-muted" for="site">Site Web</label>
-                            <input type="text" class="form-control item mb-0" name="Site_web" id="site"
-                                value="<%= entreprises.Site_web %>" placeholder="Site Web" required>
-                        </div>
-                        <div class="form-group mb-2">
-                            <label class="mb-0 pl-2 text-muted" for="Localite">Adresse</label>
-                            <input type="text" class="form-control item mb-0" name="Localite" id="Localite"
-                                value="<%= entreprises.Localite %>" placeholder="Localité" required>
-                        </div>
-                        <div class="form-group mb-2">
-                            <label class="mb-0 pl-2 text-muted" for="Description">Description</label>
-                            <textarea class="form-control" name="Description" id="Description" rows="4"
-                                placeholder="Description..." required><%= entreprises.Description %></textarea>
-                        </div>
-                        <div class="form-group">
-                            <button type="submit" class="btn btn-block create-company">Valider les
-                                modifications</button>
-                        </div>
+                            <%}%>
+                                <div class="uploadimg row">
+                                    <div class="col-2">
+                                        <img id="imgholder" class="uploadjs" src="http://placehold.it/100"
+                                            alt="your logo" />
+                                    </div>
+                                    <div class="file-input col-10">
+                                        <input type="file" onchange="readURL(this);" name="Image" id="file"
+                                            class="file">
+                                        <label for="file">Télécharger une image (logo)</label>
+                                    </div>
+                                </div>
+                                <div class="form-group mb-2">
+                                    <label class="mb-0 pl-2 text-muted" for="Raison_social">Raison sociale</label>
+                                    <input type="text" class="form-control item mb-0" name="Raison_social"
+                                        id="Raison_social" value="<%= entreprises.Raison_social %>"
+                                        placeholder="Raison sociale" required>
+                                </div>
+                                <div class="form-group mb-2">
+                                    <label class="mb-0 pl-2 text-muted" for="Secteur_activite">Secteur
+                                        d'activite</label>
+                                    <input type="text" class="form-control item mb-0" name="Secteur_activite"
+                                        id="Secteur_activite" value="<%= entreprises.Secteur_activite %>"
+                                        placeholder="Secteur d'activite" required>
+                                </div>
+                                <div class="form-group mb-2">
+                                    <label class="mb-0 pl-2 text-muted" for="site">Site Web</label>
+                                    <input type="text" class="form-control item mb-0" name="Site_web" id="site"
+                                        value="<%= entreprises.Site_web %>" placeholder="Site Web" required>
+                                </div>
+                                <div class="form-group mb-2">
+                                    <label class="mb-0 pl-2 text-muted" for="Localite">Adresse</label>
+                                    <input type="text" class="form-control item mb-0" name="Localite" id="Localite"
+                                        value="<%= entreprises.Localite %>" placeholder="Localité" required>
+                                </div>
+                                <div class="form-group mb-2">
+                                    <label class="mb-0 pl-2 text-muted" for="Description">Description</label>
+                                    <textarea class="form-control" name="Description" id="Description" rows="4"
+                                        placeholder="Description..." required><%= entreprises.Description %></textarea>
+                                </div>
+                                <div class="form-group">
+                                    <button type="submit" class="btn btn-block create-company">Valider les
+                                        modifications</button>
+                                </div>
                     </form>
                 </div>
             </div>

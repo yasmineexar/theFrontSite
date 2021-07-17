@@ -1,6 +1,6 @@
 
 const router = require("express").Router()
-const { createpilote, editpilote, addpilote, readpilote, updatepilote, delet, login } = require("../Controllers/UserController")
+const { createpilote, deletepilote, editpilote, addpilote, readpilote, updatepilote, delet, login } = require("../Controllers/UserController")
 const { create } = require('../controllers/EtudiantController')
 
 //routes pilote
@@ -24,6 +24,7 @@ router.get('/:id', readpilote)
 router.get('/editpilote/:id', editpilote)
 router.post('/editpilote/:id', updatepilote)
 
+router.get('/deletepilote/:id', deletepilote)
 router.delete('/:id', delet)
 
 module.exports = router

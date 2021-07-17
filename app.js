@@ -12,6 +12,8 @@ app.set('view engine', 'ejs')
 app.use("/public", express.static("./public"))
 app.use(sessiion({
     secret: 'secret',
+    resave: false,
+    saveUninitialized: true,
     cookie: { maxAge: null }
 }))
 app.use((req, res, next) => {

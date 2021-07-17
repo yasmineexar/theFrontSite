@@ -147,23 +147,36 @@
                             </form>
                         </div>
                     </section>
-                    <ul class="responsive-table">
-                        <li class="table-header">
-                            <div class="col-1"></div>
-                            <div class="col-2">Raison Sociale</div>
-                            <div class="col-4">Secteur d'Activité</div>
-                            <div class="col-3">Adresse</div>
-                            <div class="col-1">SiteWeb</div>
-                            <div class="col-1"></div>
-                        </li>
-                        <div id="card-body">
+                    <%if (message) {%>
+                        <div class="mt-5 alert alert-<%= message.type %>  alert-dismissible fade show">
+                            <strong>
+                                <%= message.intro %>
+                            </strong><br>
+                            <%= message.message %>
+                                <button type="button" class="close" data-dismiss="alert" aria-label="Close">
+                                    <span aria-hidden="true">&times;</span>
+                                </button>
                         </div>
-                    </ul>
+                        <%}%>
+                            <ul class="responsive-table">
+                                <li class="table-header">
+                                    <div class="col-1"></div>
+                                    <div class="col-2">Raison Sociale</div>
+                                    <div class="col-4">Secteur d'Activité</div>
+                                    <div class="col-3">Adresse</div>
+                                    <div class="col-1">SiteWeb</div>
+                                    <div class="col-1"></div>
+                                </li>
+                                <div id="card-body">
+                                </div>
+                            </ul>
 
-                    <div id="pagination-container"></div>
+                            <div id="pagination-container"></div>
                 </div>
 
         </div>
+        <button onclick="topFunction()" class="btn scrollUp" id="myBtn" title="Go to top">Haut de la
+            page</button>
 
         <%- include ('../layouts/footer.ejs') %>
 
@@ -275,6 +288,26 @@
                         xhr.send()
                     }
                 })
+                //ScrollToTop button
+                //Get the button
+                var mybutton = document.getElementById("myBtn");
+
+                // When the user scrolls down 20px from the top of the document, show the button
+                window.onscroll = function () { scrollFunction() };
+
+                function scrollFunction() {
+                    if (document.body.scrollTop > 20 || document.documentElement.scrollTop > 20) {
+                        mybutton.style.display = "block";
+                    } else {
+                        mybutton.style.display = "none";
+                    }
+                }
+                // When the user clicks on the button, scroll to the top of the document
+                function topFunction() {
+                    document.body.scrollTop = 0;
+                    document.documentElement.scrollTop = 0;
+                }
+
             </script>
 
 </body>

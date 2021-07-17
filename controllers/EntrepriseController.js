@@ -1,6 +1,7 @@
 const Entreprise = require('../models/Entreprise')
 const Offre = require("../Models/Offre");
 const bcrypt = require("bcryptjs")
+
 exports.read = (req, res) => {
     if (req.query.json) {
         return Entreprise.getAll().then(rows => {
@@ -87,19 +88,24 @@ exports.update = (req, res) => {
         }
     } else {
         entreprise.update(req.params.id).then(() => {
-            Entreprise.getById(req.params.id).then((entreprises) => {
-                req.session.message = {
-                    type: 'success',
-                    intro: 'Succés !',
-                    message: 'Métier a bien été modifié.'
-                }
-                return res.render('entreprises/edit', { entreprises: entreprises[0] })
-            })
+            req.session.message = {
+                type: 'success',
+                intro: 'Succés !',
+                message: 'Métier a bien été modifié.'
+            }
+            return res.redirect('/entreprise/edit/' + req.params.id)
         })
     }
 }
 exports.delet = (req, res) => {
-
+    return Entreprise.delet(req.params.id).then(() => {
+        req.session.message = {
+            type: 'success',
+            intro: 'Succés !',
+            message: 'Entreprise a bien été supprimé.'
+        }
+        return res.redirect('/entreprise')
+    })
 }
 
 //creer un compte entreprise

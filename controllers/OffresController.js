@@ -39,9 +39,31 @@ exports.creat = (req, res) => {
     offre.Description = Description
     offre.Titre = Titre
     offre.Id_faculte = Id_faculte
-    offre.creat().then(() => {
+    if (req.body.Description == '' || req.body.Nom == '' || req.body.Id_faculte == '') {
+        req.session.message = {
+            type: 'danger',
+            intro: 'Champs vides!',
+            message: 'Veuillez insérer les informations requises.'
+        }
         return res.redirect('add')
-    })
+    } else if (req.body.Nom == 'jsp') {
+        req.session.message = {
+            type: 'warning',
+            intro: 'Ce métier existe déja!',
+            message: 'Veuillez insérer de nouvelles informations.'
+        }
+        return res.redirect('add')
+    }
+    else {
+        offre.creat().then(() => {
+            req.session.message = {
+                type: 'success',
+                intro: 'Succés !',
+                message: 'Une nouvelle offre a bien été créé.'
+            }
+            return res.redirect('add')
+        })
+    }
 };
 exports.edit = (req, res) => {
     Promise.all([Offre.getById(req.params.id), Faculte.getAll()]).then((a) => {
@@ -53,7 +75,6 @@ exports.edit = (req, res) => {
 exports.update = (req, res) => {
     let o = new Offre()
     Offre.getById(req.params.id).then((offre) => {
-        console.log('body', req.body)
         o.Id_offre = req.params.id
         o.Base_remuneration = req.body.Base_remuneration || offre.Base_remuneration
         o.Duree_stage = req.body.Duree_stage || offre.Duree_stage
@@ -61,12 +82,31 @@ exports.update = (req, res) => {
         o.Id_faculte = req.body.Id_faculte || offre.Id_faculte
         o.Nb_places = req.body.Nb_places || offre.Nb_places
         o.Titre = req.body.Titre || offre.Titre
-        console.log('offre', offre)
-        o.update().then(() => {
-            res.redirect('/offre/edit/' + req.params.id)
-        })
+        if (req.body.Description == '' || req.body.Nom == '' || req.body.Id_faculte == '') {
+            req.session.message = {
+                type: 'danger',
+                intro: 'Champs vides !',
+                message: 'Veuillez insérer les informations requises.'
+            }
+        } else {
+            o.update().then(() => {
+                req.session.message = {
+                    type: 'success',
+                    intro: 'Succés !',
+                    message: 'Offre a bien été modifié.'
+                }
+                res.redirect('/offre/edit/' + req.params.id)
+            })
+        }
     })
 }
 exports.delet = (req, res) => {
-
+    return Offre.delet(req.params.id).then(() => {
+        req.session.message = {
+            type: 'success',
+            intro: 'Succés !',
+            message: 'Offre a bien été supprimé.'
+        }
+        return res.redirect('/offre')
+    })
 };

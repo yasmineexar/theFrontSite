@@ -30,40 +30,51 @@
                         <div class="titre">
                             <h1>Creation offre</h1>
                         </div>
-                        <div class="form-group">
-                            <input type="text" class="form-control item" name="Titre" id="titre"
-                                placeholder="Titre de l'offre" required>
-                        </div>
-                        <div class="form-group">
-                            <input type="number" class="form-control item" name="Duree_stage" id="duree"
-                                placeholder="Durée du stage (en semaine)" required>
-                        </div>
-                        <div class="form-group">
-                            <input type="text" class="form-control item" name="Base_remuneration" id="baserenum"
-                                placeholder="Base de rémunération">
-                        </div>
-                        <div class="form-group">
-                            <input type="number" class="form-control item" name="Nb_places" id="nbplaces"
-                                placeholder="Nombre de places disponible" required>
-                        </div>
-                        <div class="form-group">
-                            <select type="text" class="form-control item" name="Id_faculte" id="Faculte"
-                                placeholder="Faculté concernée" required>
-                                <option>Facultée concernée</option>
-                                <% faculte.forEach(element=> { %>
-                                    <option value="<%=element.Id_faculte%>">
-                                        <%=element.Nom%>
-                                    </option>
-                                    <% }) %>
-                            </select>
-                        </div>
-                        <div class="form-group">
-                            <textarea class="form-control" name="Description" id="description" rows="5"
-                                placeholder="Description..." required></textarea>
-                        </div>
-                        <div class="form-group">
-                            <button type="submit" class="btn btn-block create-company">Créer une offre</button>
-                        </div>
+                        <%if (message) {%>
+                            <div class="mt-5 alert alert-<%= message.type %>  alert-dismissible fade show">
+                                <strong>
+                                    <%= message.intro %>
+                                </strong><br>
+                                <%= message.message %>
+                                    <button type="button" class="close" data-dismiss="alert" aria-label="Close">
+                                        <span aria-hidden="true">&times;</span>
+                                    </button>
+                            </div>
+                            <%}%>
+                                <div class="form-group">
+                                    <input type="text" class="form-control item" name="Titre" id="titre"
+                                        placeholder="Titre de l'offre" required>
+                                </div>
+                                <div class="form-group">
+                                    <input type="number" class="form-control item" name="Duree_stage" id="duree"
+                                        placeholder="Durée du stage (en semaine)" required>
+                                </div>
+                                <div class="form-group">
+                                    <input type="text" class="form-control item" name="Base_remuneration" id="baserenum"
+                                        placeholder="Base de rémunération">
+                                </div>
+                                <div class="form-group">
+                                    <input type="number" class="form-control item" name="Nb_places" id="nbplaces"
+                                        placeholder="Nombre de places disponible" required>
+                                </div>
+                                <div class="form-group">
+                                    <select type="text" class="form-control item" name="Id_faculte" id="Faculte"
+                                        placeholder="Faculté concernée" required>
+                                        <option>Facultée concernée</option>
+                                        <% faculte.forEach(element=> { %>
+                                            <option value="<%=element.Id_faculte%>">
+                                                <%=element.Nom%>
+                                            </option>
+                                            <% }) %>
+                                    </select>
+                                </div>
+                                <div class="form-group">
+                                    <textarea class="form-control" name="Description" id="description" rows="5"
+                                        placeholder="Description..." required></textarea>
+                                </div>
+                                <div class="form-group">
+                                    <button type="submit" class="btn btn-block create-company">Créer une offre</button>
+                                </div>
                     </form>
                 </div>
             </div>

@@ -24,28 +24,40 @@
                         <div class="titre">
                             <h1>Creation Pilote</h1>
                         </div>
-                        <div class="form-group">
-                            <input type="text" class="form-control item" name="nomp" placeholder="Nom du pilote"
-                                required>
-                        </div>
-                        <div class="form-group">
-                            <input type="text" class="form-control item" name="prenomp" placeholder="Prénom du pilote"
-                                required>
-                        </div>
-                        <div class="form-group">
-                            <input type="text" class="form-control item" name="emailp" placeholder="E-mail du pilote"
-                                required>
-                        </div>
-                        <div class="form-group">
-                            <input type="text" class="form-control item" name="usernamep" placeholder="Username">
-                        </div>
-                        <div class="form-group">
-                            <input type="password" class="form-control item" name="passwordp" placeholder="Password"
-                                required>
-                        </div>
-                        <div class="form-group">
-                            <button type="submit" class="btn btn-block create-company">Créer un pilote</button>
-                        </div>
+                        <%if (message) {%>
+                            <div class="mt-5 alert alert-<%= message.type %>  alert-dismissible fade show">
+                                <strong>
+                                    <%= message.intro %>
+                                </strong><br>
+                                <%= message.message %>
+                                    <button type="button" class="close" data-dismiss="alert" aria-label="Close">
+                                        <span aria-hidden="true">&times;</span>
+                                    </button>
+                            </div>
+                            <%}%>
+                                <div class="form-group">
+                                    <input type="text" class="form-control item" name="nomp" placeholder="Nom du pilote"
+                                        required>
+                                </div>
+                                <div class="form-group">
+                                    <input type="text" class="form-control item" name="prenomp"
+                                        placeholder="Prénom du pilote" required>
+                                </div>
+                                <div class="form-group">
+                                    <input type="text" class="form-control item" name="emailp"
+                                        placeholder="E-mail du pilote" required>
+                                </div>
+                                <div class="form-group">
+                                    <input type="text" class="form-control item" name="usernamep"
+                                        placeholder="Username">
+                                </div>
+                                <div class="form-group">
+                                    <input type="password" class="form-control item" name="passwordp"
+                                        placeholder="Password" required>
+                                </div>
+                                <div class="form-group">
+                                    <button type="submit" class="btn btn-block create-company">Créer un pilote</button>
+                                </div>
                     </form>
                 </div>
             </div>

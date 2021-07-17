@@ -28,9 +28,7 @@ body .responsive-table li {
   display: -webkit-box;
   display: -ms-flexbox;
   display: flex;
-  -webkit-box-pack: justify;
-      -ms-flex-pack: justify;
-          justify-content: space-between;
+  justify-content: space-between;
   margin-bottom: 25px;
   text-align: left;
   
@@ -75,8 +73,7 @@ body .responsive-table .table-header {
 body .responsive-table .table-row {
   font-size: 13px;
   background-color: #ffffff;
-  -webkit-box-shadow: 0px 0px 9px 0px rgba(0, 0, 0, 0.1);
-          box-shadow: 0px 0px 9px 0px rgba(0, 0, 0, 0.1);
+  box-shadow: 0px 0px 9px 0px rgba(0, 0, 0, 0.1);
 }
 
 .icons{
@@ -139,3 +136,22 @@ text-align: right;
   background-color: #528BA3;
 }
 /*# sourceMappingURL=AllEntreprises.css.map */
+
+
+
+.scrollUp{
+  display: none;
+  border-radius: 30px;
+  padding: 10px 20px;
+  font-size: 15px;
+  font-weight: bold;
+  background-color: #105F7F;
+  border: none;
+  color: white;
+  margin-top: 20px;
+  position: fixed;
+  bottom: 50px;
+  left: 30px;
+  z-index: 99;
+  cursor: pointer;
+}

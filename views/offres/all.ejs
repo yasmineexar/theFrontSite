@@ -39,15 +39,26 @@
                 </div>
             </div>
             <div id="offres">
-                <div class="hey">
-                    <h1>Une sélection d'offres spécialement pour toi</h1>
-                </div>
-                <div id="cont">
-                    <div class="grid" id="card-body">
-
-
+                <%if (message) {%>
+                    <div style="position: fixed; top: 20vh; left: 25%; width: 50%; z-index: 900; font-size: 16px;"
+                        class="alert alert-<%= message.type %> alert-dismissible fade show" role="alert">
+                        <strong>
+                            <%= message.intro %>
+                        </strong> <br>
+                        <%= message.message %>
+                            <button type="button" class="close" data-dismiss="alert" aria-label="Close">
+                                <span aria-hidden="true">&times;</span>
+                            </button>
                     </div>
-                </div>
+                    <%}%>
+                        <div class="hey">
+                            <h1>Une sélection d'offres spécialement pour toi</h1>
+                        </div>
+                        <div id="cont">
+                            <div class="grid" id="card-body">
+
+                            </div>
+                        </div>
             </div>
 
 
@@ -82,7 +93,13 @@
                     <div class="grid-item">
                         <div class="card">
                             <div class="card-header">
-                                <button class="coeur"><i class="fa fa-heart-o" aria-hidden="true"></i></button>
+                                <!--Juste pour les etudiants<button class="coeur"><i class="fa fa-heart-o" aria-hidden="true"></i></button>-->
+                                <a href="/offre/edit/${r.Id_offre}" type="button" class="ent modify"><i
+                                            class="fa fa-pencil" data-toggle='modifier' data-target="${r.Id_offre}"
+                                            aria-hidden="true"></i></a>
+                                    <a href="/offre/delete/${r.Id_offre}" type="button" class="ent bin"><i
+                                            class="fa fa-trash-o" data-toggle='supprimer' data-target="${r.Id_offre}"
+                                            aria-hidden="true"></i></a>
                                 <img width='80px' height='80px' src="${r.Entreprise.Logo}"
                                     class="card-image img-thumbnail navbar-brand pdp" style="border: none; height:80px" alt="User">
                                 <br>

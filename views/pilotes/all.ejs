@@ -40,20 +40,10 @@
                             <a href="/user/addpilote" type="button" class="viewoffresbtn"> Ajouter un Pilote </a>
                         </div>
                     </div>
-
                     <div class="grid" id="card-body">
 
-
-
                     </div>
-
-
-
                 </div>
-                <button onclick="topFunction()" class="btn scrollUp" id="myBtn" title="Go to top">Haut de la
-                    page</button>
-
-
         </div>
         <%- include ('../layouts/footer.ejs') %>
 
@@ -67,8 +57,15 @@
                         <div class="grid-item">
                                 <div class="card">
                                     <div class="info">
+                                        <a href="/user/editpilote/${r.Id_utilisateur}" type="button" class="ent modify"><i
+                                            class="fa fa-pencil" data-toggle='modifier' data-target="${r.Id_utilisateur}"
+                                            aria-hidden="true"></i></a>
+                                    <a href="/user/deletepilote/${r.Id_utilisateur}" type="button" class="ent bin"><i
+                                            class="fa fa-trash-o" data-toggle='supprimer' data-target="${r.Id_utilisateur}"
+                                            aria-hidden="true"></i></a>
+
                                         <img width='60px' height='60px' src="/public/img/user.png"
-                                            class="img-thumbnail rounded-circle navbar-brand pdp" alt="User">
+                                            class="img-thumbnail rounded-circle mb-1 pdp" alt="User">
                                         <br>
                                         <span>${r.Username}</span>
                                         <br>
@@ -113,26 +110,7 @@
 
                 getPilote()
 
-                //ScrollToTop button
-                //Get the button
-                var mybutton = document.getElementById("myBtn");
 
-                // When the user scrolls down 20px from the top of the document, show the button
-                window.onscroll = function () { scrollFunction() };
-
-                function scrollFunction() {
-                    if (document.body.scrollTop > 20 || document.documentElement.scrollTop > 20) {
-                        mybutton.style.display = "block";
-                    } else {
-                        mybutton.style.display = "none";
-                    }
-                }
-
-                // When the user clicks on the button, scroll to the top of the document
-                function topFunction() {
-                    document.body.scrollTop = 0;
-                    document.documentElement.scrollTop = 0;
-                }
 
             </script>
 

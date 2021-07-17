@@ -29,48 +29,62 @@
                         <div class="titre">
                             <h1>Mettre à jour une offre</h1>
                         </div>
-                        <div class="form-group mb-2">
-                            <label class="mb-0 pl-2 text-muted" for="titre">Titre de l'offre</label>
-                            <input type="text" class="form-control item mb-0" name="Titre" id="titre"
-                                value="<%=offre.Titre%>" placeholder="Titre de l'offre" required>
-                        </div>
-                        <div class="form-group mb-2">
-                            <label class="mb-0 pl-2 text-muted" for="duree">Durée du stage (en semaine)</label>
-                            <input type="number" class="form-control item mb-0" name="Duree_stage" id="duree"
-                                value="<%=offre.Duree_stage%>" placeholder="Durée du stage (en semaine)" required>
-                        </div>
-                        <div class="form-group mb-2">
-                            <label class="mb-0 pl-2 text-muted" for="baserenum">Base de rémunération</label>
-                            <input type="text" class="form-control item mb-0" name="Base_remuneration" id="baserenum"
-                                value="<%=offre.Base_remuneration%>" placeholder="Base de rémunération">
-                        </div>
-                        <div class="form-group mb-2">
-                            <label class="mb-0 pl-2 text-muted" for="nbplaces">Nombre de places disponible</label>
-                            <input type="number" class="form-control item mb-0" name="Nb_places" id="nbplaces"
-                                value="<%=offre.Nb_places%>" placeholder="Nombre de places disponible" required>
-                        </div>
-                        <div class="form-group mb-2">
-                            <label class="mb-0 pl-2 text-muted" for="Faculte">Faculté concernée</label>
-                            <select type="text" class="form-control item mb-0" name="Id_faculte" id="Faculte"
-                                value="<%= offre.Id_faculte %>" placeholder="Faculté concernée" required>
-                                <option></option>
-                                <% facultes.forEach(element=> { %>
-                                    <option value="<%=element.Id_faculte%>"
-                                        <%=element.Id_faculte==offre.Id_faculte?'selected':''%> >
-                                        <%=element.Nom%>
-                                    </option>
-                                    <% }) %>
-                            </select>
-                        </div>
-                        <div class="form-group">
-                            <label class="mb-0 pl-2 text-muted" for="descrption">Description</label>
-                            <textarea class="form-control" name="Description" id="description" rows="5"
-                                placeholder="Description..." required><%=offre.Description%></textarea>
-                        </div>
-                        <div class="form-group">
-                            <button type="submit" class="btn btn-block create-company">Valider les
-                                modifications</button>
-                        </div>
+                        <%if (message) {%>
+                            <div class="mt-5 alert alert-<%= message.type %>  alert-dismissible fade show">
+                                <strong>
+                                    <%= message.intro %>
+                                </strong><br>
+                                <%= message.message %>
+                                    <button type="button" class="close" data-dismiss="alert" aria-label="Close">
+                                        <span aria-hidden="true">&times;</span>
+                                    </button>
+                            </div>
+                            <%}%>
+                                <div class="form-group mb-2">
+                                    <label class="mb-0 pl-2 text-muted" for="titre">Titre de l'offre</label>
+                                    <input type="text" class="form-control item mb-0" name="Titre" id="titre"
+                                        value="<%=offre.Titre%>" placeholder="Titre de l'offre" required>
+                                </div>
+                                <div class="form-group mb-2">
+                                    <label class="mb-0 pl-2 text-muted" for="duree">Durée du stage (en semaine)</label>
+                                    <input type="number" class="form-control item mb-0" name="Duree_stage" id="duree"
+                                        value="<%=offre.Duree_stage%>" placeholder="Durée du stage (en semaine)"
+                                        required>
+                                </div>
+                                <div class="form-group mb-2">
+                                    <label class="mb-0 pl-2 text-muted" for="baserenum">Base de rémunération</label>
+                                    <input type="text" class="form-control item mb-0" name="Base_remuneration"
+                                        id="baserenum" value="<%=offre.Base_remuneration%>"
+                                        placeholder="Base de rémunération">
+                                </div>
+                                <div class="form-group mb-2">
+                                    <label class="mb-0 pl-2 text-muted" for="nbplaces">Nombre de places
+                                        disponible</label>
+                                    <input type="number" class="form-control item mb-0" name="Nb_places" id="nbplaces"
+                                        value="<%=offre.Nb_places%>" placeholder="Nombre de places disponible" required>
+                                </div>
+                                <div class="form-group mb-2">
+                                    <label class="mb-0 pl-2 text-muted" for="Faculte">Faculté concernée</label>
+                                    <select type="text" class="form-control item mb-0" name="Id_faculte" id="Faculte"
+                                        value="<%= offre.Id_faculte %>" placeholder="Faculté concernée" required>
+                                        <option></option>
+                                        <% facultes.forEach(element=> { %>
+                                            <option value="<%=element.Id_faculte%>"
+                                                <%=element.Id_faculte==offre.Id_faculte?'selected':''%> >
+                                                <%=element.Nom%>
+                                            </option>
+                                            <% }) %>
+                                    </select>
+                                </div>
+                                <div class="form-group">
+                                    <label class="mb-0 pl-2 text-muted" for="descrption">Description</label>
+                                    <textarea class="form-control" name="Description" id="description" rows="5"
+                                        placeholder="Description..." required><%=offre.Description%></textarea>
+                                </div>
+                                <div class="form-group">
+                                    <button type="submit" class="btn btn-block create-company">Valider les
+                                        modifications</button>
+                                </div>
                     </form>
                 </div>
             </div>

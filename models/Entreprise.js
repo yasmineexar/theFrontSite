@@ -1,7 +1,6 @@
 const Model = require("./model")
 const User = require('./User')
 module.exports = class Entreprise extends User {
-
     static tablename = 'entreprises'
     constructor(id) {
         super();
@@ -13,7 +12,7 @@ module.exports = class Entreprise extends User {
 
     static getAll = () => {
         return new Promise((resolve, reject) => {
-            this.dbconnection.query(`SELECT * from ${this.tablename}`, (error, results, fields) => {
+            this.dbconnection.query(`SELECT * from entrepold`, (error, results, fields) => {
                 if (error) return reject(error)
                 resolve(results)
             })
@@ -41,6 +40,15 @@ module.exports = class Entreprise extends User {
     update = (Id_entrepold) => {
         return new Promise((resolve, reject) => {
             this.dbconnection.query(`UPDATE entrepold SET Raison_social = ?, Secteur_activite = ?, Site_web = ?, Localite = ?, Description = ? where Id_entrepold = ${Id_entrepold}`, [this.Raison_social, this.Secteur_activite, this.Site_web, this.Localite, this.Description], (error, results, fields) => {
+                if (error) return reject(error)
+                resolve(results)
+            })
+        })
+    }
+
+    static delet(Id_entrepold) {
+        return new Promise((resolve, reject) => {
+            this.dbconnection.query(`DELETE FROM entrepold where Id_entrepold = ${Id_entrepold}`, (error, results, fields) => {
                 if (error) return reject(error)
                 resolve(results)
             })

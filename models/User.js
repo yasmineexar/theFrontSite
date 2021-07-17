@@ -49,7 +49,14 @@ module.exports = class User extends Model {
     })
   }
 
-  delete() { }
+  static delet(Id_utilisateur) {
+    return new Promise((resolve, reject) => {
+      this.dbconnection.query(`DELETE FROM ${this.tablename} where Id_utilisateur = ${Id_utilisateur}`, (error, results, fields) => {
+        if (error) return reject(error)
+        resolve(results)
+      })
+    })
+  }
 
   //login
   static getByUsername(username) {

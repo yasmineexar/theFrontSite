@@ -55,9 +55,9 @@ module.exports = class Offre extends Model {
       })
     })
   }
-  delet = () => {
+  static delet = (Id_Offre) => {
     return new Promise((resolve, reject) => {
-      this.dbconnection.query(`DELETE FROM ${this.tablename} WHERE Id_Offre = ?`, [req.params.id], (error, results, fields) => {
+      this.dbconnection.query(`DELETE FROM ${this.tablename} WHERE Id_Offre = ${Id_Offre}`, (error, results, fields) => {
         if (error) return reject(error)
         resolve(results)
       })

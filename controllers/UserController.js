@@ -36,11 +36,33 @@ exports.createpilote = (req, res) => {
            console.log(pilote.Password)
        });
    }); */
-    console.log('avant create')
-    pilote.create().then(() => {
-        console.log('after create')
+    if (req.body.nomp == '' || req.body.penomp == '' || req.body.emailp == '' || req.body.usernamep == '' || req.body.passwordp == '') {
+        req.session.message = {
+            type: 'danger',
+            intro: 'Champs vides!',
+            message: 'Veuillez insérer les informations requises.'
+        }
         return res.redirect('addpilote')
-    })
+    } else if (req.body.Nom == 'jsp') {
+        req.session.message = {
+            type: 'warning',
+            intro: 'Ce métier existe déja!',
+            message: 'Veuillez insérer de nouvelles informations.'
+        }
+        return res.redirect('addpilote')
+    }
+    else {
+        console.log('avant create')
+        pilote.create().then(() => {
+            console.log('after create')
+            req.session.message = {
+                type: 'success',
+                intro: 'Succés !',
+                message: 'Métier a bien été créé.'
+            }
+            return res.redirect('addpilote')
+        })
+    }
 };
 exports.editpilote = (req, res) => {
     return User.getPiloteById(req.params.id).then((pilotes) => {
@@ -48,10 +70,45 @@ exports.editpilote = (req, res) => {
     })
 }
 exports.updatepilote = (req, res) => {
-
+    const Nom = req.body.nomp
+    const Prenom = req.body.prenomp
+    const Email = req.body.emailp
+    const Username = req.body.usernamep
+    const Password = req.body.passwordp
+    const Id_utilisateur = req.params.id
+    let pilote = new User()
+    pilote.Nom = Nom
+    pilote.Prenom = Prenom
+    pilote.Email = Email
+    pilote.Username = Username
+    pilote.Password = Password
+    pilote.Id_utilisateur = Id_utilisateur
+    if (req.body.nomp == '' || req.body.prenomp == '' || req.body.emailp == '') {
+        req.session.message = {
+            type: 'danger',
+            intro: 'Champs vides !',
+            message: 'Veuillez insérer les informations requises.'
+        }
+    } else {
+        pilote.updatepilote(req.params.id).then(() => {
+            req.session.message = {
+                type: 'success',
+                intro: 'Succés !',
+                message: 'Métier a bien été modifié.'
+            }
+            return res.redirect('/user/editpilote/' + req.params.id)
+        })
+    }
 }
-exports.delet = (req, res) => {
-
+exports.deletepilote = (req, res) => {
+    return User.delet(req.params.id).then(() => {
+        req.session.message = {
+            type: 'success',
+            intro: 'Succés !',
+            message: 'Utilisateur a bien été supprimé.'
+        }
+        return res.redirect('/user/allpilote')
+    })
 };
 
 //CRUD pilote
@@ -69,4 +126,7 @@ exports.login = (req, res) => {
             }
         })
     })
+}
+exports.delet = (req, res) => {
+
 }
