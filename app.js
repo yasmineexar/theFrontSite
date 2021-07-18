@@ -28,6 +28,9 @@ app.use('/faculte', routes.faculte)
 app.use('/offre', routes.offre)
 app.use('/metier', routes.metier)
 app.use('/user', routes.user)
+app.get('/', (req, res) => {
+    return res.render('accueil/home')
+})
 
 app.listen(3000, function () {
     console.log("App started at port 3000!!")

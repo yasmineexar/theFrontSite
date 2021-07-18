@@ -82,8 +82,8 @@ login/login-register (il se connecte)
 acceuil/homepilote (il a le choix entre toutes les gestions) => {
     tout comme pilote + 
     pilote{
-        pilotes/all (   il peut voir tous les pilotes + recherche
-                        il peut modifier ou supprimer un pilote + bouton pour créer)
+    pilotes/all (il peut voir tous les pilotes + recherche   
+                 il peut modifier ou supprimer un pilote + bouton pour créer)
         pilotes/add (il peut ajouter un pilote)
         pilotes/edit (il peut mettre à jour un pilote)
     }
