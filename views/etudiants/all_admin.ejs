@@ -35,7 +35,7 @@
                     <h2>Etudiants</h2>
                     <section class="search-sec">
                         <div class="container">
-                            <form action="/etudiant" method="POST" novalidate="novalidate">
+                            <form action="/etudiant" method="get" novalidate="novalidate">
                                 <div class="row">
                                     <div class="col-lg-12">
                                         <div class="row">
@@ -53,9 +53,10 @@
                                                 </select>
                                             </div>
                                             <div class="col-lg-3 col-md-3 col-sm-12 p-0">
-                                                <button type="submit" class="btn wrn-btn">Search</button>
+                                                <button type="submit" class="btn wrn-btn"
+                                                    onclick="event.preventDefault();getEtudiant()">Search</button>
                                                 <!--   <button type="button" onclick="getEtudiant()"
-                                                    class="btn wrn-btn">Search</button> -->
+                                                        class="btn wrn-btn">Search</button> -->
                                             </div>
                                         </div>
                                     </div>
@@ -86,51 +87,51 @@
             <script>
                 const card = (r) => {
                     return `
-                    <div class="grid-item">
-                            <div class="card">
-                                <div class="info">
-                                    <img width='60px' height='60px' src="/public/img/user.png"
-                                        class="img-thumbnail rounded-circle navbar-brand pdp" alt="User">
-                                    <br>
-                                    <a class="lien" href="/etudiant/${r.Id_etudold}"
-                                                title="Voir le profile de l'étudiant"><span>${r.Nom} ${r.Prenom}</span></a>
-                                    <br>
-                                </div>
-                                <div class="detail">
-                                    <table>
-                                        <tr>
-                                            <td class="icone"><i class="fa fa-envelope-o" aria-hidden="true"></i></td>
-                                            <td><span>${r.Email}</span></td>
-                                        </tr>
-                                        <tr>
-                                            <td class="icone"><i class="fa fa-barcode" aria-hidden="true"></i></td>
-                                            <td><span>${r.Matricule}</span></td>
-                                        </tr>
-                                        <tr>
-                                            <td class="icone"><i class="fa fa-graduation-cap" aria-hidden="true"></i>
-                                            </td>
-                                            <td><span>${r.Annee_etude}</span></td>
-                                        </tr>
-                                        <tr>
-                                            <td class="icone"><i class="fa fa-university" aria-hidden="true"></i></td>
-                                            <td><span>${r.faculte.Nom}</span></td>
-                                        </tr>
-                                        <tr>
-                                            <td class="icone"><i class="fa fa-bookmark-o" aria-hidden="true"></i></td>
-                                            <td><span>${r.Specialite}</span></td>
-                                        </tr>
-                                    </table>
+                        <div class="grid-item">
+                                <div class="card">
+                                    <div class="info">
+                                        <img width='60px' height='60px' src="/public/img/user.png"
+                                            class="img-thumbnail rounded-circle navbar-brand pdp" alt="User">
+                                        <br>
+                                        <a class="lien" href="/etudiant/${r.Id_etudold}"
+                                                    title="Voir le profile de l'étudiant"><span>${r.Nom} ${r.Prenom}</span></a>
+                                        <br>
+                                    </div>
+                                    <div class="detail">
+                                        <table>
+                                            <tr>
+                                                <td class="icone"><i class="fa fa-envelope-o" aria-hidden="true"></i></td>
+                                                <td><span>${r.Email}</span></td>
+                                            </tr>
+                                            <tr>
+                                                <td class="icone"><i class="fa fa-barcode" aria-hidden="true"></i></td>
+                                                <td><span>${r.Matricule}</span></td>
+                                            </tr>
+                                            <tr>
+                                                <td class="icone"><i class="fa fa-graduation-cap" aria-hidden="true"></i>
+                                                </td>
+                                                <td><span>${r.Annee_etude}</span></td>
+                                            </tr>
+                                            <tr>
+                                                <td class="icone"><i class="fa fa-university" aria-hidden="true"></i></td>
+                                                <td><span>${r.faculte.Nom}</span></td>
+                                            </tr>
+                                            <tr>
+                                                <td class="icone"><i class="fa fa-bookmark-o" aria-hidden="true"></i></td>
+                                                <td><span>${r.Specialite}</span></td>
+                                            </tr>
+                                        </table>
+                                    </div>
                                 </div>
                             </div>
-                        </div>
-                `}
+                    `}
                 const getEtudiant = () => {
                     let nom = $('#nom').val()
                     let prenom = $('#prenom').val()
                     let fac = $("#faculte").val()
                     console.log(nom, prenom, fac)
                     let xhr = new XMLHttpRequest()
-                    xhr.open('get', 'etudiant?json=true')
+                    xhr.open('get', `etudiant?json=true&searchNom=${$('[name=searchNom]').val()}&searchPrenom=${$('[name=searchPrenom]').val()}&searchFaculte=${$('[name=searchFaculte]').val() || ''}`)
                     xhr.responseType = 'json'
                     xhr.onload = () => {
                         let etudiant = xhr.response
@@ -159,10 +160,10 @@
                     xhr.onload = () => {
                         faculte = xhr.response
                         $('#faculte').html(`
-                        <option value="">Choisir une Faculté</option>
-                        
-                        ${faculte.map((e) => { return `<option value="${e.Id_faculte}">${e.Nom}</option>` }).join('')}
-                        `)
+                            <option value="">Choisir une Faculté</option>
+                            
+                            ${faculte.map((e) => { return `<option value="${e.Id_faculte}">${e.Nom}</option>` }).join('')}
+                            `)
                     }
                     xhr.send()
                 }

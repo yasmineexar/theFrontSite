@@ -62,7 +62,25 @@ module.exports = class Etudiant extends User {
     }
     update() { }
     delet() { }
-
+    static selectwhere = (a) => {
+        let cond = ''
+        if (a && Object.entries(a).some(e => e[1] !== '')) {
+            cond = cond.concat('where ')
+            Object.entries(a).forEach((entrie, i) => {
+                if (entrie[1] !== '') {
+                    cond = cond.concat(entrie[0] + '="' + entrie[1] + '"')
+                    if (Object.entries(a).length != i) cond.concat(' and ')
+                }
+            });
+        }
+        console.log(`select * from etudold ${cond}`)
+        return new Promise((resolve, reject) => {
+            this.dbconnection.query(`select * from etudold ${cond}`, (err, fields, results) => {
+                if (err) reject(err)
+                resolve(fields)
+            })
+        })
+    }
     static getAll = () => {
         return new Promise((resolve, reject) => {
             this.dbconnection.query(`SELECT * from etudold`, (error, results, fields) => {

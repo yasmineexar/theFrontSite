@@ -4,7 +4,7 @@ const bcrypt = require('bcryptjs')
 
 exports.read = (req, res) => {
     if (req.query.json) {
-        return etudiant.getAll().then(rows => {
+        return etudiant.selectwhere({ Nom: req.query.searchNom, Prenom: req.query.searchPrenom, Id_faculte: req.query.searchFaculte }).then(rows => {
             let c = []
             rows.forEach(element => {
                 c.push(
