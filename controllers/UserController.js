@@ -104,12 +104,26 @@ exports.deletepilote = (req, res) => {
 exports.login = (req, res) => {
     User.getByUsername(req.body.username).then((userrow) => {
         if (!userrow) return res.render('login/login-register', { error: 'utilisateur introuvable' })
-        /* if (req.body.password == userrow.Password) return res.json(userrow) */
+        //if (req.body.password == userrow.Password) return res.json(userrow)
         bcrypt.compare(req.body.password, userrow.Password, function (err, result) {
+            //redirect
             if (result == true) {
-                return res.json(userrow)
+                if (userrow.Role == 'etudiant') {
+                    return res.redirect('/metier/')
+                }
+                else {
+                    if (userrow.Role == 'entreprise') {
+                        return res.redirect('/etudiant/')
+                    } else {
+                        return res.redirect('home')
+                    }
+                }
             } else {
-                res.send('Incorrect password')
+                req.session.message = {
+                    type: 'danger',
+                    intro: 'Mot de Passe Incorrect !',
+                    message: 'Veuillez entrer le bon mot de passe'
+                }
                 res.redirect('login')
             }
         })

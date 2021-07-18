@@ -12,7 +12,6 @@ module.exports = class Etudiant extends User {
 
     create = () => {
         return new Promise((resolve, reject) => {
-            console.log('avant query select matricule')
             this.dbconnection.query(`SELECT * FROM etudold WHERE matricule = '${this.matricule}'`, (error, results, fields) => {
                 if (error) return reject(error)
                 resolve(results)
@@ -35,14 +34,10 @@ module.exports = class Etudiant extends User {
                 u.username = this.username
                 u.password = this.password
                 u.role = "etudiant"
-                console.log("---------------")
-                console.log(u.nom, u.prenom, u.username)
                 u.create().then((id) => {
-                    console.log('aw yedkhol f create tae etudiants')
                     this.Id_utilisateur = id
-                    console.log(this.Id_utilisateur)
+                    console.log('Id_utilisateur: ', this.Id_utilisateur)
                     this.dbconnection.query(`INSERT INTO ${this.tablename} SET Nom = ?, Prenom = ?, Username = ?, Password = ?, Id_utilisateur = ?, Email = ?, Annee_etude = ?, Date_naissance = ?, Adresse = ?, Num_tel = ?, Id_faculte = ?, Specialite = ?, Role = ?, Matricule = ?`, [u.nom, u.prenom, u.username, u.password, this.Id_utilisateur, this.email, this.annee_etude, this.date_naissance, this.adresse, this.num_tel, this.Id_faculte, this.specialite, u.role, this.matricule], (error, results, fields) => {
-                        console.log('aw ydir la requete')
                         if (error) {
                             reject(error);
                             console.log(error)

@@ -41,15 +41,34 @@ exports.create = (req, res) => {
         saltRounds = 10
         bcrypt.genSalt(saltRounds, function (err, salt) {
             bcrypt.hash(password, salt, function (err, hash) {
-                console.log(hash)
                 e.password = hash
-                console.log(e.password)
             });
         });
-        e.create().then(() => {
-            console.log('aw ydkhol f create then')
-            res.render('login/login-register')
-        })
+        if (req.body.matricule == '' || req.body.username == '' || req.body.password == '') {
+            req.session.message = {
+                type: 'danger',
+                intro: 'Champs vides!',
+                message: 'Veuillez insérer les informations requises.'
+            }
+            return res.redirect('register')
+        } else if (req.body.matricule == 'jsp') {
+            req.session.message = {
+                type: 'warning',
+                intro: 'Ce matricule n existe pas!',
+                message: 'Veuillez insérer de nouvelles informations.'
+            }
+            return res.redirect('register')
+        }
+        else {
+            e.create().then(() => {
+                req.session.message = {
+                    type: 'success',
+                    intro: 'Succés !',
+                    message: 'Compte Etudiant a bien été créé.'
+                }
+                return res.redirect('register')
+            })
+        }
     }
     catch (error) {
         console.log(error)

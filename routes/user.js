@@ -3,6 +3,11 @@ const router = require("express").Router()
 const { createpilote, deletepilote, editpilote, addpilote, readpilote, updatepilote, delet, login } = require("../Controllers/UserController")
 const { create } = require('../controllers/EtudiantController')
 
+//route home 
+router.get('/home', (req, res) => {
+    res.render('accueil/homepilote')
+})
+
 //routes pilote
 router.get('/addpilote', addpilote)
 router.post('/addpilote', createpilote)
