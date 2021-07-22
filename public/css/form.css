@@ -94,10 +94,11 @@ opacity: 0;
 
 
 /*bouton upload*/
-#imgholder{
+#blah{
     max-width:100px;
     margin: 15px 5px;
 }
+/*
 .file {
     opacity: 0;
     width: 0.1px;

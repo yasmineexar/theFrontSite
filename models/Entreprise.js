@@ -31,7 +31,7 @@ module.exports = class Entreprise extends User {
 
     creat = () => {
         return new Promise((resolve, reject) => {
-            this.dbconnection.query(`INSERT INTO entrepold SET Raison_social = ?, Secteur_activite = ?, Site_web = ?, Localite = ?, Description = ?`, [this.Raison_social, this.Secteur_activite, this.Site_web, this.Localite, this.Description], (error, results, fields) => {
+            this.dbconnection.query(`INSERT INTO entrepold SET Raison_social = ?, Secteur_activite = ?, Site_web = ?, Localite = ?, Description = ?, Logo = ?`, [this.Raison_social, this.Secteur_activite, this.Site_web, this.Localite, this.Description, this.Logo], (error, results, fields) => {
                 if (error) return reject(error)
                 resolve(results)
             })

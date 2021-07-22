@@ -37,8 +37,10 @@
                             <h3 class="mb-4 font-weight-light">
                                 <%= entreprises.Secteur_activite %>
                             </h3>
-                            <% if(currentuser.Role=="entrepise" && currentuser.id==entrepises.Id_utilisateur) {%> <a
-                                    href="#" class="btn btn-outline-dark modifier">Modifier le profile</a>
+
+                            <% if(currentuser.Role=="entreprise" && currentuser.id==entreprises.Id_utilisateur) {%> <a
+                                    href="/entreprise/edit/<%=locals.currentuser.id%>"
+                                    class="btn btn-outline-dark modifier">Modifier le profile</a>
                                 <%}%>
                         </div>
                     </div>
@@ -103,23 +105,27 @@
                         <div class="grid-item">
                             <div class="card">
                                 <div class="card-header">
-                                    <%if(currentuser.Role == "etudiant"){%><button class="coeur"><i class="fa fa-heart-o" aria-hidden="true"></i></button><%}%>
-                                    <%if (currentuser.id == entreprises.Id_utilisateur) {%>
-                                        <a href="/offre/edit/<%= element.id%>" type="button" class="ent modify">
-                                            <i class="fa fa-pencil" data-toggle='modifier' data-target="<%=element.id%>"aria-hidden="true"></i>
-                                        </a>
-                                        <a href="/offre/delete/<%=element.id%>" type="button" class="ent bin">
-                                            <i class="fa fa-trash-o" data-toggle='supprimer' data-target="<%=element.id%>"aria-hidden="true"></i>
-                                        </a>
-                                    <%}%>
-                                    <img width='100px' height='100px' src="<%= entreprises.Logo %>"
-                                        class="card-image img-thumbnail navbar-brand pdp"
-                                        style="border: none; height:80px" alt="User">
-                                    <br>
-                                    <span class="card-title">
-                                        <%= element.Titre %>
-                                    </span>
-                                    <br>
+                                    <%if(currentuser.Role=="etudiant" ){%><button class="coeur"><i class="fa fa-heart-o"
+                                                aria-hidden="true"></i></button>
+                                        <%}%>
+                                            <%if (currentuser.id==entreprises.Id_utilisateur) {%>
+                                                <a href="/offre/edit/<%= element.id%>" type="button" class="ent modify">
+                                                    <i class="fa fa-pencil" data-toggle='modifier'
+                                                        data-target="<%=element.id%>" aria-hidden="true"></i>
+                                                </a>
+                                                <a href="/offre/delete/<%=element.id%>" type="button" class="ent bin">
+                                                    <i class="fa fa-trash-o" data-toggle='supprimer'
+                                                        data-target="<%=element.id%>" aria-hidden="true"></i>
+                                                </a>
+                                                <%}%>
+                                                    <img width='100px' height='100px' src="<%= entreprises.Logo %>"
+                                                        class="card-image img-thumbnail navbar-brand pdp"
+                                                        style="border: none; height:80px" alt="User">
+                                                    <br>
+                                                    <span class="card-title">
+                                                        <%= element.Titre %>
+                                                    </span>
+                                                    <br>
                                 </div>
                                 <div class="details">
                                     <table>

@@ -27,15 +27,19 @@ exports.add = (req, res) => {
 }
 exports.creat = (req, res) => {
     //Description, Image, Nom, Id_faculte
-    const Description = req.body.Description
-    const Image = req.body.Image
-    const Nom = req.body.Nom
-    const Id_faculte = req.body.Id_faculte
     let metier = new Metier()
-    metier.Description = Description
-    metier.Image = Image
-    metier.Nom = Nom
-    metier.Id_faculte = Id_faculte
+    //image upload
+    let uploaded_image;
+    let uploadPath;
+    console.log('req.body: ', req.files)
+    if (!req.files || Object.keys(req.files).length === 0) {
+        return res.status(400).send('Aucune image n a etait telechargée')
+    }
+    uploaded_image = req.files.uploaded_image
+    __dirname = "C:\\Users\\Dell\\Desktop\\TheFrontSite\\upload\\"
+    uploadPath = __dirname + 'metier/' + uploaded_image.name;
+    console.log(uploaded_image)
+
     if (req.body.Description == '' || req.body.Nom == '' || req.body.Id_faculte == '') {
         req.session.message = {
             type: 'danger',
@@ -52,16 +56,26 @@ exports.creat = (req, res) => {
         return res.redirect('add')
     }
     else {
-        metier.creat().then(() => {
-            req.session.message = {
-                type: 'success',
-                intro: 'Succés !',
-                message: 'Métier a bien été créé.'
-            }
-            return res.redirect('add')
+        uploaded_image.mv(uploadPath, function (err) {
+            if (err) return res.status(500).send(err);
+            image = uploaded_image.name
+            metier.Image = image
+            console.log('metier image:', metier.Image)
+            metier.Description = req.body.Description
+            metier.Nom = req.body.Nom
+            metier.Id_faculte = req.body.Id_faculte
+            metier.creat().then(() => {
+                req.session.message = {
+                    type: 'success',
+                    intro: 'Succés !',
+                    message: 'Métier a bien été créé.'
+                }
+                return res.redirect('add')
+            })
         })
     }
 }
+
 exports.edit = (req, res) => {
     Promise.all([Metier.getById(req.params.id), Faculte.getAll()]).then((a) => {
         metier = a[0]
