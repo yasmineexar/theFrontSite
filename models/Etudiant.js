@@ -83,15 +83,15 @@ module.exports = class Etudiant extends User {
     }
     static getAll = () => {
         return new Promise((resolve, reject) => {
-            this.dbconnection.query(`SELECT * from etudold`, (error, results, fields) => {
+            this.dbconnection.query(`SELECT * from ${this.tablename}`, (error, results, fields) => {
                 if (error) return reject(error)
                 resolve(results)
             })
         })
     }
-    static getById = (Id_etudold) => {
+    static getById = (Id_etudiant) => {
         return new Promise((resolve, reject) => {
-            this.dbconnection.query(`SELECT * from ${this.tablename} where Id_utilisateur = ${Id_etudold}`, (error, results, fields) => {
+            this.dbconnection.query(`SELECT * from ${this.tablename} where Id_utilisateur = ${Id_etudiant}`, (error, results, fields) => {
                 if (error) return reject(error)
                 resolve(results[0])
             })

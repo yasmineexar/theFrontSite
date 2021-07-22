@@ -6,7 +6,7 @@ exports.read = (req, res) => {
   if (req.query.json) {
     return Offre.getAll().then((rows) => {
       let c = [];
-      rows.forEach((element,i) => {
+      rows.forEach((element, i) => {
         c.push(
           Entreprise.getById(element.Id_utilisateur).then((entr) => {
             rows[i].Entreprise = entr
@@ -27,24 +27,14 @@ exports.add = (req, res) => {
   });
 };
 exports.creat = (req, res) => {
-  const Duree_stage = req.body.Duree_stage;
-  const Base_remuneration = req.body.Base_remuneration;
-  const Nb_places = req.body.Nb_places;
-  const Description = req.body.Description;
-  const Titre = req.body.Titre;
-  const Id_faculte = req.body.Id_faculte;
   let offre = new Offre();
-  offre.Duree_stage = Duree_stage;
-  offre.Base_remuneration = Base_remuneration;
-  offre.Nb_places = Nb_places;
-  offre.Description = Description;
-  offre.Titre = Titre;
-  offre.Id_faculte = Id_faculte;
-  if (
-    req.body.Description == "" ||
-    req.body.Nom == "" ||
-    req.body.Id_faculte == ""
-  ) {
+  offre.Duree_stage = req.body.Duree_stage;
+  offre.Base_remuneration = req.body.Base_remuneration;
+  offre.Nb_places = req.body.Nb_places;
+  offre.Description = req.body.Description;
+  offre.Titre = req.body.Titre;
+  offre.Id_faculte = req.body.Id_faculte;
+  if (req.body.Description == "" || req.body.Nom == "" || req.body.Id_faculte == "") {
     req.session.message = {
       type: "danger",
       intro: "Champs vides!",
@@ -112,7 +102,7 @@ exports.update = (req, res) => {
 };
 exports.delet = (req, res) => {
   Offre.getById(req.params.id).then((offre) => {
-    if(req.session.currentuser.id != offre.Id_ustilisateur)return res.status(403).send('unautorized')
+    if (req.session.currentuser.id != offre.Id_ustilisateur) return res.status(403).send('unautorized')
     return Offre.delet(req.params.id).then(() => {
       req.session.message = {
         type: "success",
