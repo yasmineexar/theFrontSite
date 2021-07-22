@@ -31,7 +31,7 @@ Delete Fiche metier
 Delete pilote
 
 ************Autorisations************
-*Comte Etudiant
+*Comte Etudiant///depuis quand compte ca n'as pas de P
 accueil/home (il peut se connecter ou se créer un compte(boutons))
 login/login-register (il peut se connecter ou se créer un compte)
 etudiants/profil (il peut mettre a jour son cv seulement)
@@ -88,19 +88,19 @@ acceuil/homepilote (il a le choix entre toutes les gestions) => {
         pilotes/edit (il peut mettre à jour un pilote)
     }
 }
+Gestion des roles et permission : different redirect pour chaque role
+Fonction hash password pour toutes les personnes qui vont s'authentifier (bcrypt)
+Gestion des messages d'erreur : erreur d'authentification, meme username, utilisateur ayant déja crée un compte
+Création d'un compte user entreprise (en utilisant la table entrepold avec vérification de la Raison_social)
 
 ************résumé : CRU pour toutes les gestions************
 To do : 
-Gerer les erreur de confirmation formulaires (informations required pour pouvoir submit un formulaire)
-Création d'un compte user entreprise (en utilisant la table entrepold avec vérification de la Raison_social)
-Fonction hash password pour toutes les personnes qui vont s'authentifier (bcrypt)
-Gestion des roles et permission : different redirect pour chaque role
-Gestion des messages d'erreur : erreur d'authentification, meme username, utilisateur ayant déja crée un compte
-
 Image uploading pour les formulaires (logo entreprise, image metier)
+Gerer les erreur de confirmation formulaires (informations required pour pouvoir submit un formulaire)
 Recherche + Recherche avec filtres 
 Pagination pour tous les affichages 
 Gestion de la wishlist : ajouter, supprimer et postuler à une offre
+
 Gestion du déroulement de stage : etat =>{
     Génération dynamique de la demande de stage (en pdf) : etat = en attente 
     Possibilité pour l'entreprise d'accepter ou decliner l'offre
