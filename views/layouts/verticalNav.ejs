@@ -35,17 +35,19 @@
         <li>
             <a href="/etudiant">Etudiants</a>
         </li>
-        <li>
-            <a href="#page2Submenu" data-toggle="collapse" aria-expanded="false" class="dropdown-toggle">Pilotes</a>
-            <ul class="collapse list-unstyled" id="page2Submenu">
-                <li>
-                    <a href="user/allpilote">Afficher toutes</a>
-                </li>
-                <li>
-                    <a href="/user/addpilote">Créer une nouveau</a>
-                </li>
-            </ul>
-        </li>
+        <%if(currentuser.Role == "admin"){%>
+            <li>
+                <a href="#page2Submenu" data-toggle="collapse" aria-expanded="false" class="dropdown-toggle">Pilotes</a>
+                <ul class="collapse list-unstyled" id="page2Submenu">
+                    <li>
+                        <a href="user/allpilote">Afficher toutes</a>
+                    </li>
+                    <li>
+                        <a href="/user/addpilote">Créer une nouveau</a>
+                    </li>
+                </ul>
+            </li>
+        <%}%>
     </ul>
 
 

@@ -21,9 +21,10 @@ module.exports = class Entreprise extends User {
 
     static getById = (Id_entrepold) => {
         return new Promise((resolve, reject) => {
-            this.dbconnection.query(`SELECT * from entrepold where Id_entrepold = ${Id_entrepold}`, (error, results, fields) => {
+            console.log(`SELECT * from ${this.tablename} where Id_utilisateur = ${Id_entrepold}`)
+            this.dbconnection.query(`SELECT * from ${this.tablename} where Id_utilisateur = ${Id_entrepold}`, (error, results, fields) => {
                 if (error) return reject(error)
-                resolve(results)
+                resolve(results[0])
             })
         })
     }

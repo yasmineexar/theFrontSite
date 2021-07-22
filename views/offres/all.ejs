@@ -13,6 +13,7 @@
     <link href="https://maxcdn.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css" rel="stylesheet">
     <link rel="stylesheet" href="/public/css/navbar.css">
     <link rel="stylesheet" href="/public/css/offres.css" />
+    <meta name="userid" content="<%=currentuser.id%>">
     <link rel="icon" type="image/png" sizes="32x32" href="/public/img/logo.png">
     <title>Offres de Stage</title>
     <script src="/public/js/fav.js" async></script>
@@ -87,19 +88,22 @@
         <%- include ('../layouts/footer.ejs') %>
 
             <script>
+                const userid = document.querySelector('[name=userid]').content
                 var offre = new Array()
                 const card = (r) => {
                     return `
                     <div class="grid-item">
                         <div class="card">
                             <div class="card-header">
-                                <!--Juste pour les etudiants<button class="coeur"><i class="fa fa-heart-o" aria-hidden="true"></i></button>-->
+                                
+                                ${r.Id_utilisateur == userid?`
                                 <a href="/offre/edit/${r.Id_offre}" type="button" class="ent modify"><i
                                             class="fa fa-pencil" data-toggle='modifier' data-target="${r.Id_offre}"
                                             aria-hidden="true"></i></a>
                                     <a href="/offre/delete/${r.Id_offre}" type="button" class="ent bin"><i
                                             class="fa fa-trash-o" data-toggle='supprimer' data-target="${r.Id_offre}"
                                             aria-hidden="true"></i></a>
+                                `:`<button class="coeur"><i class="fa fa-heart-o" aria-hidden="true"></i></button>`}
                                 <img width='80px' height='80px' src="${r.Entreprise.Logo}"
                                     class="card-image img-thumbnail navbar-brand pdp" style="border: none; height:80px" alt="User">
                                 <br>
@@ -143,6 +147,7 @@
                     xhr.responseType = 'json'
                     xhr.onload = () => {
                         offre = xhr.response
+                        console.log(xhr.response)
                         showcards()
                     }
 

@@ -2,19 +2,19 @@ const Entreprise = require('../models/Entreprise')
 const Offre = require("../Models/Offre");
 const bcrypt = require("bcryptjs")
 
-exports.read = (req, res) => {
+exports.read = (req, res) => { 
     if (req.query.json) {
         return Entreprise.getAll().then(rows => {
             return res.json(rows)
         })
     }
     if (req.params.id) {
-        return Entreprise.getById(req.params.id).then((entreprises) => {
+        return Entreprise.getById(req.params.id).then((entreprise) => {
             Offre.getAll().then(results => {
                 offres = results.filter((e) => {
-                    return e.Id_entrepold == entreprises[0].Id_entrepold
+                    return e.Id_utilisateur == entreprise.Id_utilisateur
                 })
-                return res.render('entreprises/profil', { entreprises: entreprises[0], offres })
+                return res.render('entreprises/profil', { entreprises: entreprise, offres })
             })
         })
     }

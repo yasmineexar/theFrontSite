@@ -26,7 +26,7 @@ module.exports = class Faculte extends Model {
     return new Promise((resolve, reject) => {
       this.dbconnection.query(`SELECT * from ${this.tablename} where Id_faculte = ${Id_faculte}`, (error, results, fields) => {
         if (error) return reject(error)
-        resolve(results)
+        resolve(results[0])
       })
     })
   }

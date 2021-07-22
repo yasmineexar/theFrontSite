@@ -4,7 +4,7 @@ const faculte = require('./faculte')
 const offre = require('./offre')
 const metier = require('./metier')
 const user = require('./user')
-
+const base  = require('./base')
 
 module.exports = {
     entreprise,
@@ -12,5 +12,6 @@ module.exports = {
     etudiant,
     offre,
     metier,
+    base,
     user,
 }

@@ -4,32 +4,46 @@ const { createpilote, deletepilote, editpilote, addpilote, readpilote, updatepil
 const { create } = require('../controllers/EtudiantController')
 
 //route home 
-router.get('/home', (req, res) => {
-    res.render('accueil/homepilote')
-})
+
 
 //routes pilote
-router.get('/addpilote', addpilote)
-router.post('/addpilote', createpilote)
+router.get('/addpilote',(req,res,next)=>{
+    if(req.session.currentuser.Role != "admin") return res.status(403).send('unauthorized')
+    return next()
+}, addpilote)
+router.post('/addpilote',(req,res,next)=>{
+    if(req.session.currentuser.Role != "admin") return res.status(403).send('unauthorized')
+    return next()
+}, createpilote)
 
 //routes register and login 
-router.post('/register', create)
-router.get('/register', (req, res) => {
-    return res.render('login/login-register')
-})
-router.post('/login', login)
-router.get('/login', (req, res) => {
-    return res.render('login/login-register')
-})
 
 //routes pilote (id)
-router.get('/allpilote', readpilote)
-router.get('/:id', readpilote)
+router.get('/allpilote',(req,res,next)=>{
+    if(req.session.currentuser.Role != "admin") return res.status(403).send('unauthorized')
+    return next()
+}, readpilote)
+router.get('/:id',(req,res,next)=>{
+    if(req.session.currentuser.Role == "admin" || req.session.currentuser.id == req.params.id)return next()
+    return res.status(403).send('unauthorized')
+}, readpilote)
 
-router.get('/editpilote/:id', editpilote)
-router.post('/editpilote/:id', updatepilote)
+router.get('/editpilote/:id',(req,res,next)=>{
+    if(req.session.currentuser.Role == "admin" || req.session.currentuser.id == req.params.id)return next()
+    return res.status(403).send('unauthorized')
+}, editpilote)
+router.post('/editpilote/:id',(req,res,next)=>{
+    if(req.session.currentuser.Role == "admin" || req.session.currentuser.id == req.params.id)return next()
+    return res.status(403).send('unauthorized')
+}, updatepilote)
 
-router.get('/deletepilote/:id', deletepilote)
-router.delete('/:id', delet)
+router.get('/deletepilote/:id',(req,res,next)=>{
+    if(req.session.currentuser.Role == "admin")return next()
+    return res.status(403).send('unauthorized')
+}, deletepilote)
+router.delete('/:id',(req,res,next)=>{
+    if(req.session.currentuser.Role == "admin")return next()
+    return res.status(403).send('unauthorized')
+}, delet)
 
 module.exports = router

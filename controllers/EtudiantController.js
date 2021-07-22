@@ -24,7 +24,8 @@ exports.read = (req, res) => {
             return res.render('etudiants/profil', { etudiants: etudiants[0] })
         })
     }
-    return res.render('etudiants/all_admin')
+    if(req.session.currentuser.Role == "admin" || req.session.currentuser.Role == "pilote") return res.render('etudiants/all_admin')
+    if(req.session.currentuser.Role == "entreprise") return res.render('etudiants/all_entrep')
 }
 
 //register etudiant 
@@ -78,22 +79,7 @@ exports.create = (req, res) => {
 exports.update = (req, res) => {
 
 }
-exports.find = (req, res) => {
-    console.log(1)
-    const searchNom = req.body.searchNom
-    const searchPrenom = req.body.searchPrenom
-    const searchFaculte = req.body.searchFaculte
-    let e = new etudiant()
-    e.searchNom = searchNom
-    e.searchPrenom = searchPrenom
-    e.searchFaculte = searchFaculte
-    console.log(2)
-    e.search().then((rows) => {
-        console.log(3)
-        console.log(rows)
-        return res.render('etudiants/all_admin', { rows })
-    })
+exports.updatecv = (req,res)=>{
+    
 }
-exports.delet = (req, res) => {
 
-};

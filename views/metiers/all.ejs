@@ -28,23 +28,25 @@
                     class="fa fa-angle-double-right" aria-hidden="true"></i></a>
         </div>
 
-        <!--Seulement pour les étudiants
+       <% if (currentuser.Role == "etudiant") { %>
+        
         <div class="fancy row">
             <div class="col-md-6 catch">
                 <p>Voici un large panel<br>de <strong>métiers</strong> en rapport
                     avec<br>ta <strong>spécialité</strong> afin que tu puisses avoir<br>une idée des <strong>débouchés
                         professionnels</strong> qui s'offrent à toi
-                </p>
-                <div class="suite">
-                    <a href="#metiers" class="suitebtn">Voir tous <i id="anim" class="fa fa-angle-double-down"
+                    </p>
+                    <div class="suite">
+                        <a href="#metiers" class="suitebtn">Voir tous <i id="anim" class="fa fa-angle-double-down"
                             aria-hidden="true"></i></a>
+                        </div>
+                    </div>
+                    <div class="col-lg-6 humans">
+                        <img class="humans" src="/public/img/Humaaans3Characters.png" alt="">
+                    </div>
                 </div>
-            </div>
-            <div class="col-lg-6 humans">
-                <img class="humans" src="/public/img/Humaaans3Characters.png" alt="">
-            </div>
-        </div>-->
-        <div id="metiers">
+                <% } %>
+                <div id="metiers">
             <%if (message) {%>
                 <div style="position: fixed; top: 20vh; left: 25%; width: 50%; z-index: 900;"
                     class="alert alert-<%= message.type %> alert-dismissible fade show" role="alert">
@@ -56,20 +58,22 @@
                             <span aria-hidden="true">&times;</span>
                         </button>
                 </div>
-                <%}%>
-                    <!--Si c'est un étudiant <h1 class="cards">Les métiers de "nom de la fac" </h1>-->
-
-                    <div class="row">
-                        <div class="col">
-                            <h1 class="cards">Métiers</h1>
-                        </div>
-                        <div class="col">
-                            <a type="button" href="/metier/add" class="nvmetier">Ajouter un nouveau Métier</a>
-                        </div>
+            <%}%>
+            <%if(currentuser.Role == "etudiant"){%>
+                <h1 class="cards">Les métiers de <%=currentuser.Faculte.Nom%></h1>
+            <% }else if(currentuser.Role == "pilote" || currentuser.Role == "admin") {%>
+                <div class="row">
+                    <div class="col">
+                        <h1 class="cards">Métiers</h1>
                     </div>
-                    <ul class="job-cards" id="card-body">
+                    <div class="col">
+                        <a type="button" href="/metier/add" class="nvmetier">Ajouter un nouveau Métier</a>
+                    </div>
+                </div>
+            <%}%>
+            <ul class="job-cards" id="card-body">
 
-                    </ul>
+            </ul>
         </div>
 
         <%- include ('../layouts/footer.ejs') %>

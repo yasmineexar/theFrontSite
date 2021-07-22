@@ -67,25 +67,32 @@
                                 </table>
                             </div>
                         </div>
-                        <div class="p-4 rounded shadow-sm bg-light col">
-                            <h3 class="pt-4 pl-4 font-weight-light">Tu peux mettre a jours ton CV en cliquant ici :</h3>
-                            <!--upload button-->
-                            <div class="uploadimg d-flex flex-row">
-                                <div>
-                                    <img src="/public/img/cv.png" alt="..." width="150" class="p-4">
-                                </div>
-                                <div class="file-input">
+                        <%if (currentuser.id==etudiants.Id_utilisateur) {%>
+
+                            <div class="p-4 rounded shadow-sm bg-light col">
+                                <h3 class="pt-4 pl-4 font-weight-light">Tu peux mettre a jours ton CV en cliquant ici :
+                                </h3>
+                                <!--upload button-->
+
+                                <div class="uploadimg d-flex flex-row">
                                     <div>
-                                        <input type="file" name="sampleFile" id="file" class="file">
-                                        <label class="btn btn-dark btn btn-block" for="file">Choisir un fichier</label>
+                                        <img src="/public/img/cv.png" alt="..." width="150" class="p-4">
                                     </div>
-                                    <div>
-                                        <button class="btn btn-dark btn btn-block showw">Afficher le CV actuel</button>
+                                    <div class="file-input">
+                                        <form action="/user/<%etudiants.Id_utilisateur%>" method="POST" enctype="multipart/form-data">
+                                            <input type="file" name="sampleFile" id="file" class="file" onchange="$(event.target.parentNode).submit()">
+                                            <label class="btn btn-dark btn btn-block" for="file">Choisir un
+                                                fichier</label>
+                                        </form>
+                                        <div>
+                                            <button class="btn btn-dark btn btn-block showw">Afficher le CV
+                                                actuel</button>
+                                        </div>
                                     </div>
                                 </div>
+                                <!--upload button-->
                             </div>
-                            <!--upload button-->
-                        </div>
+                        <%}%>
                     </div>
                 </div>
 

@@ -37,7 +37,9 @@
                             <h3 class="mb-4 font-weight-light">
                                 <%= entreprises.Secteur_activite %>
                             </h3>
-                            <!--Seulement pour l'entreprise--<a href="#" class="btn btn-outline-dark modifier">Modifier le profile</a>-->
+                            <% if(currentuser.Role=="entrepise" && currentuser.id==entrepises.Id_utilisateur) {%> <a
+                                    href="#" class="btn btn-outline-dark modifier">Modifier le profile</a>
+                                <%}%>
                         </div>
                     </div>
                 </div>
@@ -81,14 +83,17 @@
         </div>
         <div class="hey row" style="text-align: left; margin: 50px 100px;">
             <div class="col-8">
-                <!--Pour tous les autres (sauf entreprise)
-                <h1 id="offres">Nous vous proposons :</h1>-->
-                <!--Seulement pour l'entreprise---->
-                <h1 id="offres">NOS OFFRES</h1>
+                <%if(currentuser.id==entreprises.Id_utilisateur) {%>
+                    <h1 id="offres">NOS OFFRES</h1>
+                    <%}else{%>
+                        <h1 id="offres">Nous vous proposons :</h1>
+                        <%}%>
             </div>
             <div style="display: inline;" class="col-4">
                 <!--Seulement pour l'entreprise-->
-                <a href="/offre/add" class="btn btn-dark btn creer creerr">Créer une nouvelle offre</a>
+                <%if(currentuser.id==entreprises.Id_utilisateur){%>
+                    <a href="/offre/add" class="btn btn-dark btn creer creerr">Créer une nouvelle offre</a>
+                    <%}%>
             </div>
         </div>
         <main>
@@ -98,7 +103,15 @@
                         <div class="grid-item">
                             <div class="card">
                                 <div class="card-header">
-                                    <button class="coeur"><i class="fa fa-heart-o" aria-hidden="true"></i></button>
+                                    <%if(currentuser.Role == "etudiant"){%><button class="coeur"><i class="fa fa-heart-o" aria-hidden="true"></i></button><%}%>
+                                    <%if (currentuser.id == entreprises.Id_utilisateur) {%>
+                                        <a href="/offre/edit/<%= element.id%>" type="button" class="ent modify">
+                                            <i class="fa fa-pencil" data-toggle='modifier' data-target="<%=element.id%>"aria-hidden="true"></i>
+                                        </a>
+                                        <a href="/offre/delete/<%=element.id%>" type="button" class="ent bin">
+                                            <i class="fa fa-trash-o" data-toggle='supprimer' data-target="<%=element.id%>"aria-hidden="true"></i>
+                                        </a>
+                                    <%}%>
                                     <img width='100px' height='100px' src="<%= entreprises.Logo %>"
                                         class="card-image img-thumbnail navbar-brand pdp"
                                         style="border: none; height:80px" alt="User">
@@ -139,34 +152,36 @@
                 </div>
             </div>
         </main>
-        <input type="checkbox" id="check">
-        <label id="icone" for="check"><i class="fa fa-heart" aria-hidden="true"></i></label>
+        <%if(currentuser.Role=="etudiant" ){%>
 
-        <div class="favoris">
-            <div>
-                <h3>Favoris</h3>
-                <table class="cart-items">
-                    <tr>
-                        <th>Titre</th>
-                        <th></th>
-                        <th>Etat</th>
-                        <th></th>
-                        <th></th>
-                    </tr>
-                    <tr class="cart-row">
+            <input type="checkbox" id="check">
+            <label id="icone" for="check"><i class="fa fa-heart" aria-hidden="true"></i></label>
 
-                    </tr>
-                </table>
+            <div class="favoris">
+                <div>
+                    <h3>Favoris</h3>
+                    <table class="cart-items">
+                        <tr>
+                            <th>Titre</th>
+                            <th></th>
+                            <th>Etat</th>
+                            <th></th>
+                            <th></th>
+                        </tr>
+                        <tr class="cart-row">
+
+                        </tr>
+                    </table>
+                </div>
+
             </div>
-
-        </div>
-
-        <%- include ('../layouts/footer.ejs') %>
+            <%}%>
+                <%- include ('../layouts/footer.ejs') %>
 
 
-            <script src="https://code.jquery.com/jquery-3.4.1.slim.min.js"></script>
-            <script src="https://cdn.jsdelivr.net/npm/popper.js@1.16.0/dist/umd/popper.min.js"></script>
-            <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/js/bootstrap.min.js"></script>
+                    <script src="https://code.jquery.com/jquery-3.4.1.slim.min.js"></script>
+                    <script src="https://cdn.jsdelivr.net/npm/popper.js@1.16.0/dist/umd/popper.min.js"></script>
+                    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/js/bootstrap.min.js"></script>
 
 
 
