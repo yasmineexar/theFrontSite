@@ -99,6 +99,7 @@ Image uploading pour les formulaires (logo entreprise, image metier)
 Gerer les erreur de confirmation formulaires (informations required pour pouvoir submit un formulaire)
 Recherche + Recherche avec filtres 
 Pagination pour tous les affichages 
+
 Gestion de la wishlist : ajouter, supprimer et postuler à une offre
 
 Gestion du déroulement de stage : etat =>{
