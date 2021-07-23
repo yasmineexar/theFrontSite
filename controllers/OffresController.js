@@ -1,21 +1,38 @@
 const Offre = require("../Models/Offre");
 const Entreprise = require("../models/Entreprise");
 const Faculte = require("../Models/Faculte");
+const Wish = require('../models/Souhaite')
+
+exports.addtowish = (req,res)=>{
+  if(req.body.Id_offre && req.session.currentuser.Role == 'etudiant'){
+    let wish = new Wish()
+    wish.Id_utilisateur = req.session.currentuser.id
+    wish.Id_offre = req.body.Id_offre
+    wish.create().then(()=>{
+      res.send('ok')
+    }).catch(e=>console.log(e))
+
+  }
+
+}
 
 exports.read = (req, res) => {
   if (req.query.json) {
-    return Offre.getAll().then((rows) => {
+    return Offre.getAll().then((offres) => {
       let c = [];
-      rows.forEach((element, i) => {
-        c.push(
-          Entreprise.getById(element.Id_utilisateur).then((entr) => {
-            rows[i].Entreprise = entr
-          })
-        );
-      });
-      Promise.all(c).then(() => {
-        console.log(rows)
-        return res.json(rows);
+      Wish.getByIdUser(req.session.currentuser.id).then((wish) => {
+        console.log(wish)
+        offres.forEach((element, i) => {
+          if(wish.find(e=>e.Id_offre == element.Id_offre)) offres[i].isWish = true;
+          c.push(
+            Entreprise.getById(element.Id_utilisateur).then((entr) => {
+              offres[i].Entreprise = entr;
+            })
+          );
+        });
+        Promise.all(c).then(() => {
+          return res.json(offres);
+        });
       });
     });
   }
@@ -29,34 +46,36 @@ exports.add = (req, res) => {
 exports.creat = (req, res) => {
   let offre = new Offre();
   offre.Duree_stage = req.body.Duree_stage;
+  offre.Id_utilisateur = req.session.currentuser.id;
   offre.Base_remuneration = req.body.Base_remuneration;
   offre.Nb_places = req.body.Nb_places;
   offre.Description = req.body.Description;
   offre.Titre = req.body.Titre;
   offre.Id_faculte = req.body.Id_faculte;
-  if (req.body.Description == "" || req.body.Nom == "" || req.body.Id_faculte == "") {
+  if (
+    req.body.Description == "" ||
+    req.body.Nom == "" ||
+    req.body.Id_faculte == ""
+  )
     req.session.message = {
       type: "danger",
       intro: "Champs vides!",
       message: "Veuillez insérer les informations requises.",
     };
-    return res.redirect("add");
-  } else if (req.body.Nom == "jsp") {
+  else if (req.body.Nom == "jsp")
     req.session.message = {
       type: "warning",
       intro: "Ce métier existe déja!",
       message: "Veuillez insérer de nouvelles informations.",
     };
+  else {
+    offre.creat();
+    req.session.message = {
+      type: "success",
+      intro: "Succés !",
+      message: "Une nouvelle offre a bien été créé.",
+    };
     return res.redirect("add");
-  } else {
-    offre.creat().then(() => {
-      req.session.message = {
-        type: "success",
-        intro: "Succés !",
-        message: "Une nouvelle offre a bien été créé.",
-      };
-      return res.redirect("add");
-    });
   }
 };
 exports.edit = (req, res) => {
@@ -102,7 +121,8 @@ exports.update = (req, res) => {
 };
 exports.delet = (req, res) => {
   Offre.getById(req.params.id).then((offre) => {
-    if (req.session.currentuser.id != offre.Id_ustilisateur) return res.status(403).send('unautorized')
+    if (req.session.currentuser.id != offre.Id_ustilisateur)
+      return res.status(403).send("unautorized");
     return Offre.delet(req.params.id).then(() => {
       req.session.message = {
         type: "success",

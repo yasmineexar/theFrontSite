@@ -16,12 +16,11 @@ exports.read = (req, res) => {
             Promise.all(c).then(() => {
                 return res.json(rows)
             })
-            //console.log(rows[0])
         })
     }
     if (req.params.id) {
         return etudiant.getById(req.params.id).then((etudiants) => {
-            return res.render('etudiants/profil', { etudiants: etudiants[0] })
+            return res.render('etudiants/profil', { etudiants })
         })
     }
     if(req.session.currentuser.Role == "admin" || req.session.currentuser.Role == "pilote") return res.render('etudiants/all_admin')

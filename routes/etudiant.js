@@ -6,7 +6,7 @@ router.get('/',(req,res,next)=>{
     if(req.session.currentuser.Role== 'etudiant') return req.statusCode(403).send('unauthorized')
     return next()
 },read)
-router.get('/:id',(req,res,nect)=>{
+router.get('/:id',(req,res,next)=>{
     if(req.session.currentuser.Role != "etudiant" || req.session.currentuser.id == req.params.id) return next()
     return res.status(403).send('unauthorized')
 }, read)

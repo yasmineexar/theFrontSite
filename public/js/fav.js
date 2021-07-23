@@ -3,7 +3,15 @@ if (document.readyState == 'loading') {
 } else {
     ready()
 }
-
+const posttowish =(id)=>{
+    let xhr = new XMLHttpRequest()
+    xhr.open('post','/offre/wish')
+    xhr.setRequestHeader("Content-Type", "application/json");
+    xhr.onload= ()=>{
+        window.location.reload()
+    }
+    xhr.send(JSON.stringify({Id_offre:id}))
+}
 function ready() {
     var addToCartButtons = document.getElementsByClassName('coeur')
     for (var i = 0; i < addToCartButtons.length; i++) {
@@ -43,13 +51,21 @@ function removeCartItem(event) {
 
 function addToCartClicked(event) {
     var button = event.target
+    let id = $(button).data().targget
     var cardHeader = button.parentElement.parentElement
     var title = cardHeader.getElementsByClassName('card-title')[0].innerText
     var imageSrc = cardHeader.getElementsByClassName('card-image')[0].src
+    console.log(cardHeader.getElementsByClassName('coeur')[0].childNodes[0])
+    cardHeader.getElementsByClassName('coeur')[0].childNodes[0].classList.add('fa-heart')
+    console.log(cardHeader.getElementsByClassName('coeur')[0].childNodes[0])
+    cardHeader.getElementsByClassName('coeur')[0].childNodes[0].classList.remove('fa-heart-o')
+    console.log(cardHeader.getElementsByClassName('coeur')[0].childNodes[0])
+    posttowish(id)
     addItemToCart(title, imageSrc)
+
 }
 
-function addItemToCart(title, imageSrc) {
+const addItemToCart = function (title, imageSrc,postulationstate = undefined) {
     var cartRow = document.createElement('tr')
     cartRow.classList.add('cart-row')
     var cartItems = document.getElementsByClassName('cart-items')[0]
@@ -66,7 +82,7 @@ function addItemToCart(title, imageSrc) {
             src="${imageSrc}" class="img-thumbnail rounded-circle navbar-brand pdp" alt="User">
         </a></td>
         <td class="cart-item-title">${title}</td>
-        <td>Confirmé</td>
+        <td>${postulationstate?postulationstate:'favoris'}</td>
         <td class="cart-item-icon"><button><i class="fa fa-pencil-square-o" aria-hidden="true"></i></button></td>
         <td><button><i class="fa fa-trash-o" aria-hidden="true"></i></button></td>`
     cartRow.innerHTML = cartRowContents

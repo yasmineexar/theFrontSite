@@ -35,7 +35,7 @@ router.post('/edit/:id',(req,res,next)=>{
     return res.status(403).send('unauthorized')
 }, update)
 router.get('/edit/:id', (req,res,next)=>{
-    if(req.session.currentuser.Role == 'admin' || req.session.currentuser.Role == 'pilote') return next()
+    if(req.session.currentuser.Role == 'admin' || req.session.currentuser.Role == 'pilote'||req.session.currentuser.id == req.params.id) return next()
     return res.status(403).send('unauthorized')
 },edit)
 

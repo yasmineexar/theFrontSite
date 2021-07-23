@@ -10,8 +10,9 @@ exports.read = (req, res) => {
     }
     if (req.params.id) {
         return Entreprise.getById(req.params.id).then((entreprise) => {
-            Offre.getAll().then(results => {
-                offres = results.filter((e) => {
+            console.log(entreprise)
+            Offre.getAll().then(offres => {
+                offres = offres.filter((e) => {
                     return e.Id_utilisateur == entreprise.Id_utilisateur
                 })
                 return res.render('entreprises/profil', { entreprises: entreprise, offres })
@@ -73,7 +74,7 @@ exports.creat = (req, res) => {
 }
 exports.edit = (req, res) => {
     return Entreprise.getById(req.params.id).then((entreprises) => {
-        return res.render('entreprises/edit', { entreprises: entreprises[0] })
+        return res.render('entreprises/edit', { entreprises})
     })
 }
 exports.update = (req, res) => {

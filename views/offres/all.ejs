@@ -16,40 +16,39 @@
     <meta name="userid" content="<%=currentuser.id%>">
     <link rel="icon" type="image/png" sizes="32x32" href="/public/img/logo.png">
     <title>Offres de Stage</title>
-    <script src="/public/js/fav.js" async></script>
 </head>
 
 <body>
-
+    
     <%- include('../layouts/header.ejs') %>
-
-        <main>
-            <div class="fancy row">
-                <div class="col-md-6 catch">
-                    <p class="pt-5 mt-5"><strong>Dirige-toi</strong> maintenant<br>vers l'<strong>entreprise</strong>
-                        qui t'offrira<br>le
-                        <strong>stage</strong> correspondant au mieux<br>à ta filière et à ta spécialité...
-                    </p>
+    
+    <main>
+        <div class="fancy row">
+            <div class="col-md-6 catch">
+                <p class="pt-5 mt-5"><strong>Dirige-toi</strong> maintenant<br>vers l'<strong>entreprise</strong>
+                    qui t'offrira<br>le
+                    <strong>stage</strong> correspondant au mieux<br>à ta filière et à ta spécialité...
+                </p>
                     <div class="viewoffres">
                         <a href="#offres" class="viewoffresbtn">Voir toutes les offres <i
-                                class="fa fa-angle-double-down" aria-hidden="true"></i></a>
+                            class="fa fa-angle-double-down" aria-hidden="true"></i></a>
+                        </div>
                     </div>
-                </div>
-                <div class="humaans mt-5 col-md-6">
+                    <div class="humaans mt-5 col-md-6">
                     <img class="humans" src="/public/img/HumaaansCharacters.png" alt="">
                 </div>
             </div>
             <div id="offres">
                 <%if (message) {%>
                     <div style="position: fixed; top: 20vh; left: 25%; width: 50%; z-index: 900; font-size: 16px;"
-                        class="alert alert-<%= message.type %> alert-dismissible fade show" role="alert">
-                        <strong>
-                            <%= message.intro %>
-                        </strong> <br>
-                        <%= message.message %>
-                            <button type="button" class="close" data-dismiss="alert" aria-label="Close">
-                                <span aria-hidden="true">&times;</span>
-                            </button>
+                    class="alert alert-<%= message.type %> alert-dismissible fade show" role="alert">
+                    <strong>
+                        <%= message.intro %>
+                    </strong> <br>
+                    <%= message.message %>
+                    <button type="button" class="close" data-dismiss="alert" aria-label="Close">
+                        <span aria-hidden="true">&times;</span>
+                    </button>
                     </div>
                     <%}%>
                         <div class="hey">
@@ -57,20 +56,21 @@
                         </div>
                         <div id="cont">
                             <div class="grid" id="card-body">
-
+                                
                             </div>
                         </div>
-            </div>
-
-
-        </main>
-        <input type="checkbox" id="check">
-        <label id="icone" for="check"><i class="fa fa-heart" aria-hidden="true"></i></label>
-        <div class="favoris">
-            <div>
-                <h3>Favoris</h3>
-                <table class="cart-items">
-                    <tr>
+                    </div>
+                    
+                    
+                </main>
+                <% if(currentuser.Role == 'etudiant'){%>
+                    <input type="checkbox" id="check">
+                    <label id="icone" for="check"><i class="fa fa-heart" aria-hidden="true"></i></label>
+                    <div class="favoris">
+                        <div>
+                            <h3>Favoris</h3>
+                            <table class="cart-items">
+                                <tr>
                         <th>Titre</th>
                         <th></th>
                         <th>Etat</th>
@@ -78,32 +78,35 @@
                         <th></th>
                     </tr>
                     <tr class="cart-row">
-
+                        
                     </tr>
                 </table>
             </div>
-
+            
         </div>
-
+        <%}%>
+        
         <%- include ('../layouts/footer.ejs') %>
-
-            <script>
-                const userid = document.querySelector('[name=userid]').content
-                var offre = new Array()
-                const card = (r) => {
-                    return `
-                    <div class="grid-item">
-                        <div class="card">
-                            <div class="card-header">
-                                
+        
+        <script src="/public/js/fav.js"></script>
+        <script>
+            const userid = document.querySelector('[name=userid]').content
+            var offre = new Array()
+            const card = (r) => {
+                return `
+                <div class="grid-item">
+                    <div class="card">
+                        <div class="card-header">
+                            <%if(currentuser.Role != 'admin' && currentuser.Role != 'pilote'){%>
                                 ${r.Id_utilisateur == userid?`
-                                <a href="/offre/edit/${r.Id_offre}" type="button" class="ent modify"><i
-                                            class="fa fa-pencil" data-toggle='modifier' data-target="${r.Id_offre}"
-                                            aria-hidden="true"></i></a>
-                                    <a href="/offre/delete/${r.Id_offre}" type="button" class="ent bin"><i
-                                            class="fa fa-trash-o" data-toggle='supprimer' data-target="${r.Id_offre}"
-                                            aria-hidden="true"></i></a>
-                                `:`<button class="coeur"><i class="fa fa-heart-o" aria-hidden="true"></i></button>`}
+                                    <a href="/offre/edit/${r.Id_offre}" type="button" class="ent modify">
+                                        <i class="fa fa-pencil" data-toggle='modifier' data-target="${r.Id_offre}" aria-hidden="true"></i>
+                                        </a>
+                                        <a href="/offre/delete/${r.Id_offre}" type="button" class="ent bin">
+                                            <i class="fa fa-trash-o" data-toggle='supprimer' data-target="${r.Id_offre}" aria-hidden="true"></i>
+                                        </a>
+                                    `:`<button class="coeur" data-targget="${r.Id_offre}"><i class="fa fa-heart${r.isWish?"":"-o"}" aria-hidden="true"></i></button>`}
+                                <%}%>
                                 <img width='80px' height='80px' src="${r.Entreprise.Logo}"
                                     class="card-image img-thumbnail navbar-brand pdp" style="border: none; height:80px" alt="User">
                                 <br>
@@ -114,7 +117,7 @@
                                 <table>
                                     <tr>
                                         <td class="icon"><i class="fa fa-building-o" aria-hidden="true"></i></td>
-                                        <td class="lui"><a class="lien" href="/entreprise/${r.Entreprise.Id_entrepold}"
+                                        <td class="lui"><a class="lien" href="/entreprise/${r.Entreprise.Id_utilisateur}"
                                                 title="Voir détail de l'entreprise"><span>${r.Entreprise.Raison_social}</span><i class="fa fa-angle-double-right fleche"
                                                     aria-hidden="true"></i></a></td>
                                     </tr>
@@ -136,10 +139,14 @@
                         </div>
                     </div>`
                 }
+
                 const showcards = () => {
                     $('#card-body').html(offre.map(element => {
                         return card(element)
                     }).join(''))
+                    offre.forEach(e=>{
+                        if(e.isWish) return addItemToCart(e.Titre,e.Entreprise.Logo)
+                    })
                 }
                 const getOffre = () => {
                     let xhr = new XMLHttpRequest()

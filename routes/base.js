@@ -26,11 +26,7 @@ router.get(
 router.get(
   "/",
   (req, res, next) => {
-    if (
-      req.session.currentuser.Role != "pilote" &&
-      req.session.currentuser.Role != "admin"
-    )
-      return res.status(403).send("unauthorized");
+    if(req.session.currentuser) return res.redirect('/login')
     next();
   },
   (req, res) => {

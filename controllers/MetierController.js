@@ -36,8 +36,7 @@ exports.creat = (req, res) => {
         return res.status(400).send('Aucune image n a etait telechargée')
     }
     uploaded_image = req.files.uploaded_image
-    __dirname = "C:\\Users\\Dell\\Desktop\\TheFrontSite\\upload\\"
-    uploadPath = __dirname + 'metier/' + uploaded_image.name;
+    uploadPath ='upload/metier/' + uploaded_image.name;
     console.log(uploaded_image)
 
     if (req.body.Description == '' || req.body.Nom == '' || req.body.Id_faculte == '') {

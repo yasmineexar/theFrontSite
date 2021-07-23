@@ -109,6 +109,8 @@ exports.deletepilote = (req, res) => {
 //CRUD pilote
 
 exports.login = (req, res) => {
+  const URL = req.session.redirecturl;
+  req.session.redirecturl = undefined
   User.getByUsername(req.body.username).then((userrow) => {
     if (!userrow)
       return res.render("login/login-register", {
@@ -138,7 +140,7 @@ exports.login = (req, res) => {
                 Matricule: etudiant.Matricule,
                 Faculte: etudiant.Faculte,
               };
-              return res.redirect("/metier/");
+              return res.redirect(req.session.redirecturl ||"/metier/");
             })
           });
         } else {
@@ -162,7 +164,7 @@ exports.login = (req, res) => {
                 Raison_social: entreprise.Raison_social,
               };
             
-              return res.redirect("/etudiant/");
+              return res.redirect(req.session.redirecturl ||"/etudiant/");
             })
           } else {
             req.session.currentuser = {
@@ -174,7 +176,7 @@ exports.login = (req, res) => {
               Password: userrow.Password,
               Role: userrow.Role,
             };
-            return res.redirect("home");
+            return res.redirect(req.session.redirecturl ||"home");
           }
         }
       } else {
