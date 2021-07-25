@@ -7,11 +7,13 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <style>
         body {
-            background-image: url("/public/img/bgimageSI.png");
+            background-image: url("/public/img/bg.png");
             background-color: #81abbb;
             background-position: right;
             background-repeat: no-repeat;
-            height: 95vh;
+            background-size: contain;
+            height: 100vh;
+            margin: 0;
             font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, 'Open Sans', 'Helvetica Neue', sans-serif;
         }
 
@@ -20,8 +22,12 @@
             justify-content: space-between;
         }
 
+        .nav div {
+            padding: 25px;
+        }
+
         .signinbtn {
-            margin: 25px 5px 25px 5px;
+            margin: 0px 5px 0px 5px;
             display: inline-block;
             background-color: transparent;
             border: solid #fff 2px;
@@ -32,7 +38,7 @@
         }
 
         .signupbtn {
-            margin: 25px 50px 25px 5px;
+            margin: 0px 50px 0px 5px;
             display: inline-block;
             background-color: white;
             border: solid #fff 2px;
@@ -44,17 +50,17 @@
         }
 
         .ouadif {
-            font-family: cursive;
-            font-size: 20px;
-            margin: 80px 140px 0 140px;
+            margin: 50px 160px 0 130px;
             width: 600px;
-            text-align: center;
+            text-align: left;
+            text-align: justify;
+            color: #444;
+            font-weight: 500;
         }
 
         .focal {
-            margin: 10px 140px 0 160px;
-            width: 600px;
-            text-align: center;
+            margin: 0px 130px;
+            height: fit-content;
         }
 
         .logux {
@@ -62,19 +68,25 @@
             height: 100px;
         }
 
-        .icones {
+        .footer {
+            background-color: #105f7f;
+            font-size: small;
+            color: #FFF;
+            text-align: center;
+            height: 20px;
+            width: 100%;
+            margin: 0;
             position: fixed;
-            height: 50px;
+            bottom: 0;
         }
     </style>
-    <title>Accueil</title>
+    <title>Document</title>
 </head>
 
 <body>
-
     <nav>
-        <div class="row">
-            <img class="logux" src="/public/img/logux.png" alt="LOGO">
+        <div class="row nav">
+            <img class="logux" src="/public/img/logo2.png" alt="LOGO">
             <div>
                 <a class="signinbtn" type="button" href="/login">Sign In</a>
                 <a class="signupbtn" type="button" href="/register">Sign Up</a>
@@ -82,22 +94,27 @@
         </div>
     </nav>
     <main>
-        <img class="icones" src="/public/img/atome.png" alt="">
         <div class="ouadif">
-            <p>Lorem ipsum, dolor sit amet consectetur adipisicing elit. Nobis pariatur fuga quasi
-                consequatur iste esse
-                commodi, est at ad enim recusandae quos vero soluta numquam dignissimos iusto illum, quis dolorem eos
-                sed
-                magni facere nemo! Distinctio architecto voluptates, pariatur ipsum expedita veritatis eaque est vel eum
-                aliquam, ex nulla similique, quasi error exercitationem repellat magni obcaecati corrupti quaerat.
-                Laborum,
-                repellendus!</p>
+            <p>
+                Le stage et le projet constituent une étape importante et essentielle dans le parcours de la formation.
+                <br>Ils permettent de se familiariser avec l’univers professionnel et d’y mettre en pratique les
+                connaissances théoriques acquises lors de la formation.
+                <br>Ils permettent aussi de découvrir les métiers professionnels, d'acquérir des compétences
+                professionnelles d'orienter sa spécialisation, de préparer éventuellement son insertion professionnelle
+                et de voir les capacités de l’étudiant à mener un projet jusqu’au bout.
+                <br>Nous offrons ici un moyen, aux étudiants de l'USTHB, de trouver <strong>le</strong> stage qui leur
+                correspond, et aux entreprises de choisir le meilleur stagiaire.
+                <br>Connecte-toi ou crée-toi un compte afin d'accéder au site !
+            </p>
         </div>
         <div class="focal">
-            <a class="signupbtn" type="button" href="/">Sign Up</a>
+            <a class="signupbtn" type="button" href="/login">Se connecter</a>
         </div>
 
     </main>
+    <footer>
+        <p class="footer">Copyright @ 2021 - Observatoire USTHB </p>
+    </footer>
 </body>
 
 </html>

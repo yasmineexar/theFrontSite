@@ -37,6 +37,47 @@ app.use('/metier', isAuth, (req, res, next) => {
 }, routes.metier)
 app.use('/user', isAuth, routes.user)
 
+
+// pdf generator
+//Required package
+var pdf = require("pdf-creator-node");
+var fs = require("fs");
+
+// Read HTML Template
+var html = fs.readFileSync("convention_stage.html", "utf8");
+
+var options = {
+    format: "A4",
+    orientation: "portrait",
+    border: "10mm",
+    header: {
+        height: "30mm",
+    },
+    footer: {
+        height: "28mm",
+        contents: '<div style="color: #444; text-align: center; padding"><span>{{page}}</span>/<span>{{pages}}</span></div>' // fallback value
+    }
+};
+
+var document = {
+    html: html,
+    data: {},
+    path: "./output.pdf",
+    type: "",
+};
+// By default a file is created but you could switch between Buffer and Streams by using "buffer" or "stream" respectively.
+pdf.create(document, options)
+    .then((res) => {
+        console.log(res);
+    })
+    .catch((error) => {
+        console.error(error);
+    });
+// pdf generator
+
+
+
+
 app.listen(3000, function () {
     console.log("App started at port 3000!!")
 })
