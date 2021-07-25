@@ -26,11 +26,15 @@
         <%}%>
             <div class="container <%= locals?.right?'right-panel-active':'' %>" id="container">
                 <div class="form-container sign-up-container">
-                    <form method="POST">
+                    <form method="POST" enctype="multipart/form-data">
                         <h1>Créer un Compte</h1>
                         <input type="text" name="matricule" placeholder="Matricule" required />
                         <input type="text" name="username" placeholder="Username" required />
                         <input type="password" name="password" placeholder="Password" required />
+                        <div class="fileUpload">
+                            <input type="file" name="cvupload" class="upload" accept="application/pdf" />
+                            <span><i class="fa fa-upload"></i> Télécharger votre CV en PDF!</span>
+                        </div>
                         <button type="submit">S'inscrire</button>
                     </form>
                 </div>
@@ -42,10 +46,10 @@
                             <div class="alert alert-danger" role="alert">
                                 <%=error%>
                             </div>
-                        <%}%>
-                        <input type="text" name="username" placeholder="Username" />
-                        <input type="password" name="password" placeholder="Password" />
-                        <button>Se connecter</button>
+                            <%}%>
+                                <input type="text" name="username" placeholder="Username" />
+                                <input type="password" name="password" placeholder="Password" />
+                                <button>Se connecter</button>
                     </form>
                 </div>
                 <div class="overlay-container">

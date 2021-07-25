@@ -35,19 +35,19 @@
         <li>
             <a href="/etudiant">Etudiants</a>
         </li>
-        <%if(currentuser.Role == "admin"){%>
+        <%if(currentuser.Role=="admin" ){%>
             <li>
                 <a href="#page2Submenu" data-toggle="collapse" aria-expanded="false" class="dropdown-toggle">Pilotes</a>
                 <ul class="collapse list-unstyled" id="page2Submenu">
                     <li>
-                        <a href="user/allpilote">Afficher toutes</a>
+                        <a href="user/allpilote">Afficher tous</a>
                     </li>
                     <li>
-                        <a href="/user/addpilote">Créer une nouveau</a>
+                        <a href="/user/addpilote">Créer un nouveau</a>
                     </li>
                 </ul>
             </li>
-        <%}%>
+            <%}%>
     </ul>
 
 

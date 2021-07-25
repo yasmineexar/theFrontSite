@@ -32,8 +32,7 @@ exports.creat = (req, res) => {
         return res.status(400).send('Aucune image n a eté telechargée')
     }
     uploaded_image = req.files.uploaded_image
-    __dirname = "C:\\Users\\Dell\\Desktop\\TheFrontSite\\upload\\"
-    uploadPath = __dirname + 'logo/' + uploaded_image.name;
+    uploadPath = 'upload/logo/' + uploaded_image.name;
     console.log(uploaded_image)
     if (req.body.Description == '' || req.body.Raison_social == '' || req.body.Secteur_activite == '' || req.body.Localite == '' || req.body.Site_web == '') {
         req.session.message = {
@@ -74,7 +73,7 @@ exports.creat = (req, res) => {
 }
 exports.edit = (req, res) => {
     return Entreprise.getById(req.params.id).then((entreprises) => {
-        return res.render('entreprises/edit', { entreprises})
+        return res.render('entreprises/edit', { entreprises })
     })
 }
 exports.update = (req, res) => {

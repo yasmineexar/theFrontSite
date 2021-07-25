@@ -23,8 +23,8 @@ exports.read = (req, res) => {
             return res.render('etudiants/profil', { etudiants })
         })
     }
-    if(req.session.currentuser.Role == "admin" || req.session.currentuser.Role == "pilote") return res.render('etudiants/all_admin')
-    if(req.session.currentuser.Role == "entreprise") return res.render('etudiants/all_entrep')
+    if (req.session.currentuser.Role == "admin" || req.session.currentuser.Role == "pilote") return res.render('etudiants/all_admin')
+    if (req.session.currentuser.Role == "entreprise") return res.render('etudiants/all_entrep')
 }
 
 //register etudiant 
@@ -34,9 +34,16 @@ exports.create = (req, res) => {
         const matricule = req.body.matricule;
         const username = req.body.username;
         var password = req.body.password;
+        let cvupload;
+        let uploadPath;
+        if (!req.files || Object.keys(req.files).length === 0) {
+            return res.status(400).send('Aucun fichier n a etait telechargée')
+        }
+        cvupload = req.files.cvupload
+        console.log(cvupload)
+        uploadPath = 'upload/pdf/CV/' + cvupload.name;
         let e = new etudiant()
-        e.matricule = matricule
-        e.username = username
+
         //password hash function
         saltRounds = 10
         bcrypt.genSalt(saltRounds, function (err, salt) {
@@ -60,13 +67,19 @@ exports.create = (req, res) => {
             return res.redirect('register')
         }
         else {
-            e.create().then(() => {
-                req.session.message = {
-                    type: 'success',
-                    intro: 'Succés !',
-                    message: 'Compte Etudiant a bien été créé.'
-                }
-                return res.redirect('register')
+            cvupload.mv(uploadPath, function (err) {
+                if (err) return res.status(500).send(err);
+                e.matricule = matricule
+                e.username = username
+                e.cv = cvupload.name
+                e.create().then(() => {
+                    req.session.message = {
+                        type: 'success',
+                        intro: 'Succés !',
+                        message: 'Compte Etudiant a bien été créé.'
+                    }
+                    return res.redirect('register')
+                })
             })
         }
     }
@@ -78,7 +91,7 @@ exports.create = (req, res) => {
 exports.update = (req, res) => {
 
 }
-exports.updatecv = (req,res)=>{
-    
+exports.updatecv = (req, res) => {
+
 }
 
