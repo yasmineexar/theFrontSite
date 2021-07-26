@@ -196,3 +196,38 @@ main {
   border: 3px solid #105F7F;
   color: white;
 }
+
+.viewoffres {
+  display: inline;
+  float: left;
+  position: fixed;
+  top: 0px;
+  left: 680px;
+  z-index: 10000;
+}
+
+.viewoffres .viewoffresbtn {
+  border: 3px solid #105F7F;
+  padding: 3px 20px 5px 10px;
+  position: fixed;
+  background: none;
+  font-weight: bold;
+  font-size: 1.2em;
+  color: #105F7F;
+  cursor: pointer;
+  -webkit-transition: .3s;
+  transition: .3s;
+}
+
+.viewoffres .viewoffresbtn .viewoffresbtn i {
+  margin-left: 5px;
+}
+
+.viewoffres .viewoffresbtn:hover {
+  background: #105F7F;
+  opacity: 0.9;
+  text-decoration: none;
+  border: 3px solid #105F7F;
+  color: white;
+}
+

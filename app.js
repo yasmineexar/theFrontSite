@@ -44,19 +44,11 @@ var pdf = require("pdf-creator-node");
 var fs = require("fs");
 
 // Read HTML Template
-var html = fs.readFileSync("convention_stage.html", "utf8");
+var html = fs.readFileSync("demande_stage.html", "utf8");
 
 var options = {
     format: "A4",
     orientation: "portrait",
-    border: "10mm",
-    header: {
-        height: "30mm",
-    },
-    footer: {
-        height: "28mm",
-        contents: '<div style="color: #444; text-align: center; padding"><span>{{page}}</span>/<span>{{pages}}</span></div>' // fallback value
-    }
 };
 
 var document = {
