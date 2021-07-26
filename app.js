@@ -44,6 +44,8 @@ var pdf = require("pdf-creator-node");
 var fs = require("fs");
 
 // Read HTML Template
+var png = fs.readFileSync("public/img/observatoire.png")
+let observatoire = png.toString('base64')
 var html = fs.readFileSync("demande_stage.html", "utf8");
 
 var options = {
@@ -53,7 +55,9 @@ var options = {
 
 var document = {
     html: html,
-    data: {},
+    data: {
+        observatoire
+    },
     path: "./output.pdf",
     type: "",
 };
