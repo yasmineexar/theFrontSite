@@ -18,7 +18,7 @@ router.get('/compte', (req, res, next) => {
 }, (req, res) => {
     Entreprise.getAllold().then(old => {
         Entreprise.getAll().then(n => {
-            old = old.filter(e => !n.includes(e))
+            old = old.filter(e => !n.some(el=>el.Raison_social == e.Raison_social))
             res.render('entreprises/compteentreprise', { old })
         })
     })
