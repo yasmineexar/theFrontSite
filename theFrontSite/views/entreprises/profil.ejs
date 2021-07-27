@@ -1,0 +1,228 @@
+<!-- Cette page sera visible par 
+    l'étudiant
+    l'entreprise -->
+
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
+    <link href="https://maxcdn.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css" rel="stylesheet">
+    <link rel="stylesheet" href="/public/css/navbar.css">
+    <link rel="stylesheet" href="/public/css/offres.css" />
+    <link rel="stylesheet" href="/public/css/entreprise.css">
+    <title>Entreprise</title>
+</head>
+
+<body>
+    <%- include ../layouts/header.ejs %>
+        <div class="entreprise">
+            <div>
+                <div class="px-4 pt-0 pb-4 cover">
+                    <div class="media align-items-end profile-head">
+                        <div class="profile mr-3"><img src="./static/img/logoentreprise.jpg" alt="..." width="150"
+                                class="rounded mb-2 img-thumbnail"><a href="#offres"
+                                class="btn btn-outline-dark btn btn-block">Voir les offres</a></div>
+                        <div class="media-body mb-5 text-white">
+                            <h1 class="mt-0 mb-2 display-3">Nom de l'entreprise</h1>
+                            <h3 class="mb-4 font-weight-light">Secteur d'activité</h3>
+                            <!--Seulement pour l'entreprise--<a href="#" class="btn btn-outline-dark modifier">Modifier le profile</a>-->
+                        </div>
+                    </div>
+                </div>
+                <div class="bg-light p-4 d-flex justify-content-end text-center">
+                    <ul class="list-inline mb-0">
+                        <li class="mr-4 list-inline-item"><i class="fa fa-facebook fa-2x" aria-hidden="true"></i>
+                        </li>
+                        <li class="mr-4 list-inline-item"><i class="fa fa-instagram fa-2x" aria-hidden="true"></i>
+                        </li>
+                        <li class="mr-4 list-inline-item"><i class="fa fa-twitter fa-2x" aria-hidden="true"></i>
+                        </li>
+                    </ul>
+                </div>
+                <div class="px-0">
+                    <h3 class="m-4">A propos</h3>
+                    <div class="p-4 rounded shadow-sm bg-light">
+                        <h3 class="mb-4 mt-4 font-weight-light">Nous avons déjà accepté <span>2</span> stagières de
+                            l'USTHB,
+                            et serons ravi de vous acceuillir parmis nous !</h3>
+                        <h3 class="mb-4 font-weight-light">Vous pouvez nous retrouver dans nos locaux au
+                            <span>(adresse)</span> ou sur notre site internet : <span>me@entreprise.com</span>
+                        </h3>
+                        <h3 class="mb-4 font-weight-light">Ou contactez-nous au : <span>(Num tel)</span> </h3>
+                    </div>
+                </div>
+                <div class="px-0">
+                    <h3 class="m-4">Plus d'informations</h3>
+                    <div class="p-4 rounded shadow-sm bg-light">
+                        <p class="font-weight-light text-justify lead">Lorem ipsum dolor sit amet consectetur
+                            adipisicing
+                            elit.
+                            Doloribus blanditiis assumenda numquam
+                            obcaecati tempore modi, nemo minus cupiditate labore quod in expedita sapiente sunt sequi
+                            aliquid et enim est saepe aut? Soluta, eaque labore. Nulla maxime temporibus culpa rerum,
+                            autem
+                            quis doloribus magnam aut recusandae quae voluptas corporis hic eaque ipsum labore minus
+                            obcaecati perspiciatis ab animi eos voluptate fugit illum! Delectus qui vel magni dolor est
+                            officiis iusto atque adipisci explicabo quos nulla, sit ipsum, ullam sed odit sapiente
+                            debitis
+                            aliquid! Officia aut ullam eveniet aperiam temporibus unde, suscipit quis similique culpa
+                            aliquam minima voluptatem facilis consequatur, sunt fuga quae tempore accusantium ex? Et
+                            temporibus ab accusamus repellat exercitationem maxime? Sunt eligendi quisquam corporis
+                            reiciendis doloribus ea iste odio. Dolore cupiditate, aliquid tempore dignissimos optio
+                            rerum
+                            atque. Eaque odio incidunt unde facilis excepturi error a perferendis fugiat, quo, neque
+                            rerum
+                            molestiae quisquam commodi temporibus, sed non sapiente et sequi?</p>
+                    </div>
+                </div>
+                <!--Seulement pour l'entreprise--<div>
+                <a href="#" class="btn btn-dark btn btn-block creer">Creer une nouvelle offre</a>
+            </div>-->
+            </div>
+        </div>
+        <div class="hey">
+            <h1 id="offres">Nous vous proposons :</h1>
+            <!--Seulement pour l'entreprise--<h1 id="offres">Nos offres :</h1>-->
+        </div>
+        <main>
+            <div id="cont">
+                <div class="grid">
+                    <div class="grid-item">
+                        <div class="card">
+                            <div class="card-content">
+                                <div class="card-header">
+                                    <!--Seulement pour l'entreprise--<button class="ent modify"><i class="fa fa-pencil" aria-hidden="true"></i></button>
+                                <button class="ent bin"><i class="fa fa-trash-o" aria-hidden="true"></i></button>-->
+                                    <img width='70px' height='70px' src="./static/img/logoentreprise.jpg"
+                                        class="img-thumbnail rounded-circle navbar-brand pdp" alt="User">
+                                    <br>
+                                    <span>Titre de l'offre</span>
+                                    <br>
+                                </div>
+                                <div class="details">
+                                    <table>
+                                        <tr>
+                                            <td class="icon"><i class="fa fa-calendar" aria-hidden="true"></i></td>
+                                            <td><span>15</span> semaines</td>
+                                        </tr>
+                                        <tr>
+                                            <td class="icon"><i class="fa fa-users" aria-hidden="true"></i></td>
+                                            <td><span>2</span> places disponibles</td>
+                                        </tr>
+                                        <tr>
+                                            <td class="icon"><i class="fa fa-money" aria-hidden="true"></i></td>
+                                            <td><span>Non rémunéré</span></td>
+                                        </tr>
+                                    </table>
+                                </div>
+                                <p class="card-text">
+                                    The Maldives are known for their
+                                    <strong>natural environment</strong> including the blue ocean,
+                                    white beaches, and clean air, attracting tourists. Lorem ipsum dolor sit, amet
+                                    consectetur
+                                    adipisicing
+                                    elit.
+                                    Et commodi consectetur odio velit doloribus culpa asperiores inventore adipisci
+                                    repellat
+                                    reprehenderit!
+                                </p>
+
+                            </div>
+                        </div>
+                    </div>
+                    <div class="grid-item">
+                        <div class="card">
+                            <div class="card-content">
+                                <div class="card-header">
+                                    <!--Seulement pour l'entreprise--<button class="ent modify"><i class="fa fa-pencil" aria-hidden="true"></i></button>
+                                <button class="ent bin"><i class="fa fa-trash-o" aria-hidden="true"></i></button>-->
+                                    <img width='70px' height='70px' src="./static/img/logoentreprise.jpg"
+                                        class="img-thumbnail rounded-circle navbar-brand pdp" alt="User">
+                                    <br>
+                                    <span>Titre de l'offre</span>
+                                    <br>
+                                </div>
+                                <div class="details">
+                                    <table>
+                                        <tr>
+                                            <td class="icon"><i class="fa fa-calendar" aria-hidden="true"></i></td>
+                                            <td><span>15</span> semaines</td>
+                                        </tr>
+                                        <tr>
+                                            <td class="icon"><i class="fa fa-users" aria-hidden="true"></i></td>
+                                            <td><span>2</span> places disponibles</td>
+                                        </tr>
+                                        <tr>
+                                            <td class="icon"><i class="fa fa-money" aria-hidden="true"></i></td>
+                                            <td><span>Non rémunéré</span></td>
+                                        </tr>
+                                    </table>
+                                </div>
+                                <p class="card-text">
+                                    Rome is known for its stunning <strong> architecture</strong>,
+                                    with the Colleseum, Pantheon, and Trevi Fountain as the main
+                                    attractions. Lorem ipsum dolor sit amet consectetur adipisicing elit. Quam rerum
+                                    eaque
+                                    accusantium ut eum
+                                    distinctio quas animi aut aliquid rem.
+                                </p>
+
+                            </div>
+                        </div>
+                    </div>
+                    <div class="grid-item">
+                        <div class="card">
+                            <div class="card-content">
+                                <div class="card-header">
+                                    <!--Seulement pour l'entreprise--<button class="ent modify"><i class="fa fa-pencil" aria-hidden="true"></i></button>
+                                <button class="ent bin"><i class="fa fa-trash-o" aria-hidden="true"></i></button>-->
+                                    <img width='70px' height='70px' src="./static/img/logoentreprise.jpg"
+                                        class="img-thumbnail rounded-circle navbar-brand pdp" alt="User">
+                                    <br>
+                                    <span>Titre de l'offre</span>
+                                    <br>
+                                </div>
+                                <div class="details">
+                                    <table>
+                                        <tr>
+                                            <td class="icon"><i class="fa fa-calendar" aria-hidden="true"></i></td>
+                                            <td><span>15</span> semaines</td>
+                                        </tr>
+                                        <tr>
+                                            <td class="icon"><i class="fa fa-users" aria-hidden="true"></i></td>
+                                            <td><span>2</span> places disponibles</td>
+                                        </tr>
+                                        <tr>
+                                            <td class="icon"><i class="fa fa-money" aria-hidden="true"></i></td>
+                                            <td><span>Non rémunéré</span></td>
+                                        </tr>
+                                    </table>
+                                </div>
+                                <p class="card-text">
+                                    One of the world's natural wonders, the iconic Grand Canyon draws
+                                    oohs and aahs from visitors perched at the edge of its
+                                    <strong>towering cliffs</strong>. Lorem ipsum dolor sit amet consectetur adipisicing
+                                    elit.
+                                    Delectus magni
+                                    ipsa id ratione libero sequi facere consequuntur blanditiis eveniet quisquam?
+                                </p>
+
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </main>
+
+        <%- include ../layouts/footer.ejs %>
+
+            <script src="https://code.jquery.com/jquery-3.4.1.slim.min.js"></script>
+            <script src="https://cdn.jsdelivr.net/npm/popper.js@1.16.0/dist/umd/popper.min.js"></script>
+            <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/js/bootstrap.min.js"></script>
+
+</body>
+
+</html>
