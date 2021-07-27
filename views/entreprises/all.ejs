@@ -214,11 +214,7 @@
                     }).join(''))
                 }
                 const genfilter = () => {
-                    localite = entreprise.map((e) => { return e.Localite })
-                    $('#localite').html(`
-                        <option>Ville</option>
-                        ${localite.map((e) => { return `<option value="${e}">${e}</option>` }).join('')}
-                    `)
+
                     Secteur_activite = entreprise.map((f) => { return f.Secteur_activite })
                     $('#Secteur_activite').html(`
                         <option>Secteur d'activité</option>
@@ -232,7 +228,11 @@
                     xhr.responseType = 'json'
                     xhr.onload = () => {
                         entreprise = xhr.response
-                        genfilter()
+                        localite = entreprise.map((e) => { return e.Localite })
+                        $('#localite').html(`
+                            <option>Ville</option>
+                        ${localite.map((e) => { return `<option value="${e}">${e}</option>` }).join('')}
+                    `)
                     }
                     xhr.send()
                 }
