@@ -25,14 +25,22 @@
         <main>
             <div class="fancy row">
                 <div class="col-md-6 catch">
-                    <p class="pt-5 mt-5"><strong>Dirige-toi</strong> maintenant<br>vers l'<strong>entreprise</strong>
-                        qui t'offrira<br>le
-                        <strong>stage</strong> correspondant au mieux<br>à ta filière et à ta spécialité...
-                    </p>
-                    <div class="viewoffres">
-                        <a href="#offres" class="viewoffresbtn">Voir toutes les offres <i
-                                class="fa fa-angle-double-down" aria-hidden="true"></i></a>
-                    </div>
+                    <% if(currentuser.Role=='etudiant' ){%>
+                        <p class="pt-5 mt-5"><strong>Dirige-toi</strong> maintenant<br>vers
+                            l'<strong>entreprise</strong>
+                            qui t'offrira<br>le
+                            <strong>stage</strong> correspondant au mieux<br>à ta filière et à ta spécialité...
+                        </p>
+                        <%}%>
+                            <% if(currentuser.Role=='admin' || currentuser.Role=='pilote' ){%>
+                                <p class="pt-5 mt-5">Vous pouvez consulter la liste
+                                    des <strong>offres</strong><br>publiées par les entreprises<br>de votre annuaire...
+                                </p>
+                                <%}%>
+                                    <div class="viewoffres">
+                                        <a href="#offres" class="viewoffresbtn">Voir toutes les offres <i
+                                                class="fa fa-angle-double-down" aria-hidden="true"></i></a>
+                                    </div>
                 </div>
                 <div class="humaans mt-5 col-md-6">
                     <img class="humans" src="/public/img/HumaaansCharacters.png" alt="">
@@ -51,14 +59,16 @@
                             </button>
                     </div>
                     <%}%>
-                        <div class="hey">
-                            <h1>Une sélection d'offres spécialement pour toi</h1>
-                        </div>
-                        <div id="cont">
-                            <div class="grid" id="card-body">
-
+                        <% if(currentuser.Role=='etudiant' ){%>
+                            <div class="hey">
+                                <h1>Une sélection d'offres spécialement pour toi</h1>
                             </div>
-                        </div>
+                            <%}%>
+                                <div id="cont">
+                                    <div class="grid" id="card-body">
+
+                                    </div>
+                                </div>
             </div>
 
 
@@ -77,7 +87,7 @@
                             <th></th>
                             <th></th>
                         </tr>
-                        <tr class="cart-row" >
+                        <tr class="cart-row">
 
                         </tr>
                     </table>
@@ -95,7 +105,7 @@
                                     <div class="card-header">
                                         <%if(currentuser.Role != 'admin' && currentuser.Role != 'pilote'){%>
                                             ${r.Id_utilisateur == userid
-                                                ? `
+                                    ? `
                                                 <a href="/offre/edit/${r.Id_offre}" type="button" class="ent modify">
                                                     <i class="fa fa-pencil" data-toggle='modifier' data-target="${r.Id_offre}" aria-hidden="true"></i>
                                                     </a>
@@ -103,14 +113,14 @@
                                                         <i class="fa fa-trash-o" data-toggle='supprimer' data-target="${r.Id_offre}" aria-hidden="true"></i>
                                                     </a>
                                                 `
-                                                : `<button class="coeur" data-toggle="addwish" data-target="${r.Id_offre
-                                                }"><i class="fa fa-heart${r.isWish ? "" : "-o"
-                                                }" aria-hidden="true" data-toggle="addwish" data-target="${r.Id_offre
-                                                }"></i></button>`
-                                            }
+                                    : `<button class="coeur" data-toggle="addwish" data-target="${r.Id_offre
+                                    }"><i class="fa fa-heart${r.isWish ? "" : "-o"
+                                    }" aria-hidden="true" data-toggle="addwish" data-target="${r.Id_offre
+                                    }"></i></button>`
+                                }
                                         <%}%>
-                                        <img width='80px' height='80px' src="${r.Entreprise.Logo
-                                        }"
+                                        <img width='80px' height='80px' src="/upload/logo/${r.Entreprise.Logo
+                                }"
                                             class="card-image img-thumbnail navbar-brand pdp" style="border: none; height:80px" alt="User">
                                         <br>
                                         <span class="card-title">${r.Titre}</span>
@@ -121,25 +131,25 @@
                                             <tr>
                                                 <td class="icon"><i class="fa fa-building-o" aria-hidden="true"></i></td>
                                                 <td class="lui"><a class="lien" href="/entreprise/${r.Entreprise.Id_utilisateur
-                                        }"
+                                }"
                                                         title="Voir détail de l'entreprise"><span>${r.Entreprise.Raison_social
-                                        }</span><i class="fa fa-angle-double-right fleche"
+                                }</span><i class="fa fa-angle-double-right fleche"
                                                             aria-hidden="true"></i></a></td>
                                             </tr>
                                             <tr>
                                                 <td class="icon"><i class="fa fa-calendar" aria-hidden="true"></i></td>
                                                 <td><span>${r.Duree_stage
-                                        }</span> semaines</td>
+                                }</span> semaines</td>
                                             </tr>
                                             <tr>
                                                 <td class="icon"><i class="fa fa-users" aria-hidden="true"></i></td>
                                                 <td><span>${r.Nb_places
-                                        }</span> places disponibles</td>
+                                }</span> places disponibles</td>
                                             </tr>
                                             <tr>
                                                 <td class="icon"><i class="fa fa-money" aria-hidden="true"></i></td>
                                                 <td><span>${r.Base_remuneration
-                                        }</span> DA</td>
+                                }</span> DA</td>
                                             </tr>
                                         </table>
                                     </div>

@@ -53,7 +53,7 @@ module.exports = class Etudiant extends User {
 
     search() {
         return new Promise((resolve, reject) => {
-            this.dbconnection.query(`SELECT * FROM etudold WHERE Nom LIKE ?`, ['%' + this.searchNom + '%'], (error, results, fields) => {
+            this.dbconnection.query(`SELECT * FROM ${this.tablename} WHERE Nom LIKE ?`, ['%' + this.searchNom + '%'], (error, results, fields) => {
                 if (error) return reject(error)
                 resolve(results)
                 console.log(results)
@@ -73,10 +73,13 @@ module.exports = class Etudiant extends User {
                 }
             });
         }
-        console.log(`select * from etudold ${cond}`)
+        console.log(`select * from ${this.tablename} ${cond}`)
         return new Promise((resolve, reject) => {
-            this.dbconnection.query(`select * from etudold ${cond}`, (err, fields, results) => {
-                if (err) reject(err)
+            this.dbconnection.query(`select * from ${this.tablename} ${cond}`, (err, fields, results) => {
+                if (err) {
+                    console.log(err)
+                    reject(err)
+                }
                 resolve(fields)
             })
         })

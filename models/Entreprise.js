@@ -58,7 +58,7 @@ module.exports = class Entreprise extends User {
     //creer un compte entreprise
     createcompte = () => {
         return new Promise((resolve, reject) => {
-            this.dbconnection.query(`SELECT * FROM ${this.tablename} WHERE Raison_social = '${this.Raison_social}'`, (error, results, fields) => {
+            this.dbconnection.query(`SELECT * FROM entrepold WHERE Raison_social = '${this.Raison_social}'`, (error, results, fields) => {
                 if (error) return reject(error)
                 resolve(results)
                 results = results[0]

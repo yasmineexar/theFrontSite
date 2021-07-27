@@ -121,3 +121,7 @@ body {
 }
 
 /*bouton upload*/
+.profilcard textarea{
+    resize: none;
+    font-size: 15px;
+}

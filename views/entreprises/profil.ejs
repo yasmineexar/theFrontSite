@@ -27,7 +27,7 @@
             <div>
                 <div class="px-4 pt-0 pb-4 cover">
                     <div class="media align-items-end profile-head">
-                        <div class="profile mr-3"><img src="<%= entreprises.Logo %>" alt="..." width="150"
+                        <div class="profile mr-3"><img src="/upload/logo/<%= entreprises.Logo %>" alt="..." width="150"
                                 class="rounded mb-2 img-thumbnail"><a href="#offres"
                                 class="btn btn-outline-dark btn btn-block">Voir les offres</a></div>
                         <div class="media-body mb-5 text-white">
@@ -94,7 +94,7 @@
             <div style="display: inline;" class="col-4">
                 <!--Seulement pour l'entreprise-->
                 <%if(currentuser.id==entreprises.Id_utilisateur){%>
-                    <a href="/offre/add" class="btn btn-dark btn creer creerr">Créer une nouvelle offre</a>
+                    <a href="/offre/add" class="btn btn-dark btn creer creerr m-0">Créer une nouvelle offre</a>
                     <%}%>
             </div>
         </div>
@@ -118,7 +118,8 @@
                                                         data-target="<%=element.id%>" aria-hidden="true"></i>
                                                 </a>
                                                 <%}%>
-                                                    <img width='100px' height='100px' src="<%= entreprises.Logo %>"
+                                                    <img width='100px' height='100px'
+                                                        src="/upload/logo/<%= entreprises.Logo %>"
                                                         class="card-image img-thumbnail navbar-brand pdp"
                                                         style="border: none; height:80px" alt="User">
                                                     <br>
