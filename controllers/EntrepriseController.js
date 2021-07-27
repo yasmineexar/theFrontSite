@@ -1,7 +1,6 @@
 const Entreprise = require('../models/Entreprise')
 const Offre = require("../Models/Offre");
-const bcrypt = require("bcryptjs");
-const e = require('express');
+const bcrypt = require("bcryptjs")
 
 exports.read = (req, res) => {
     if (req.query.json) {
@@ -55,7 +54,7 @@ exports.creat = (req, res) => {
             if (err) return res.status(500).send(err);
             logo = uploaded_image.name
             entreprise.Logo = logo
-            console.log('entreprise logo:', entreprise.Logo)
+            console.log('entrprise logo:', entreprise.Logo)
             entreprise.Raison_social = req.body.Raison_social
             entreprise.Secteur_activite = req.body.Secteur_activite
             entreprise.Site_web = req.body.Site_web
@@ -74,11 +73,39 @@ exports.creat = (req, res) => {
 }
 exports.edit = (req, res) => {
     return Entreprise.getById(req.params.id).then((entreprises) => {
-        return res.render('entreprises/edit', { entreprises: entreprises })
+        return res.render('entreprises/edit', { entreprises })
     })
 }
+exports.update = (req, res) => {
+    let e = new Entreprise()
+    Entreprise.getById(req.params.id).then((entreprise) => {
+        e.Id_utilisateur = req.params.id
+        e.Secteur_activite = req.body.Secteur_activite || entreprise.Secteur_activite
+        e.Raison_social = req.body.Raison_social || entreprise.Raison_social
+        e.Description = req.body.Description || entreprise.Description
+        e.Site_web = req.body.Site_web || entreprise.Site_web
+        e.Localite = req.body.Localite || entreprise.Localite
+        if (req.body.Description == '' || req.body.Raison_social == '' || req.body.Secteur_activite == '' || req.body.Localite == '' || req.body.Site_web == '') {
+            req.session.message = {
+                type: 'danger',
+                intro: 'Champs vides!',
+                message: 'Veuillez insérer les informations requises.'
+            }
+        }
+        else {
+            e.update().then(() => {
+                req.session.message = {
+                    type: 'success',
+                    intro: 'Succés !',
+                    message: 'Entreprise a bien été créée.'
+                }
+                res.redirect('/entreprise/edit/' + req.params.id)
+            })
+        }
+    })
+}
+
 exports.delet = (req, res) => {
-    console.log('coucou')
     return Entreprise.delet(req.params.id).then(() => {
         req.session.message = {
             type: 'success',
@@ -111,35 +138,5 @@ exports.createcompte = (req, res) => {
     compte.Raison_social = Raison_social
     compte.createcompte().then(() => {
         res.render('entreprises/compteentreprise')
-    })
-}
-
-
-exports.update = (req, res) => {
-    let e = new Entreprise()
-    Entreprise.getById(req.params.id).then((entreprise) => {
-        e.Id_utilisateur = req.params.id
-        e.Secteur_activite = req.body.Secteur_activite || entreprise.Secteur_activite
-        e.Raison_social = req.body.Raison_social || entreprise.Raison_social
-        e.Description = req.body.Description || entreprise.Description
-        e.Site_web = req.body.Site_web || entreprise.Site_web
-        e.Localite = req.body.Localite || entreprise.Localite
-        if (req.body.Description == '' || req.body.Raison_social == '' || req.body.Secteur_activite == '' || req.body.Localite == '' || req.body.Site_web == '') {
-            req.session.message = {
-                type: 'danger',
-                intro: 'Champs vides!',
-                message: 'Veuillez insérer les informations requises.'
-            }
-        }
-        else {
-            e.update().then(() => {
-                req.session.message = {
-                    type: 'success',
-                    intro: 'Succés !',
-                    message: 'Entreprise a bien été créée.'
-                }
-                res.redirect('/entreprise/edit/' + req.params.id)
-            })
-        }
     })
 }

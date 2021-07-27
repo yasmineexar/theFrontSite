@@ -33,14 +33,12 @@ body {
 	}
  }
 
-h1 {
+.title, h1 {
 	font-weight: bold;
 	margin: 10px auto;
-}
-
-h2 {
 	text-align: center;
 }
+
 
 p {
 	font-size: 14px;
@@ -95,7 +93,7 @@ form {
 	text-align: center;
 }
 
-input {
+input[type="text"], input[type="password"] {
 	background-color: #eee;
 	border: none;
 	padding: 12px 15px;
@@ -103,6 +101,45 @@ input {
 	width: 100%;
 }
 
+/*file*/
+.fileUpload {
+	background: #eee;
+	color: #757575;
+	font-size: 1em;
+	margin: 8px 0;/*20px/16px 0*/
+	overflow: hidden;
+	padding: 0.875em;/*14px/16px*/
+	position: relative;
+	text-align: center;
+	width: 100%;
+   cursor:pointer;
+}
+
+.fileUpload:hover, .fileUpload:active, .fileUpload:focus {
+	background: rgb(241, 241, 241);
+  	cursor: pointer;
+}
+.fileUpload input.upload {
+    position: absolute;
+    top: 0;
+    right: 0;
+    margin: 0;
+    padding: 0;
+    font-size: 20px;
+    opacity: 0;
+    filter: alpha(opacity=0);
+    width: 148px;
+    height: 46px;
+  	cursor: pointer;
+}
+
+input[type="file"] {
+    position: fixed;
+    right: 100%;
+    bottom: 100%;
+}
+
+/*file*/
 .container {
 	background-color: #fff;
 	border-radius: 10px;

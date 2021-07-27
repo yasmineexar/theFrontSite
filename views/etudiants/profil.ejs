@@ -79,10 +79,8 @@
                                         <img src="/public/img/cv.png" alt="..." width="150" class="p-4">
                                     </div>
                                     <div class="file-input">
-                                        <form action="/user/<%etudiants.Id_utilisateur%>" method="POST"
-                                            enctype="multipart/form-data">
-                                            <input type="file" name="sampleFile" id="file" class="file"
-                                                onchange="$(event.target.parentNode).submit()">
+                                        <form action="/user/<%etudiants.Id_utilisateur%>" method="POST" enctype="multipart/form-data">
+                                            <input type="file" name="sampleFile" id="file" class="file" onchange="$(event.target.parentNode).submit()">
                                             <label class="btn btn-dark btn btn-block" for="file">Choisir un
                                                 fichier</label>
                                         </form>
@@ -94,16 +92,9 @@
                                 </div>
                                 <!--upload button-->
                             </div>
-                            <%}%>
+                        <%}%>
                     </div>
                 </div>
-                <%# Evaluation stagiaire%>
-                    <div class="evaluation col-12" style="margin-top: 3em;">
-                        <h2 style="margin-bottom: 2em;">Note et Appréciation satgiaire
-                        </h2>
-                        <textarea name="commentaire" id="comment" cols="30" rows="10"
-                            placeholder="Laissez une appréciation/commentaire concernant le stagiaire"></textarea>
-                    </div>
 
             </div>
         </div>

@@ -6,34 +6,48 @@
     <ul class="list-unstyled components">
         <p>Mes actions</p>
         <li>
-            <a href="#homeSubmenu" data-toggle="collapse" aria-expanded="false" class="dropdown-toggle">News
-                Letters</a>
+            <a href="#homeSubmenu" data-toggle="collapse" aria-expanded="false" class="dropdown-toggle">Fiches
+                Métier</a>
             <ul class="collapse list-unstyled" id="homeSubmenu">
                 <li>
-                    <a href="#">Afficher toutes</a>
+                    <a href="/metier">Afficher toutes</a>
                 </li>
                 <li>
-                    <a href="#">Créer une nouvelle</a>
+                    <a href="/metier/add">Créer une nouvelle</a>
+
                 </li>
             </ul>
         </li>
         <li>
-            <a href="#">Offres</a>
+            <a href="/offre">Offres</a>
         </li>
         <li>
             <a href="#pageSubmenu" data-toggle="collapse" aria-expanded="false" class="dropdown-toggle">Entreprises</a>
             <ul class="collapse list-unstyled" id="pageSubmenu">
                 <li>
-                    <a href="#">Afficher toutes</a>
+                    <a href="/entreprise">Afficher toutes</a>
                 </li>
                 <li>
-                    <a href="#">Créer une nouvelle</a>
+                    <a href="/entreprise/add">Créer une nouvelle</a>
                 </li>
             </ul>
         </li>
         <li>
-            <a href="#">Etudiants</a>
+            <a href="/etudiant">Etudiants</a>
         </li>
+        <%if(currentuser.Role=="admin" ){%>
+            <li>
+                <a href="#page2Submenu" data-toggle="collapse" aria-expanded="false" class="dropdown-toggle">Pilotes</a>
+                <ul class="collapse list-unstyled" id="page2Submenu">
+                    <li>
+                        <a href="user/allpilote">Afficher tous</a>
+                    </li>
+                    <li>
+                        <a href="/user/addpilote">Créer un nouveau</a>
+                    </li>
+                </ul>
+            </li>
+            <%}%>
     </ul>
 
 

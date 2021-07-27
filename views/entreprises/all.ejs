@@ -15,8 +15,82 @@
     <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Poppins&display=swap">
     <link rel="stylesheet" href="/public/css/navbar.css">
     <link rel="stylesheet" href="/public/css/sidenav.css">
+    <link rel="icon" type="image/png" sizes="16x16" href="/public/img/logo.png">
     <link rel="stylesheet" href="/public/css/AllEntreprises.css">
-    <title>Document</title>
+    <style>
+        .simple-pagination ul {
+            padding: 0;
+            list-style: none;
+            text-align: center;
+            margin-left: 10px;
+        }
+
+        .simple-pagination li {
+            display: inline-block;
+            margin: 2px;
+        }
+
+        .simple-pagination li a,
+        .simple-pagination li span {
+            display: block;
+            width: 40px;
+            height: 40px;
+            line-height: 40px;
+            background-color: #fff;
+            text-align: center;
+            text-decoration: none;
+            color: #252525;
+            border-radius: 4px;
+            margin: 5px;
+            box-shadow: inset 0 5px 10px rgba(0, 0, 0, .1), 0 2px 5px rgba(0, 0, 0, .5);
+        }
+
+        .simple-pagination li a:hover {
+            background: #000;
+            color: #fff;
+        }
+
+        .simple-pagination .current {
+            color: #fff;
+            background-color: #000;
+            border-color: rgb(255, 255, 255);
+            border: 1px solid;
+        }
+
+        .simple-pagination .prev.current,
+        .simple-paination .next.current {
+            background: #222;
+            border: none;
+        }
+
+
+        .viewoffres {
+            display: inline;
+        }
+
+        .viewoffres .viewoffresbtn {
+            border: 3px solid #105F7F;
+            padding: 3px 20px 4px 10px;
+            margin: 15px 0;
+            background: none;
+            font-weight: bold;
+            font-size: 1.2em;
+            color: #105F7F;
+            cursor: pointer;
+            -webkit-transition: .3s;
+            transition: .3s;
+            float: right;
+        }
+
+        .viewoffres .viewoffresbtn:hover {
+            background: #105F7F;
+            opacity: 0.9;
+            text-decoration: none;
+            border: 3px solid #105F7F;
+            color: white;
+        }
+    </style>
+    <title>Liste des entreprises</title>
 </head>
 
 <body>
@@ -32,8 +106,16 @@
                 <!-- Page Content  -->
 
                 <div class="database col-12">
-                    <h2>Entreprises</h2>
-
+                    <div class="row">
+                        <div class="col">
+                            <h2>Entreprises</h2>
+                        </div>
+                        <div class="viewoffres col">
+                            <a href="/entreprise/add" type="button" class="viewoffresbtn"> Ajouter une
+                                Entreprise
+                            </a>
+                        </div>
+                    </div>
                     <section class="search-sec">
                         <div class="container">
                             <form action="#" method="post" novalidate="novalidate">
@@ -56,7 +138,8 @@
                                                 </select>
                                             </div>
                                             <div class="col-lg-3 col-md-3 col-sm-12 p-0">
-                                                <button type="button" class="btn wrn-btn">Search</button>
+                                                <button type="button" onclick="filtre()"
+                                                    class="btn wrn-btn">Search</button>
                                             </div>
                                         </div>
                                     </div>
@@ -64,84 +147,167 @@
                             </form>
                         </div>
                     </section>
-                    <ul class="responsive-table">
-                        <li class="table-header">
-                            <div class="col-1"></div>
-                            <div class="col-2">Raison Sociale</div>
-                            <div class="col-3">Secteur d'Activité</div>
-                            <div class="col-3">Adresse</div>
-                            <div class="col-2">Site Internet</div>
-                            <div class="col-1"></div>
-                        </li>
-                        <div id="card-body">
-
+                    <%if (message) {%>
+                        <div class="mt-5 alert alert-<%= message.type %>  alert-dismissible fade show">
+                            <strong>
+                                <%= message.intro %>
+                            </strong><br>
+                            <%= message.message %>
+                                <button type="button" class="close" data-dismiss="alert" aria-label="Close">
+                                    <span aria-hidden="true">&times;</span>
+                                </button>
                         </div>
-                    </ul>
+                        <%}%>
+                            <ul class="responsive-table">
+                                <li class="table-header">
+                                    <div class="col-1"></div>
+                                    <div class="col-2">Raison Sociale</div>
+                                    <div class="col-4">Secteur d'Activité</div>
+                                    <div class="col-3">Adresse</div>
+                                    <div class="col-1">SiteWeb</div>
+                                    <div class="col-1"></div>
+                                </li>
+                                <div id="card-body">
+                                </div>
+                            </ul>
+
+                            <div id="pagination-container"></div>
                 </div>
 
         </div>
+        <button onclick="topFunction()" class="btn scrollUp" id="myBtn" title="Go to top">Haut de la
+            page</button>
 
         <%- include ('../layouts/footer.ejs') %>
 
             <script src="https://code.jquery.com/jquery-3.4.1.slim.min.js"></script>
             <script src="https://cdn.jsdelivr.net/npm/popper.js@1.16.0/dist/umd/popper.min.js"></script>
             <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/js/bootstrap.min.js"></script>
+            <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/1.12.4/jquery.min.js"></script>
+            <script
+                src="https://cdnjs.cloudflare.com/ajax/libs/simplePagination.js/1.6/jquery.simplePagination.min.js"></script>
 
             <script>
                 var entreprise = new Array()
                 var localite = new Array()
+                var Secteur_activite = new Array()
                 const card = (r) => {
                     return `
                     <li class="table-row">
-                            <div class="col-1" data-label="LOGO"><img width="50px" src="${r.Logo}"
+                            <div class="col-1" data-label="LOGO"><img width="50px" src="../upload/logo/${r.Logo}"
                                     alt="">
                             </div>
                             <div class="col-2" data-label="Raison Sociale">${r.Raison_social}</div>
-                            <div class="col-3" data-label="Secteur d'Activité">${r.Secteur_activite}</div>
+                            <div class="col-4" data-label="Secteur d'Activité">${r.Secteur_activite}</div>
                             <div class="col-3" data-label="Adresse">${r.Localite}</div>
-                            <div class="col-2" data-label="Site Internet"><a class="siteLink" href='${r.Site_web}' target='_blank'>ici</a></div>
+                            <div class="col-1" data-label="Site Internet"><a class="siteLink" href='${r.Site_web}' target='_blank'>ici</a></div>
                             <div class="col col-1 icons">
                                 <a href="/entreprise/edit/${r.Id_utilisateur}" type="button" class="ent modify"><i class="fa fa-pencil" data-toggle='modifier' data-target="${r.Id_utilisateur}" aria-hidden="true"></i></a>
                                 <a href="/entreprise/delete/${r.Id_utilisateur}" type="button" class="ent bin"><i class="fa fa-trash-o" data-toggle='supprimer' data-target="${r.Id_utilisateur}" aria-hidden="true"></i></a>                      
                             </div>
                     </li>
                 `}
+                const showcards = () => {
+                    $('#card-body').html(entreprise.map(element => {
+                        console.log(element)
+                        return card(element)
+                    }).join(''))
+                }
+                const genfilter = () => {
+                    localite = entreprise.map((e) => { return e.Localite })
+                    $('#localite').html(`
+                        <option>Ville</option>
+                        ${localite.map((e) => { return `<option value="${e}">${e}</option>` }).join('')}
+                    `)
+                    Secteur_activite = entreprise.map((f) => { return f.Secteur_activite })
+                    $('#Secteur_activite').html(`
+                        <option>Secteur d'activité</option>
+                        ${Secteur_activite.map((f) => { return `<option value="${f}">${f}</option>` }).join('')}
+                    `)
+                    showcards()
+                }
                 const getEntreprise = () => {
                     let xhr = new XMLHttpRequest()
                     xhr.open('get', 'entreprise?json=true')
                     xhr.responseType = 'json'
                     xhr.onload = () => {
                         entreprise = xhr.response
-                        $('#card-body').html(entreprise.map(element => {
-                            return card(element)
-                        }).join(''))
-                        localite = entreprise.map((e) => { return e.Localite })
-                        $('#localite').html(`
-                        <option>Ville</option>
-                        ${localite.map((e) => { return `<option value="${e}">${e}</option>` }).join('')}
-                        `)
-                        Secteur_activite = entreprise.map((f) => { return f.Secteur_activite })
-                        $('#Secteur_activite').html(`
-                        <option>Secteur d'activité</option>
-                        ${Secteur_activite.map((f) => { return `<option value="${f}">${f}</option>` }).join('')}
-                        `)
-
+                        genfilter()
                     }
                     xhr.send()
                 }
                 const filtre = () => {
                     let v = $('#localite').val()
-                    entreprise = entreprise.filter((e) => { return e.Localite == v })
-                    $('#card-body').html(entreprise.map(element => {
-                        return card(element)
-                    }).join(''))
                     let w = $('#Secteur_activite').val()
-                    entreprise = entreprise.filter((f) => { return f.Secteur_activite == w })
-                    $('#card-body').html(entreprise.map(element => {
-                        return card(element)
-                    }).join(''))
+                    getEntreprise()
+                    if (v != "Ville") {
+                        $('#localite').val(v)
+                        entreprise = entreprise.filter((e) => { return e.Localite == v })
+                        console.log(entreprise)
+                        $('#card-body').html(entreprise.map(element => {
+                            return card(element)
+                        }).join(''))
+                    }
+                    if (w != "Secteur d'activité") {
+                        $('#Secteur_activite').val(w)
+                        entreprise = entreprise.filter((f) => { return f.Secteur_activite == w })
+                        $('#card-body').html(entreprise.map(element => {
+                            return card(element)
+                        }).join(''))
+                    }
                 }
                 getEntreprise()
+
+                var items = $('.responsive-table .table-row');
+                var numItems = items.length;
+                var perPage = 3;
+                items.slice(perPage).hide();
+                $('#pagination-container').pagination({
+                    items: numItems,
+                    itemsOnPage: perPage,
+                    prevText: "<",
+                    nextText: ">",
+                    onPageClick: function (pageNumber) {
+                        var showFrom = perPage * (pageNumber - 1);
+                        var showTo = showFrom + perPage;
+                        items.hide().slice(showFrom, showTo).show();
+                    }
+                });
+                $(document).on('click', (e) => {
+                    let d = $(e.target).data()
+                    if (d.toggle == 'modifier') {
+                        window.location.href = '/entreprise/edit/' + d.target
+                    }
+                    else if (d.toggle == 'supprimer') {
+                        let xhr = new XMLHttpRequest()
+                        xhr.open('delete', 'entreprise/' + d.target)
+                        xmlhttp.setRequestHeader("Content-Type", "application/json;charset=UTF-8");
+                        xhr.onload = () => {
+                            getEntreprise()
+                        }
+                        xhr.send()
+                    }
+                })
+                //ScrollToTop button
+                //Get the button
+                var mybutton = document.getElementById("myBtn");
+
+                // When the user scrolls down 20px from the top of the document, show the button
+                window.onscroll = function () { scrollFunction() };
+
+                function scrollFunction() {
+                    if (document.body.scrollTop > 20 || document.documentElement.scrollTop > 20) {
+                        mybutton.style.display = "block";
+                    } else {
+                        mybutton.style.display = "none";
+                    }
+                }
+                // When the user clicks on the button, scroll to the top of the document
+                function topFunction() {
+                    document.body.scrollTop = 0;
+                    document.documentElement.scrollTop = 0;
+                }
+
             </script>
 
 </body>
