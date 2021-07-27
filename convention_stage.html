@@ -14,11 +14,11 @@
 <body>
     <div>
         <div style="padding: 0 30px;">
-            <img style="border: solid;" width="100" height="100" src="/public/img/logo.png" alt="">
+            <img style="border: solid;" width="100" height="100" src="data:image/png;base64, {{this.usthb}}" alt="">
             <span style="color: #fff;">_____________________________________</span>
-            <img style="border: solid;" width="100" height="100" src="/public/img/logo.png" alt="">
+            <img style="border: solid;" width="100" height="100" src="data:image/png;base64, {{this.logoentreprise}}" alt="">
         </div>
-        <div style="border: solid black 3px; margin: 200px 150px 250px 150px; padding: 30px; text-align: center;">
+        <div style="border: solid black 3px; margin: 200px 150px 420px 150px; padding: 30px; text-align: center;">
             <h1>Convention de Stage</h1>
         </div>
         <br><br><br>
@@ -46,11 +46,11 @@
         <h2 style="text-align: center; padding-bottom: 60px;">REFERENCES DE L’ACCORD CADRE DE PARTENARIAT</h2>
         <p style="line-height: 40px; padding: 50px 20px;">La présente convention de stage d’application du PFE a été
             établi en application de l’accord cadre de partenariat convenu par les parties désignées ci-après :
-            <br>Organisme professionnel …………(Nom de l'entreprise)……………
-            <br>et l’UST……………………………………………………………………
-            <br>en date du ………………………..
+            <br>Organisme professionnel {{this.offre.Entreprise.Raison_social}}
+            <br>et l’USTHB
+            <br>en date du {{this.postulation.Date_postulation}}
         </p>
-        <div style="height: 280px;"></div>
+        <div style="height: 400px;"></div>
     </div>
     <!--Nouvelle page-->
     <div style="padding: 0 40px;">
@@ -58,26 +58,26 @@
             ou les stagiaires identifiés
             à l’article 2, seront accueillis dans l’organisme, lieu(x) du stage.</p>
         <h4 style="margin-bottom: 0;">ARTICLE 1 : Identification du cycle de formation justifiant le stage de PFE</h4>
-        <br>Nature des études ou de la formation :
-        <br><br>Durée :
-        <br><br>Niveau atteint (1ère année, 2ème, etc.) :
-        <br><br>Diplôme préparé ou qualification visée :
+        <br>Nature des études ou de la formation : {{this.etudiant.Faculte.Nom}}
+        <br><br>Durée : {{this.offre.Duree_stage}}
+        <br><br>Niveau atteint (1ère année, 2ème, etc.) : {{this.etudiant.Annee_etude}}
+        <br><br>Diplôme préparé ou qualification visée : .....................
         <br><br>
         <h4 style="margin-bottom: 0;">ARTICLE 2 : Identification du ou des stagiaires</h4>
-        <br>Nom et Prénom :
-        <br><br>Date et lieu de naissance :
-        <br><br>Adresse :
+        <br>Nom et Prénom : {{this.etudiant.Nom}} {{this.etudiant.Prenom}}
+        <br><br>Date et lieu de naissance : {{this.etudiant.Date_naissance}} à Alger
+        <br><br>Adresse : {{this.etudiant.Adresse}}
         <br><br>
-        <p>Tél : <span style="color: #fff;">____________________________</span> email :</p>
-        <br>N° d’immatriculation à l’UST :
-        <br><br>Nom et Prénom :
-        <br><br>Date et lieu de naissance :
-        <br><br>Adresse :
+        <p>Tél : <span style="margin-right: 20px;">{{this.etudiant.Num_tel}}</span> email : {{this.etudiant.Email}}</p>
+        <br>N° d’immatriculation à l’USTHB : {{this.etudiant.Matricule}}
+        <br><br>Nom et Prénom : .................
+        <br><br>Date et lieu de naissance : ...........
+        <br><br>Adresse : ..........................
         <br><br>
         <p>Tél : <span style="color: #fff;">____________________________</span> email :</p>
         <br>N° d’immatriculation à l’UST :
     </div>
-    <br><br>
+    <br><br><br><br><br>
     <!--Nouvelle page-->
     <div style="padding: 0 40px;">
         <h4 style="margin-bottom: 0;">ARTICLE 3 : Programme du stage</h4>
@@ -99,7 +99,7 @@
             <br><br><br><br><br><br><br>
         </div>
         <p style="line-height: 30px;">
-            Nom, prénom et qualité du responsable du stagiaire dans le département de l’UST :
+            Nom, prénom et qualité du responsable du stagiaire dans le département de l’USTHB :
             <br>……………………………………………………………………………………………
             <br>………………………………………………………………………….…………………
             <br>…………………………………………………………………………………………….
@@ -108,15 +108,15 @@
             <br>………………………………………………………………………….…………………
             <br>…………………………………………………………………………………………….
         </p>
-    </div> <br>
+    </div> <br><br><br><br>
     <!--Nouvelle page-->
     <div style="padding: 0 40px;">
         <h4>ARTICLE 4 : Conditions du stage</h4>
-        <p>Durée du stage :…………...……………..mois, du ………………….au……………………..
+        <p>Durée du stage : {{this.offre.Duree_stage}} semaines, du ………………….au……………………..
             <br><br>Elle doit correspondre à celle prévue dans le cadre des études ou de la formation et ne peut en tout
             état de cause être supérieure à 12 mois.
             Lieu(x) où il s’effectue
-            …………………………………………………………………………………………………
+            {{this.offre.Entreprise.Localite}}
             …………………………………………………………………………………………………
             <br><br>En cas de lieux multiples, préciser chacun d’eux et les dates correspondantes.
             <br><br>Horaires de présence du stagiaire : …………………………………………………………….
@@ -127,7 +127,7 @@
             <br><br>Du fait de son statut, le stagiaire ne peut prétendre recevoir aucun salaire de l’organisme
             d’accueil.
             <br><br>Toutefois, ledit organisme peut, si il le souhaite, lui verser une gratification.
-            <br><br>Montant de la gratification : …………………………………………………………………
+            <br><br>Montant de la gratification : {{this.offre.Base_remuneration}}
         <h4>ARTICLE 5 : Couverture sociale</h4>
         Le stagiaire doit être couvert contre les risques maladie, invalidité et accidents de travail.
         <br>

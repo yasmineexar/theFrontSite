@@ -64,124 +64,8 @@
                 </section>
 
                 <h2>Etudiants ayant postulé à mes offres</h2>
-                <div class="grid pb-5">
-                    <div class="grid-item">
-                        <div class="card">
-                            <div class="info">
-                                <img width='60px' height='60px' src="/public/img/user.png"
-                                    class="img-thumbnail rounded-circle navbar-brand pdp" alt="User">
-                                <br>
-                                <span>Nom Prénom</span>
-                                <br>
-                            </div>
-                            <div class="detail">
-                                <table>
-                                    <tr>
-                                        <td class="icone"><i class="fa fa-envelope-o" aria-hidden="true"></i>
-                                        </td>
-                                        <td><span>monmail@gmail.com</span></td>
-                                    </tr>
-                                    <tr>
-                                        <td class="icone"><i class="fa fa-barcode" aria-hidden="true"></i></td>
-                                        <td><span>157758710025</span></td>
-                                    </tr>
-                                    <tr>
-                                        <td class="icone"><i class="fa fa-graduation-cap" aria-hidden="true"></i>
-                                        </td>
-                                        <td><span>L2</span></td>
-                                    </tr>
-                                    <tr>
-                                        <td class="icone"><i class="fa fa-university" aria-hidden="true"></i>
-                                        </td>
-                                        <td><span>Faculté d'électronique</span></td>
-                                    </tr>
-                                    <tr>
-                                        <td class="icone"><i class="fa fa-bookmark-o" aria-hidden="true"></i>
-                                        </td>
-                                        <td><span>Nom de la spécialité</span></td>
-                                    </tr>
-                                </table>
-                            </div>
-                        </div>
-                    </div>
-                    <div class="grid-item">
-                        <div class="card">
-                            <div class="info">
-                                <img width='60px' height='60px' src="/public/img/user.png"
-                                    class="img-thumbnail rounded-circle navbar-brand pdp" alt="User">
-                                <br>
-                                <span>Nom Prénom</span>
-                                <br>
-                            </div>
-                            <div class="detail">
-                                <table>
-                                    <tr>
-                                        <td class="icone"><i class="fa fa-envelope-o" aria-hidden="true"></i>
-                                        </td>
-                                        <td><span>monmail@gmail.com</span></td>
-                                    </tr>
-                                    <tr>
-                                        <td class="icone"><i class="fa fa-barcode" aria-hidden="true"></i></td>
-                                        <td><span>157758710025</span></td>
-                                    </tr>
-                                    <tr>
-                                        <td class="icone"><i class="fa fa-graduation-cap" aria-hidden="true"></i>
-                                        </td>
-                                        <td><span>L2</span></td>
-                                    </tr>
-                                    <tr>
-                                        <td class="icone"><i class="fa fa-university" aria-hidden="true"></i>
-                                        </td>
-                                        <td><span>Faculté d'électronique</span></td>
-                                    </tr>
-                                    <tr>
-                                        <td class="icone"><i class="fa fa-bookmark-o" aria-hidden="true"></i>
-                                        </td>
-                                        <td><span>Nom de la spécialité</span></td>
-                                    </tr>
-                                </table>
-                            </div>
-                        </div>
-                    </div>
-                    <div class="grid-item">
-                        <div class="card">
-                            <div class="info">
-                                <img width='60px' height='60px' src="/public/img/user.png"
-                                    class="img-thumbnail rounded-circle navbar-brand pdp" alt="User">
-                                <br>
-                                <span>Nom Prénom</span>
-                                <br>
-                            </div>
-                            <div class="detail">
-                                <table>
-                                    <tr>
-                                        <td class="icone"><i class="fa fa-envelope-o" aria-hidden="true"></i>
-                                        </td>
-                                        <td><span>monmail@gmail.com</span></td>
-                                    </tr>
-                                    <tr>
-                                        <td class="icone"><i class="fa fa-barcode" aria-hidden="true"></i></td>
-                                        <td><span>157758710025</span></td>
-                                    </tr>
-                                    <tr>
-                                        <td class="icone"><i class="fa fa-graduation-cap" aria-hidden="true"></i>
-                                        </td>
-                                        <td><span>L2</span></td>
-                                    </tr>
-                                    <tr>
-                                        <td class="icone"><i class="fa fa-university" aria-hidden="true"></i>
-                                        </td>
-                                        <td><span>Faculté d'électronique</span></td>
-                                    </tr>
-                                    <tr>
-                                        <td class="icone"><i class="fa fa-bookmark-o" aria-hidden="true"></i>
-                                        </td>
-                                        <td><span>Nom de la spécialité</span></td>
-                                    </tr>
-                                </table>
-                            </div>
-                        </div>
-                    </div>
+                <div class="grid pb-5" id="postulation">
+
                 </div>
                 <h2>Etudiants</h2>
                 <div class="grid" id="card-body">
@@ -201,7 +85,95 @@
             <script src="https://code.jquery.com/jquery-3.4.1.slim.min.js"></script>
             <script src="https://cdn.jsdelivr.net/npm/popper.js@1.16.0/dist/umd/popper.min.js"></script>
             <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/js/bootstrap.min.js"></script>
+            <script>
+                const postulationContainer = $('#postulation')
+                let postulations = undefined
+                const postulationCard = (e)=>{
+                   return`
+                        <div class="grid-item">
+                            <div class="card">
+                                <div class="info">
+                                    <img width='60px' height='60px' src="/public/img/user.png"
+                                        class="img-thumbnail rounded-circle navbar-brand pdp" alt="User">
+                                    <br>
+                                    <a class="lien" href="/etudiant/${e.Etudiant.Id_utilisateur}"
+                                                title="Voir le profile de l'étudiant"><span>${e.Etudiant.Nom} ${e.Etudiant.Prenom}</span></a>
+                                    <br>
+                                </div>
+                                <div class="detail">
+                                    <table>
+                                        <tr>
+                                            <td class="icone"><i class="fa fa-envelope-o" aria-hidden="true"></i></td>
+                                            <td><span>${e.Etudiant.Email}</span></td>
+                                        </tr>
+                                        <tr>
+                                            <td class="icone"><i class="fa fa-barcode" aria-hidden="true"></i></td>
+                                            <td><span>${e.Etudiant.Matricule}</span></td>
+                                        </tr>
+                                        <tr>
+                                            <td class="icone"><i class="fa fa-graduation-cap" aria-hidden="true"></i>
+                                            </td>
+                                            <td><span>${e.Etudiant.Annee_etude}</span></td>
+                                        </tr>
+                                        <tr>
+                                            <td class="icone"><i class="fa fa-university" aria-hidden="true"></i></td>
+                                            <td><span>${e.Etudiant.Faculte.Nom}</span></td>
+                                        </tr>
+                                        <tr>
+                                            <td class="icone"><i class="fa fa-bookmark-o" aria-hidden="true"></i></td>
+                                            <td><span>${e.Etudiant.Specialite}</span></td>
+                                        </tr>
+                                    </table>
+                                    <div class="icons">
+                                        <button class="icon"><i data-toggle="accepter" data-etudiant="${e.Etudiant.Id_utilisateur}" data-offre="${e.Offre.Id_offre}" class="fa fa-check" aria-hidden="true"></i></button>
+                                        <button class="icon"><i data-toggle="refuser" data-etudiant="${e.Etudiant.Id_utilisateur}" data-offre="${e.Offre.Id_offre}" class="fa fa-times" aria-hidden="true"></i></button>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                   `
+                }
+                const getPostulation= ()=>{
+                    let xhr = new XMLHttpRequest()
+                    xhr.open("get","\\postulation?json=true")
+                    xhr.responseType = 'json'
+                    xhr.onload = ()=>{
+                        postulations = xhr.response
+                        showPostulation(postulations)
+                    }
+                    xhr.send()
+                }
+                const showPostulation=(p)=>{
+                    console.log(p)
+                    postulationContainer.append(p.map(e=>postulationCard(e)).join(''))
+                }
+                $(document).on('click',(event)=>{
+                    let data = $(event.target).data()
+                    if(data.toggle == "accepter"){
+                        let xhr = new XMLHttpRequest()
+                        xhr.open("post","\\postulation/update")
+                        xhr.setRequestHeader("Content-Type","application/json")
+                        xhr.onload = ()=>{window.location.reload()}
+                        xhr.send(JSON.stringify({
+                            Id_offre: data.offre,
+                            Id_utilisateur:data.etudiant,
+                            etat:"accepter"
+                        }))
+                    }else if(data.toggle == "refuser"){
+                        let xhr = new XMLHttpRequest()
+                        xhr.open("post","\\postulation/update")
+                        xhr.setRequestHeader("Content-Type","application/json")
+                        xhr.onload = ()=>{window.location.reload()}
+                        xhr.send(JSON.stringify({
+                            Id_offre: data.offre,
+                            Id_utilisateur:data.etudiant,
+                            etat:"refuse"
+                        }))
+                    }
+                })
+                getPostulation()
 
+            </script>
             <script>
                 const card = (r) => {
                     return `
@@ -254,16 +226,7 @@
                     xhr.onload = () => {
                         let etudiant = xhr.response
                         console.log(etudiant.length)
-                        etudiant = etudiant.filter((e) => {
-                            let n = true;
-                            let p = true;
-                            let f = true;
-                            if (nom) n = new RegExp(nom).test(e.Nom)
-                            if (prenom) p = new RegExp(prenom).test(e.Prenom)
-                            if (fac) f = new RegExp("^" + fac + "$").test(e.Faculte)
-                            return n & p & f
-                        })
-                        console.log(etudiant.length)
+                
                         $('#card-body').html(etudiant.map(element => {
                             return card(element)
                         }).join(''))

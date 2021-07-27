@@ -22,7 +22,7 @@
             <hr>
         </div>
         <div style=" margin: 60px; text-align: justify;">
-            <P>n/Ref: ……../observatoire/16<span style="color: #fff;">____________________________</span>A Bab Ezzouar,
+            <P>n/Ref: {{this.offre.Id_offre}}{{this.etudiant.Id_utilisateur}}/observatoire/16<span style="color: #fff;">____________________________</span>A Bab Ezzouar,
                 <br><span style="color: #fff;">n/Ref: ……../observatoire/16_____________________________</span>Le
                 ………
             </P>
@@ -42,10 +42,10 @@
                 pédagogiques de participer à cette formation en proposant à ces étudiants des stages d'entreprise se
                 rapportant à leurs activités ou à leurs besoins.
                 <br>C'est dans cette optique que nous vous recommandons l'étudiant(e) :
-                <br><br>Nom & Prénom : <span style="color:#fff;">_____________________________________</span>Matricule :
-                <br>Année d'étude :
-                <br>Faculté :
-                <br>Spécialité :
+                <br><br>Nom & Prénom : {{this.etudiant.Nom}} {{this.etudiant.Prenom}}<span style="margin-right: 60px;"></span>Matricule : {{this.etudiant.Matricule}}
+                <br>Année d'étude : {{this.etudiant.Annee_etude}}
+                <br>Faculté : {{this.etudiant.Faculte.Nom}}
+                <br>Spécialité : {{this.etudiant.Specialite}}
                 <br><br>Afin de lui permettre de participer à une formation au sein de votre entreprise durant la
                 période des vacances d'été.
                 <br><br>En souhaitant trouver au sein de votre établissement un écho favorable, veuillez agréer Monsieur
