@@ -5,37 +5,37 @@ const userid = document.querySelector("[name=userid]").content;
 
 
 
-const postWish = (id)=>{
-    let xhr = new XMLHttpRequest()
-    xhr.open("post","\\offre/wish")
-    xhr.setRequestHeader("Content-Type","application/json")
-    xhr.onload = ()=>{console.log(xhr.response)}
-    xhr.send(JSON.stringify({Id_offre:id}))
+const postWish = (id) => {
+  let xhr = new XMLHttpRequest()
+  xhr.open("post", "\\offre/wish")
+  xhr.setRequestHeader("Content-Type", "application/json")
+  xhr.onload = () => { console.log(xhr.response) }
+  xhr.send(JSON.stringify({ Id_offre: id }))
 }
 
-const Postuler = (Id_offre)=>{
-    let xhr = new XMLHttpRequest()
-    xhr.open("post","\\postulation")
-    xhr.setRequestHeader("Content-Type","application/json")
-    xhr.onload = ()=>{console.log(xhr.response)}
-    xhr.send(JSON.stringify({Id_offre}))
+const Postuler = (Id_offre) => {
+  let xhr = new XMLHttpRequest()
+  xhr.open("post", "\\postulation")
+  xhr.setRequestHeader("Content-Type", "application/json")
+  xhr.onload = () => { console.log(xhr.response) }
+  xhr.send(JSON.stringify({ Id_offre }))
 }
 $(document).on("click", (event) => {
   const data = $(event.target).data();
   console.log(data)
-  if(data.toggle == "addwish"){
+  if (data.toggle == "addwish") {
     event.target.classList.toggle("fa-heart-o")
     event.target.classList.toggle("fa-heart")
-    let offre = Offres.filter(e=>e.Id_offre == data.target)
+    let offre = Offres.filter(e => e.Id_offre == data.target)
     showWishes(offre)
     postWish(data.target)
-  }else if(data.toggle == "postuler"){
-    if(confirm(`\nTu es sur le point d\'envoyer ta candidature à l\'entreprise qui a publié cette offre. \n \nEs-tu sur de vouloir continuer ?`)){
-        event.target.classList.toggle("fa-pencil-square-o")
-        event.target.classList.toggle("fa-download")
-        Postuler(data.target)
+  } else if (data.toggle == "postuler") {
+    if (confirm(`\nTu es sur le point d\'envoyer ta candidature à l\'entreprise qui a publié cette offre. \n \nEs-tu sur de vouloir continuer ?`)) {
+      event.target.classList.toggle("fa-pencil-square-o")
+      event.target.classList.toggle("fa-download")
+      Postuler(data.target)
     }
-  }else if(data.toggle == "deletepost"){
+  } else if (data.toggle == "deletepost") {
 
   }
 });
@@ -65,16 +65,15 @@ const showWishes = (o) => {
 const wishitem = (r) => {
   return `
     <tr class="cart-row">
-        <td class="cart-item-image"><a href="\\entreprise/${
-          r.id
-        }"> <img width="40px" height="40px" src="${
-    r.Entreprise.Logo
-  }" class="img-thumbnail rounded-circle navbar-brand pdp" alt="User">
+        <td class="cart-item-image"><a href="\\entreprise/${r.id
+    }"> <img width="40px" height="40px" src="${r.Entreprise.Logo
+    }" class="img-thumbnail rounded-circle navbar-brand pdp" alt="User">
         </a></td>
         <td class="cart-item-title">${r.Titre}</td>
-        <td>${r.state ? r.stage : "favoris"}</td>
+        <td>${r.postulationstate ? r.postulationstate : "favoris"}</td>
         <td class="cart-item-icon">
-            <button><i class="fa fa-pencil-square-o" data-toggle="postuler" data-target="${r.Id_offre}"></i></button>
+          ${r.postulationstate ? `<a href="\\postulation/download/${r.Id_offre}"><i class="fa fa-download"></i></a>` : `<button><i class="fa fa-pencil-square-o" data-toggle="postuler" data-target="${r.Id_offre}"></i></button>`}
+            
         </td>
         <td>
             <button><i class="fa fa-trash-o" aria-hidden="true" data-toggle="deletepost" data-target="${r.Id_offre}"></i></button>

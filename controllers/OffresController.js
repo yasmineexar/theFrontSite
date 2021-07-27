@@ -23,23 +23,29 @@ exports.read = (req, res) => {
     return Offre.getAll().then((offres) => {
       let c = [];
       Wish.getByIdUser(req.session.currentuser.id).then((wish) => {
-        Postulation.getByIdUser().then((postulations) => {
-          console.log("postulation: ", wish);
-          offres.forEach((element, i) => {
-            if (wish.find((e) => e.Id_offre == element.Id_offre)) offres[i].isWish = true;
+        //console.log("postulation: ", wish);
+        offres.forEach((element, i) => {
+          if (wish.find((e) => e.Id_offre == element.Id_offre)) offres[i].isWish = true;
 
+          // console.log(p)
+          c.push(
+            Postulation.read(req.session.currentuser.id, element.Id_offre).then(results => {
+              console.log("postulation", results)
 
-            
-            c.push(
-              Entreprise.getById(element.Id_utilisateur).then((entr) => {
-                offres[i].Entreprise = entr;
-              })
-            );
-          });
-          console.log(offres);
-          Promise.all(c).then(() => {
-            return res.json(offres);
-          });
+              if (results && results.length == 1) offres[i].postulationstate = results[0].Etat
+              console.log("offre", offres[i])
+            })
+          )
+          c.push(
+            Entreprise.getById(element.Id_utilisateur).then((entr) => {
+              offres[i].Entreprise = entr;
+            })
+          );
+        });
+        // console.log(offres);
+        Promise.all(c).then(() => {
+
+          return res.json(offres);
         });
       });
     });

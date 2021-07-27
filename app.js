@@ -6,7 +6,6 @@ const routes = require('./routes')
 const sessiion = require('express-session')
 const flash = require('connect-flash')
 const { isAuth } = require('./middelwares/Auth')
-
 app.use(express.json())
 app.use(fileUpload())
 app.use(express.urlencoded({ extended: true }))
@@ -41,35 +40,13 @@ app.use('/user', isAuth, routes.user)
 
 // // pdf generator
 // //Required package
-// var pdf = require("pdf-creator-node");
-// var fs = require("fs");
+
 
 // Read HTML Template
-var png = fs.readFileSync("public/img/observatoire.png")
-let observatoire = png.toString('base64')
-var html = fs.readFileSync("demande_stage.html", "utf8");
 
-// var options = {
-//     format: "A4",
-//     orientation: "portrait",
-// };
 
-var document = {
-    html: html,
-    data: {
-        observatoire
-    },
-    path: "./output.pdf",
-    type: "",
-};
 // By default a file is created but you could switch between Buffer and Streams by using "buffer" or "stream" respectively.
-pdf.create(document, options)
-    .then((res) => {
-        console.log(res);
-    })
-    .catch((error) => {
-        console.error(error);
-    });
+
 // pdf generator
 
 
