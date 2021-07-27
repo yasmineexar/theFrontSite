@@ -8,135 +8,50 @@
     <div>
         <img class="logo" src="/public/img/logo2.png" alt="LOGO">
     </div>
-    <%# Etudiant %>
-        <%if (locals?.currentuser.Role=="etudiant" ) { %>
+    <div class="dropdown show">
+        <a class="btn dropdown-toggle" href="#" role="button" id="dropdownMenuLink" data-toggle="dropdown"
+            aria-haspopup="true" aria-expanded="false"><span class="info-span">Nom Prénom</span>
+            <img width='40px' height='40px' src="/public/img/user.png"
+                class="img-thumbnail rounded-circle navbar-brand pdp" alt="User">
+        </a>
 
-            <div class="dropdown show">
-                <a class="btn dropdown-toggle" href="#" role="button" id="dropdownMenuLink" data-toggle="dropdown"
-                    aria-haspopup="true" aria-expanded="false"><span class="info-span">
-                        <%= locals.currentuser.Username%>
-                    </span>
-                    <img width='40px' height='40px' src="/public/img/user.png"
-                        class="img-thumbnail rounded-circle navbar-brand pdp" alt="User">
-                </a>
-                <a style="text-decoration: none; color: black;" href="/etudiant/<%=locals.currentuser.id%>">
-                    <div class="dropdown-menu dropdown-menu-right" aria-labelledby="dropdownMenuLink">
-                        <div class="info">
-                            <img width='40px' height='40px' src="/public/img/user.png"
-                                class="img-thumbnail rounded-circle navbar-brand pdp" alt="User">
-                            <br>
-                            <span>
-                                <%= locals.currentuser.Nom.toUpperCase()%>
-                                    <%=
-                                        locals.currentuser.Prenom.charAt(0).toUpperCase()+locals.currentuser.Prenom.slice(1).toLowerCase()%>
-                            </span>
-                            <br>
-                        </div>
-                </a>
-                <div class="detail">
-                    <table>
-                        <tr>
-                            <td class="icone"><i class="fa fa-envelope-o" aria-hidden="true"></i></td>
-                            <td><a href='mailto:<%= locals.currentuser.Email%>'>
-                                    <%= locals.currentuser.Email%>
-                                </a></td>
-                        </tr>
-                        <tr>
-                            <td class="icone"><i class="fa fa-barcode" aria-hidden="true"></i></td>
-                            <td><span>
-                                    <%= locals.currentuser.Matricule%>
-                                </span></td>
-                        </tr>
-                        <tr>
-                            <td class="icone"><i class="fa fa-graduation-cap" aria-hidden="true"></i></td>
-                            <td><span>
-                                    <%=locals.currentuser.Annee_etude%>
-                                </span></td>
-                        </tr>
-                        <tr>
-                            <td class="icone"><i class="fa fa-university" aria-hidden="true"></i></td>
-                            <td><span>
-                                    <%= locals.currentuser.Faculte.Nom%>
-                                </span></td>
-                        </tr>
-                        <tr>
-                            <td class="icone"><i class="fa fa-bookmark-o" aria-hidden="true"></i></td>
-                            <td><span>
-                                    <%=locals.currentuser.Specialite%>
-                                </span></td>
-                        </tr>
-                    </table>
-                </div>
-                <div class="logout">
-                    <a class="dropdown-item" href="/etudiant/<%=locals.currentuser.id%>">Mettre à jour<i
-                            class="fa fa-pencil icone" aria-hidden="true"></i></a>
-                    <a class="dropdown-item" href="/logout">Déconnexion<i class="fa fa-sign-out icone"
-                            aria-hidden="true"></i></a>
-                </div>
+        <div class="dropdown-menu dropdown-menu-right" aria-labelledby="dropdownMenuLink">
+            <div class="info">
+                <img width='40px' height='40px' src="/public/img/user.png"
+                    class="img-thumbnail rounded-circle navbar-brand pdp" alt="User">
+                <br>
+                <span>Nom Prénom</span>
+                <br>
             </div>
-            <% } else if (locals?.currentuser.Role=="entreprise" ) { %>
+            <div class="detail">
+                <table>
+                    <tr>
+                        <td class="icone"><i class="fa fa-envelope-o" aria-hidden="true"></i></td>
+                        <td><span>monmail@gmail.com</span></td>
+                    </tr>
+                    <tr>
+                        <td class="icone"><i class="fa fa-barcode" aria-hidden="true"></i></td>
+                        <td><span>157758710025</span></td>
+                    </tr>
+                    <tr>
+                        <td class="icone"><i class="fa fa-graduation-cap" aria-hidden="true"></i></td>
+                        <td><span>L2</span></td>
+                    </tr>
+                    <tr>
+                        <td class="icone"><i class="fa fa-university" aria-hidden="true"></i></td>
+                        <td><span>Faculté d'électronique</span></td>
+                    </tr>
+                    <tr>
+                        <td class="icone"><i class="fa fa-bookmark-o" aria-hidden="true"></i></td>
+                        <td><span>Nom de la spécialité</span></td>
+                    </tr>
+                </table>
+            </div>
+            <div class="logout">
+                <a class="dropdown-item" href="login.html">Déconnexion<i class="fa fa-sign-out icone"
+                        aria-hidden="true"></i></a>
 
-                <%# Entreprise %>
-
-                    <div class="show">
-                        <a class="btn dropdown-toggle" href="#" role="button" id="dropdownMenuLink"
-                            data-toggle="dropdown" aria-haspopup="true" aria-expanded="false"><span class="info-span">
-                                <%=currentuser.Username%>
-                            </span>
-                            <img width='40px' height='40px' src="<%=currentuser.Logo%>"
-                                class="img-thumbnail rounded-circle navbar-brand pdp" alt="">
-                        </a>
-                        <div class="dropdown-menu dropdown-menu-right" aria-labelledby="dropdownMenuLink">
-                            <div class="info">
-                                <span>
-                                    <%=currentuser.Raison_social%>
-                                </span>
-                                <br>
-
-                                <h6 class="pt-2">
-                                    <%=currentuser.Nom.toUpperCase()%>
-                                        <%=currentuser.Prenom.charAt(0).toUpperCase()+currentuser.Prenom.slice(1).toLowerCase()%>
-                                </h6>
-                            </div>
-
-                            <div class="logout">
-                                <a class="dropdown-item" href="/entreprise/<%=currentuser.id%>">Mettre à jour le
-                                    profil<i class="fa fa-pencil icone" aria-hidden="true"></i></a>
-                                <a class="dropdown-item" href="/logout">Déconnexion<i class="fa fa-sign-out icone"
-                                        aria-hidden="true"></i></a>
-                            </div>
-                        </div>
-                        <% } else if (locals?.currentuser.Role=="admin" || locals?.currentuser.Role=="pilote" ) { %>
-
-
-                            <%# Admin & pilote %>
-                                <div class="show">
-                                    <a class="btn dropdown-toggle" href="#" role="button" id="dropdownMenuLink"
-                                        data-toggle="dropdown" aria-haspopup="true" aria-expanded="false"><span
-                                            class="info-span">
-                                            <%=currentuser.Username%>
-                                        </span>
-                                        <img width='40px' height='40px' src="/public/img/user.png"
-                                            class="img-thumbnail rounded-circle navbar-brand pdp" alt="User">
-                                    </a>
-                                    <div class="dropdown-menu dropdown-menu-right" aria-labelledby="dropdownMenuLink">
-                                        <div class="info">
-                                            <span>
-                                                <%= locals.currentuser.Nom.toUpperCase()%>
-                                                    <%=locals.currentuser.Prenom.charAt(0).toUpperCase()+locals.currentuser.Prenom.slice(1).toLowerCase()%>
-                                            </span>
-                                            <br>
-                                            <span class="role-span">
-                                                <%= currentuser.Role%>
-                                            </span>
-                                        </div>
-
-                                        <div class="logout">
-                                            <a class="dropdown-item" href="/logout">Déconnexion<i
-                                                    class="fa fa-sign-out icone" aria-hidden="true"></i></a>
-                                        </div>
-                                    </div>
-                                </div>
-                                <%}%>
-
+            </div>
+        </div>
+    </div>
 </nav>

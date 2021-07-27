@@ -13,20 +13,19 @@
     <link href="https://maxcdn.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css" rel="stylesheet">
     <link rel="stylesheet" href="/public/css/navbar.css">
     <link rel="stylesheet" href="/public/css/offres.css" />
-    <meta name="userid" content="<%=currentuser.id%>">
-    <link rel="icon" type="image/png" sizes="32x32" href="/public/img/logo.png">
-    <title>Offres de Stage</title>
+    <title>Offres</title>
+    <script src="./static/js/fav.js" async></script>
 </head>
 
 <body>
 
-    <%- include('../layouts/header.ejs') %>
+    <%- include ../layouts/header.ejs %>
 
         <main>
             <div class="fancy row">
                 <div class="col-md-6 catch">
-                    <p class="pt-5 mt-5"><strong>Dirige-toi</strong> maintenant<br>vers l'<strong>entreprise</strong>
-                        qui t'offrira<br>le
+                    <p class=""><strong>Dirige-toi</strong> maintenant<br>vers l'<strong>entreprise</strong> qui
+                        t'offrira<br>le
                         <strong>stage</strong> correspondant au mieux<br>à ta filière et à ta spécialité...
                     </p>
                     <div class="viewoffres">
@@ -34,126 +33,270 @@
                                 class="fa fa-angle-double-down" aria-hidden="true"></i></a>
                     </div>
                 </div>
-                <div class="humaans mt-5 col-md-6">
-                    <img class="humans" src="/public/img/HumaaansCharacters.png" alt="">
+                <div class="humaans col-md-6">
+                    <img class="humans" src="./static/img/HumaaansCharacters.png" alt="">
                 </div>
             </div>
             <div id="offres">
-                <%if (message) {%>
-                    <div style="position: fixed; top: 20vh; left: 25%; width: 50%; z-index: 900; font-size: 16px;"
-                        class="alert alert-<%= message.type %> alert-dismissible fade show" role="alert">
-                        <strong>
-                            <%= message.intro %>
-                        </strong> <br>
-                        <%= message.message %>
-                            <button type="button" class="close" data-dismiss="alert" aria-label="Close">
-                                <span aria-hidden="true">&times;</span>
-                            </button>
-                    </div>
-                    <%}%>
-                        <div class="hey">
-                            <h1>Une sélection d'offres spécialement pour toi</h1>
+                <div class="hey">
+                    <h1>Une sélection d'offres spécialement pour toi</h1>
+                </div>
+                <div id="cont">
+                    <div class="grid">
+                        <div class="grid-item">
+                            <div class="card">
+                                <div class="card-header">
+                                    <button class="coeur"><i class="fa fa-heart-o" aria-hidden="true"></i></button>
+                                    <img width='70px' height='70px' src="./static/img/logoentreprise.jpg"
+                                        class="card-image img-thumbnail rounded-circle navbar-brand pdp" alt="User">
+                                    <br>
+                                    <span class="card-title">Titre de l'offre 1</span>
+                                    <br>
+                                </div>
+                                <div class="details">
+                                    <table>
+                                        <tr>
+                                            <td class="icon"><i class="fa fa-building-o" aria-hidden="true"></i></td>
+                                            <td class="lui"><a class="lien" href="Entreprise.html"
+                                                    title="Voir détail de l'entreprise"><span>Nom
+                                                        Entreprise</span><i class="fa fa-angle-double-right fleche"
+                                                        aria-hidden="true"></i></a></td>
+                                        </tr>
+                                        <tr>
+                                            <td class="icon"><i class="fa fa-calendar" aria-hidden="true"></i></td>
+                                            <td><span>15</span> semaines</td>
+                                        </tr>
+                                        <tr>
+                                            <td class="icon"><i class="fa fa-users" aria-hidden="true"></i></td>
+                                            <td><span>2</span> places disponibles</td>
+                                        </tr>
+                                        <tr>
+                                            <td class="icon"><i class="fa fa-money" aria-hidden="true"></i></td>
+                                            <td><span>Non rémunéré</span></td>
+                                        </tr>
+                                    </table>
+                                </div>
+                                <p class="card-text">
+                                    Rome is known for its stunning <strong> architecture</strong>,
+                                    with the Colleseum, Pantheon, and Trevi Fountain as the main
+                                    attractions. Lorem ipsum dolor sit, amet consectetur adipisicing elit. Quod corrupti
+                                    error accusantium
+                                    numquam quos, in eos autem voluptates perferendis ab.
+                                </p>
+                            </div>
                         </div>
-                        <div id="cont">
-                            <div class="grid" id="card-body">
+                        <div class="grid-item">
+                            <div class="card">
+                                <div class="card-header">
+                                    <button class="coeur"><i class="fa fa-heart-o" aria-hidden="true"></i></button>
+                                    <img width='70px' height='70px' src="./static/img/logoentreprise.jpg"
+                                        class="card-image img-thumbnail rounded-circle navbar-brand pdp" alt="User">
+                                    <br>
+                                    <span class="card-title">Titre de l'offre 2</span>
+                                    <br>
+                                </div>
+                                <div class="details">
+                                    <table>
+                                        <tr>
+                                            <td class="icon"><i class="fa fa-building-o" aria-hidden="true"></i></td>
+                                            <td class="lui"><a class="lien" href="Entreprise.html"
+                                                    title="Voir détail de l'entreprise"><span>Nom
+                                                        Entreprise</span><i class="fa fa-angle-double-right fleche"
+                                                        aria-hidden="true"></i></a></td>
+                                        </tr>
+                                        <tr>
+                                            <td class="icon"><i class="fa fa-calendar" aria-hidden="true"></i></td>
+                                            <td><span>15</span> semaines</td>
+                                        </tr>
+                                        <tr>
+                                            <td class="icon"><i class="fa fa-users" aria-hidden="true"></i></td>
+                                            <td><span>2</span> places disponibles</td>
+                                        </tr>
+                                        <tr>
+                                            <td class="icon"><i class="fa fa-money" aria-hidden="true"></i></td>
+                                            <td><span>Non rémunéré</span></td>
+                                        </tr>
+                                    </table>
+                                </div>
+                                <p class="card-text">
+                                    One of the world's natural wonders, the iconic Grand Canyon draws
+                                    oohs and aahs from visitors perched at the edge of its
+                                    <strong>towering cliffs</strong>. Lorem ipsum dolor sit amet, consectetur
+                                    adipisicing elit. Eveniet
+                                    provident exercitationem laudantium nostrum ipsum hic officiis in omnis ducimus
+                                    enim?
+                                </p>
 
                             </div>
                         </div>
+                        <div class="grid-item">
+                            <div class="card">
+                                <div class="card-header">
+                                    <button class="coeur"><i class="fa fa-heart-o" aria-hidden="true"></i></button>
+                                    <img width='70px' height='70px' src="./static/img/logoentreprise.jpg"
+                                        class="card-image img-thumbnail rounded-circle navbar-brand pdp" alt="User">
+                                    <br>
+                                    <span class="card-title">Titre de l'offre 3</span>
+                                    <br>
+                                </div>
+                                <div class="details">
+                                    <table>
+                                        <tr>
+                                            <td class="icon"><i class="fa fa-building-o" aria-hidden="true"></i></td>
+                                            <td class="lui"><a class="lien" href="Entreprise.html"
+                                                    title="Voir détail de l'entreprise"><span>Nom
+                                                        Entreprise</span><i class="fa fa-angle-double-right fleche"
+                                                        aria-hidden="true"></i></a></td>
+                                        </tr>
+                                        <tr>
+                                            <td class="icon"><i class="fa fa-calendar" aria-hidden="true"></i></td>
+                                            <td><span>15</span> semaines</td>
+                                        </tr>
+                                        <tr>
+                                            <td class="icon"><i class="fa fa-users" aria-hidden="true"></i></td>
+                                            <td><span>2</span> places disponibles</td>
+                                        </tr>
+                                        <tr>
+                                            <td class="icon"><i class="fa fa-money" aria-hidden="true"></i></td>
+                                            <td><span>Non rémunéré</span></td>
+                                        </tr>
+                                    </table>
+                                </div>
+                                <p class="card-text">
+                                    The Maldives are known for their
+                                    <strong>natural environment</strong> including the blue ocean,
+                                    white beaches, and clean air, attracting tourists. Lorem ipsum dolor sit, amet
+                                    consectetur adipisicing
+                                    elit.
+                                    Et commodi consectetur odio velit doloribus culpa asperiores inventore adipisci
+                                    repellat
+                                    reprehenderit!
+                                </p>
+
+                            </div>
+                        </div>
+                        <div class="grid-item">
+                            <div class="card">
+                                <div class="card-header">
+                                    <button class="coeur"><i class="fa fa-heart-o" aria-hidden="true"></i></button>
+                                    <img width='70px' height='70px' src="./static/img/logoentreprise.jpg"
+                                        class="card-image img-thumbnail rounded-circle navbar-brand pdp" alt="User">
+                                    <br>
+                                    <span class="card-title">Titre de l'offre 4</span>
+                                    <br>
+                                </div>
+                                <div class="details">
+                                    <table>
+                                        <tr>
+                                            <td class="icon"><i class="fa fa-building-o" aria-hidden="true"></i></td>
+                                            <td class="lui"><a class="lien" href="Entreprise.html"
+                                                    title="Voir détail de l'entreprise"><span>Nom
+                                                        Entreprise</span><i class="fa fa-angle-double-right fleche"
+                                                        aria-hidden="true"></i></a></td>
+                                        </tr>
+                                        <tr>
+                                            <td class="icon"><i class="fa fa-calendar" aria-hidden="true"></i></td>
+                                            <td><span>15</span> semaines</td>
+                                        </tr>
+                                        <tr>
+                                            <td class="icon"><i class="fa fa-users" aria-hidden="true"></i></td>
+                                            <td><span>2</span> places disponibles</td>
+                                        </tr>
+                                        <tr>
+                                            <td class="icon"><i class="fa fa-money" aria-hidden="true"></i></td>
+                                            <td><span>Non rémunéré</span></td>
+                                        </tr>
+                                    </table>
+                                </div>
+                                <p class="card-text">
+                                    One of the world's natural wonders, the iconic Grand Canyon draws
+                                    oohs and aahs from visitors perched at the edge of its
+                                    <strong>towering cliffs</strong>. Lorem ipsum dolor sit amet, consectetur
+                                    adipisicing elit. Eveniet
+                                    provident exercitationem laudantium nostrum ipsum hic officiis in omnis ducimus
+                                    enim?
+                                </p>
+
+                            </div>
+                        </div>
+                        <div class="grid-item">
+                            <div class="card">
+                                <div class="card-header">
+                                    <button class="coeur"><i class="fa fa-heart-o" aria-hidden="true"></i></button>
+                                    <img width='70px' height='70px' src="./static/img/logoentreprise.jpg"
+                                        class="card-image img-thumbnail rounded-circle navbar-brand pdp" alt="User">
+                                    <br>
+                                    <span class="card-title">Titre de l'offre 5</span>
+                                    <br>
+                                </div>
+                                <div class="details">
+                                    <table>
+                                        <tr>
+                                            <td class="icon"><i class="fa fa-building-o" aria-hidden="true"></i></td>
+                                            <td class="lui"><a class="lien" href="Entreprise.html"
+                                                    title="Voir détail de l'entreprise"><span>Nom
+                                                        Entreprise</span><i class="fa fa-angle-double-right fleche"
+                                                        aria-hidden="true"></i></a></td>
+                                        </tr>
+                                        <tr>
+                                            <td class="icon"><i class="fa fa-calendar" aria-hidden="true"></i></td>
+                                            <td><span>15</span> semaines</td>
+                                        </tr>
+                                        <tr>
+                                            <td class="icon"><i class="fa fa-users" aria-hidden="true"></i></td>
+                                            <td><span>2</span> places disponibles</td>
+                                        </tr>
+                                        <tr>
+                                            <td class="icon"><i class="fa fa-money" aria-hidden="true"></i></td>
+                                            <td><span>Non rémunéré</span></td>
+                                        </tr>
+                                    </table>
+                                </div>
+                                <p class="card-text">
+                                    The Maldives are known for their
+                                    <strong>natural environment</strong> including the blue ocean,
+                                    white beaches, and clean air, attracting tourists. Lorem ipsum dolor sit, amet
+                                    consectetur adipisicing
+                                    elit.
+                                    Et commodi consectetur odio velit doloribus culpa asperiores inventore adipisci
+                                    repellat
+                                    reprehenderit!
+                                </p>
+
+                            </div>
+                        </div>
+                    </div>
+                </div>
             </div>
 
 
         </main>
-        <% if(currentuser.Role=='etudiant' ){%>
-            <input type="checkbox" id="check">
-            <label id="icone" for="check"><i class="fa fa-heart" aria-hidden="true"></i></label>
-            <div class="favoris">
-                <div>
-                    <h3>Favoris</h3>
-                    <table class="cart-items" id="wish-container">
-                        <tr>
-                            <th>Titre</th>
-                            <th></th>
-                            <th>Etat</th>
-                            <th></th>
-                            <th></th>
-                        </tr>
-                        <tr class="cart-row" >
+        <input type="checkbox" id="check">
+        <label id="icone" for="check"><i class="fa fa-heart" aria-hidden="true"></i></label>
+        <div class="favoris">
+            <div>
+                <h3>Favoris</h3>
+                <table class="cart-items">
+                    <tr>
+                        <th>Titre</th>
+                        <th></th>
+                        <th>Etat</th>
+                        <th></th>
+                        <th></th>
+                    </tr>
+                    <tr class="cart-row">
 
-                        </tr>
-                    </table>
-                </div>
-
+                    </tr>
+                </table>
             </div>
-            <%}%>
 
-                <%- include ('../layouts/footer.ejs') %>
-                    <script>
-                        const card = (r) => {
-                            return `
-                            <div class="grid-item">
-                                <div class="card">
-                                    <div class="card-header">
-                                        <%if(currentuser.Role != 'admin' && currentuser.Role != 'pilote'){%>
-                                            ${r.Id_utilisateur == userid
-                                                ? `
-                                                <a href="/offre/edit/${r.Id_offre}" type="button" class="ent modify">
-                                                    <i class="fa fa-pencil" data-toggle='modifier' data-target="${r.Id_offre}" aria-hidden="true"></i>
-                                                    </a>
-                                                    <a href="/offre/delete/${r.Id_offre}" type="button" class="ent bin">
-                                                        <i class="fa fa-trash-o" data-toggle='supprimer' data-target="${r.Id_offre}" aria-hidden="true"></i>
-                                                    </a>
-                                                `
-                                                : `<button class="coeur" data-toggle="addwish" data-target="${r.Id_offre
-                                                }"><i class="fa fa-heart${r.isWish ? "" : "-o"
-                                                }" aria-hidden="true" data-toggle="addwish" data-target="${r.Id_offre
-                                                }"></i></button>`
-                                            }
-                                        <%}%>
-                                        <img width='80px' height='80px' src="${r.Entreprise.Logo
-                                        }"
-                                            class="card-image img-thumbnail navbar-brand pdp" style="border: none; height:80px" alt="User">
-                                        <br>
-                                        <span class="card-title">${r.Titre}</span>
-                                        <br>
-                                    </div>
-                                    <div class="details">
-                                        <table>
-                                            <tr>
-                                                <td class="icon"><i class="fa fa-building-o" aria-hidden="true"></i></td>
-                                                <td class="lui"><a class="lien" href="/entreprise/${r.Entreprise.Id_utilisateur
-                                        }"
-                                                        title="Voir détail de l'entreprise"><span>${r.Entreprise.Raison_social
-                                        }</span><i class="fa fa-angle-double-right fleche"
-                                                            aria-hidden="true"></i></a></td>
-                                            </tr>
-                                            <tr>
-                                                <td class="icon"><i class="fa fa-calendar" aria-hidden="true"></i></td>
-                                                <td><span>${r.Duree_stage
-                                        }</span> semaines</td>
-                                            </tr>
-                                            <tr>
-                                                <td class="icon"><i class="fa fa-users" aria-hidden="true"></i></td>
-                                                <td><span>${r.Nb_places
-                                        }</span> places disponibles</td>
-                                            </tr>
-                                            <tr>
-                                                <td class="icon"><i class="fa fa-money" aria-hidden="true"></i></td>
-                                                <td><span>${r.Base_remuneration
-                                        }</span> DA</td>
-                                            </tr>
-                                        </table>
-                                    </div>
-                                    <p class="card-text">${r.Description}</p>
-                                </div>
-                            </div>`;
-                        };
-                    </script>
-                    <script src="https://code.jquery.com/jquery-3.4.1.slim.min.js"></script>
-                    <script src="https://cdn.jsdelivr.net/npm/popper.js@1.16.0/dist/umd/popper.min.js"></script>
-                    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/js/bootstrap.min.js"></script>
-                    <script src="/public/js/fav.js"></script>
+        </div>
 
+        <%- include ../layouts/footer.ejs %>
 
+            <script src="https://code.jquery.com/jquery-3.4.1.slim.min.js"></script>
+            <script src="https://cdn.jsdelivr.net/npm/popper.js@1.16.0/dist/umd/popper.min.js"></script>
+            <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/js/bootstrap.min.js"></script>
 
 </body>
 
