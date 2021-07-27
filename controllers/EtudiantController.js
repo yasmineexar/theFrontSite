@@ -1,6 +1,7 @@
 const etudiant = require('../models/etudiant')
 const faculte = require('../models/faculte')
 const bcrypt = require('bcryptjs')
+const Etudiant = require('../models/etudiant')
 
 exports.read = (req, res) => {
     if (req.query.json) {
@@ -78,7 +79,7 @@ exports.create = (req, res) => {
                         intro: 'Succés !',
                         message: 'Compte Etudiant a bien été créé.'
                     }
-                    return res.redirect('register')
+                    return res.redirect('/etudiant/ed')
                 })
             })
         }
@@ -88,10 +89,42 @@ exports.create = (req, res) => {
     }
 
 };
+exports.edit = (req, res) => {
+    Promise.all(Etudiant.getById(req.params.id)).then(() => {
+        return res.render('etudiant/edit/' + req.params.id)
+    })
+}
 exports.update = (req, res) => {
-
+    let e = new Etudiant()
+    Etudiant.getById(req.params.id).then((etud) => {
+        let cvupdate;
+        let uploadPath;
+        if (!req.files || Object.keys(req.files).length === 0) {
+            return res.status(400).send('Aucun fichier n a etait telechargée')
+        }
+        cvupdate = req.files.cvupload
+        console.log(cvupload)
+        uploadPath = 'upload/pdf/CV/' + cvupload.name;
+        e.Id_utilisateur = req.params.id
+        cvupdate.mv(uploadPath, function (err) {
+            if (err) return res.status(500).send(err);
+            e.Cv = cvupdate || etud.Cv
+            e.update().then(() => {
+                req.session.message = {
+                    type: 'success',
+                    intro: 'Succés !',
+                    message: 'CV a bien été mis à jour.'
+                }
+                return res.redirect('register')
+            })
+        })
+    })
 }
 exports.updatecv = (req, res) => {
 
 }
-
+exports.delet = (req, res) => {
+    return Etudiant.delet(req.params.id).then(() => {
+        return res.redirect('/etudiant')
+    })
+}
