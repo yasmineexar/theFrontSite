@@ -3,6 +3,7 @@ const Entreprise = require("../models/Entreprise");
 const Faculte = require("../Models/Faculte");
 const Wish = require("../models/Souhaite");
 const Postulation = require("../models/Postulation");
+const Etudiant = require("../models/etudiant");
 
 exports.addtowish = (req, res) => {
   if (req.body.Id_offre && req.session.currentuser.Role == "etudiant") {
@@ -44,7 +45,10 @@ exports.read = (req, res) => {
         });
         // console.log(offres);
         Promise.all(c).then(() => {
-
+          if (req.session.currentuser.Role == 'etudiant') return Etudiant.getById(req.session.currentuser.id).then(et => {
+            offres = offres.filter(e => e.Id_faculte == et.Id_faculte)
+            return res.json(offres);
+          })
           return res.json(offres);
         });
       });

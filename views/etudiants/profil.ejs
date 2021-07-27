@@ -62,7 +62,9 @@
                                     </tr>
                                     <tr>
                                         <td class="icon"><i class="fa fa-university" aria-hidden="true"></i></td>
-                                        <td><span>Faculté d'électronique</span></td>
+                                        <td><span>
+                                                <%= etudiants.faculte.Nom %>
+                                            </span></td>
                                     </tr>
                                     <tr>
                                         <td class="icon"><i class="fa fa-bookmark-o" aria-hidden="true"></i></td>
@@ -85,16 +87,17 @@
                                         <img src="/public/img/cv.png" alt="..." width="150" class="p-4">
                                     </div>
                                     <div class="file-input">
-                                        <form action="/user/<%etudiants.Id_utilisateur%>" method="POST"
+                                        <form action="/etudiant/<%= currentuser.id%>" method="POST"
                                             enctype="multipart/form-data">
-                                            <input type="file" name="sampleFile" id="file" class="file"
+                                            <input type="file" name="cvupdate" id="file" class="file"
                                                 onchange="$(event.target.parentNode).submit()">
                                             <label class="btn btn-dark btn btn-block" for="file">Choisir un
                                                 fichier</label>
                                         </form>
                                         <div>
-                                            <button class="btn btn-dark btn btn-block showw">Afficher le CV
-                                                actuel</button>
+                                            <a href="/etudiant/<%= etudiants.Id_utilisateur %>/cv"
+                                                class="btn btn-dark btn btn-block showw">Afficher le CV
+                                                actuel</a>
                                         </div>
                                     </div>
                                 </div>
@@ -110,7 +113,8 @@
                                         </h3>
                                         <div class="file-input">
                                             <div>
-                                                <a href="/cv" class="btn btn-dark btn btn-block showw"
+                                                <a href="/etudiant/<%= etudiants.Id_utilisateur%>/cv"
+                                                    class="btn btn-dark btn btn-block showw"
                                                     style="margin-top: 2.5em;">Afficher le
                                                     CV
                                                 </a>

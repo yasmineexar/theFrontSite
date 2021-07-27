@@ -2,6 +2,7 @@ const router = require("express").Router();
 const { login } = require("../Controllers/UserController");
 const { create } = require("../controllers/EtudiantController");
 const { isAuth } = require("../middelwares/Auth");
+path = require('path')
 
 router.get(
   "/login",
@@ -26,7 +27,7 @@ router.get(
 router.get(
   "/",
   (req, res, next) => {
-    if(req.session.currentuser) return res.redirect('/login')
+    if (req.session.currentuser) return res.redirect('/login')
     next();
   },
   (req, res) => {
@@ -59,15 +60,15 @@ router.get(
 router.get(
   "/home",
   (req, res, next) => {
-    if(req.session?.currentuser?.Role == 'admin' ||req.session?.currentuser?.Role == 'pilote') return next()  
+    if (req.session?.currentuser?.Role == 'admin' || req.session?.currentuser?.Role == 'pilote') return next()
     return res.redirect('login')
   },
   (req, res) => {
     res.render("accueil/homepilote");
   }
 );
-router.post("/login", (req,res,next)=>{
-    if(req.session.currentuser) return res.redirect('/login')
-    return next()
-},login);
+router.post("/login", (req, res, next) => {
+  if (req.session.currentuser) return res.redirect('/login')
+  return next()
+}, login);
 module.exports = router;

@@ -1,11 +1,15 @@
 const Metier = require("../Models/Metier");
 const Faculte = require("../Models/Faculte");
 const { request } = require("express");
+const Etudiant = require("../models/etudiant");
 
 exports.read = (req, res) => {
     if (req.query.json) {
         return Metier.getAll().then(rows => {
-            return res.json(rows)
+            Etudiant.getById(req.session.currentuser.id).then(et => {
+                rows = rows.filter(e => e.Id_faculte == et.Id_faculte)
+                return res.json(rows)
+            })
         })
     }
     return res.render('metiers/all')

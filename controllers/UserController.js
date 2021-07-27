@@ -122,7 +122,7 @@ exports.login = (req, res) => {
       if (result == true) {
         if (userrow.Role == "etudiant") {
           Etudiant.getById(userrow.Id_utilisateur).then((etudiant) => {
-            Faculte.getById(etudiant.Id_faculte).then(fac=>{
+            Faculte.getById(etudiant.Id_faculte).then(fac => {
               etudiant.Faculte = fac
               req.session.currentuser = {
                 id: userrow.Id_utilisateur,
@@ -139,13 +139,14 @@ exports.login = (req, res) => {
                 Specialite: etudiant.Specialite,
                 Matricule: etudiant.Matricule,
                 Faculte: etudiant.Faculte,
+                Cv: etudiant.Cv
               };
-              return res.redirect(req.session.redirecturl ||"/metier/");
+              return res.redirect(req.session.redirecturl || "/metier/");
             })
           });
         } else {
           if (userrow.Role == "entreprise") {
-            Entreprise.getById(userrow.Id_utilisateur).then(entreprise=>{
+            Entreprise.getById(userrow.Id_utilisateur).then(entreprise => {
               req.session.currentuser = {
                 id: userrow.Id_utilisateur,
                 Nom: userrow.Nom,
@@ -163,8 +164,8 @@ exports.login = (req, res) => {
                 Description: entreprise.Description,
                 Raison_social: entreprise.Raison_social,
               };
-            
-              return res.redirect(req.session.redirecturl ||"/etudiant/");
+
+              return res.redirect(req.session.redirecturl || "/etudiant/");
             })
           } else {
             req.session.currentuser = {
@@ -176,7 +177,7 @@ exports.login = (req, res) => {
               Password: userrow.Password,
               Role: userrow.Role,
             };
-            return res.redirect(req.session.redirecturl ||"home");
+            return res.redirect(req.session.redirecturl || "home");
           }
         }
       } else {
@@ -190,4 +191,4 @@ exports.login = (req, res) => {
     });
   });
 };
-exports.delet = (req, res) => {};
+exports.delet = (req, res) => { };

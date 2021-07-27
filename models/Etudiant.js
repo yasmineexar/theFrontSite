@@ -60,15 +60,24 @@ module.exports = class Etudiant extends User {
             })
         })
     }
-    update() { }
+    update(Id_utilisateur) {
+        return new Promise((resolve, reject) => {
+            this.dbconnection.query(`UPDATE ${this.tablename} SET Cv = ? WHERE Id_utilisateur = ${Id_utilisateur}`, [this.Cv], (error, results, fields) => {
+                if (error) return reject(error)
+                resolve(results)
+                console.log(results)
+            })
+        })
+    }
     delet() { }
     static selectwhere = (a) => {
         let cond = ''
-        if (a && Object.entries(a).some(e => e[1] != '' )) {
+        if (a && Object.entries(a).some(e => e[1] != '')) {
             cond = cond.concat('where ')
             Object.entries(a).forEach((entrie, i) => {
                 if (entrie[1] !== '') {
-                    cond = cond.concat(entrie[0] + '=' + `${parseInt(entrie[1])?entrie[1]:`"${entrie[1]}"`}` + '')
+                    cond = cond.concat(entrie[0] + '=' + `${parseInt(entrie[1]) ? entrie[1] : `"${entrie[1]}"`
+                        }` + '')
                     if (Object.entries(a).length != i) cond.concat(' and ')
                 }
             });

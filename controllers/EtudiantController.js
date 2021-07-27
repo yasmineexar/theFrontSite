@@ -5,7 +5,7 @@ const Etudiant = require('../models/etudiant')
 
 exports.read = (req, res) => {
     if (req.query.json) {
-        return etudiant.selectwhere({ Nom: req.query.searchNom, Prenom: req.query.searchPrenom, Id_faculte: req.query.searchFaculte}).then(etudiants => {
+        return etudiant.selectwhere({ Nom: req.query.searchNom, Prenom: req.query.searchPrenom, Id_faculte: req.query.searchFaculte }).then(etudiants => {
             let c = []
             console.log(etudiants)
             etudiants.forEach(element => {
@@ -22,7 +22,10 @@ exports.read = (req, res) => {
     }
     if (req.params.id) {
         return etudiant.getById(req.params.id).then((etudiants) => {
-            return res.render('etudiants/profil', { etudiants })
+            faculte.getById(etudiants.Id_faculte).then(f => {
+                etudiants.faculte = f
+                return res.render('etudiants/profil', { etudiants })
+            })
         })
     }
     if (req.session.currentuser.Role == "admin" || req.session.currentuser.Role == "pilote") return res.render('etudiants/all_admin')
@@ -95,37 +98,29 @@ exports.edit = (req, res) => {
         return res.render('etudiant/edit/' + req.params.id)
     })
 }
-exports.update = (req, res) => {
+
+exports.updatecv = (req, res) => {
     let e = new Etudiant()
-    Etudiant.getById(req.params.id).then((etud) => {
-        let cvupdate;
-        let uploadPath;
-        if (!req.files || Object.keys(req.files).length === 0) {
-            return res.status(400).send('Aucun fichier n a etait telechargée')
-        }
-        cvupdate = req.files.cvupload
-        console.log(cvupload)
-        uploadPath = 'upload/pdf/CV/' + cvupload.name;
-        e.Id_utilisateur = req.params.id
-        cvupdate.mv(uploadPath, function (err) {
-            if (err) return res.status(500).send(err);
-            e.Cv = cvupdate || etud.Cv
-            e.update().then(() => {
-                req.session.message = {
-                    type: 'success',
-                    intro: 'Succés !',
-                    message: 'CV a bien été mis à jour.'
-                }
-                return res.redirect('register')
-            })
+    if (!req.files || Object.keys(req.files).length === 0) {
+        return res.status(400).send('Aucun fichier n a etait telechargée')
+    }
+    let uploadPath = 'upload/pdf/CV/' + req.files.cvupdate.name;
+    console.log(req.files)
+    req.files.cvupdate.mv(uploadPath, function (err) {
+        if (err) return res.status(500).send(err);
+        e.Cv = req.files.cvupdate.name
+        e.update(req.params.id).then(() => {
+            res.redirect('/etudiant/' + req.params.id)
         })
     })
-}
-exports.updatecv = (req, res) => {
-
 }
 exports.delet = (req, res) => {
     return Etudiant.delet(req.params.id).then(() => {
         return res.redirect('/etudiant')
+    })
+}
+exports.getCv = (req, res) => {
+    Etudiant.getById(req.params.id).then(e => {
+        res.sendFile(path.resolve("upload/pdf/CV/" + e.Cv))
     })
 }
