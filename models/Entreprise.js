@@ -17,7 +17,6 @@ module.exports = class Entreprise extends Model {
         })
     }
 
-<<<<<<< HEAD
     static getById = (Id_entreprise) => {
         console.log(10)
         return new Promise((resolve, reject) => {
@@ -28,11 +27,8 @@ module.exports = class Entreprise extends Model {
             })
         })
     }
-=======
->>>>>>> a941e87487106cb9d1f6a779fd035ea2daf702ee
 
 
-<<<<<<< HEAD
     update = () => {
         return new Promise((resolve, reject) => {
             console.log('id', this.Id_utilisateur)
@@ -51,8 +47,6 @@ module.exports = class Entreprise extends Model {
             })
         })
     }
-=======
->>>>>>> a941e87487106cb9d1f6a779fd035ea2daf702ee
 
 
 }
