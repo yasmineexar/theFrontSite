@@ -32,7 +32,7 @@ module.exports = class Offre extends Model {
     return new Promise((resolve, reject) => {
       this.dbconnection.query(`SELECT * from ${this.tablename} where Id_offre = ${Id_offre}`, (error, results, fields) => {
         if (error) return reject(error)
-        resolve(results)
+        resolve(results[0])
       })
     })
   }

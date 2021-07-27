@@ -37,4 +37,21 @@ module.exports = class Postulation extends Model {
             })
         })
     }
+    static getAll(){
+        return new Promise((resolve, reject) => {
+            this.dbconnection.query(`SELECT * FROM ${this.tablename} `, (error, results, fields) => {
+                if (error) return reject(error)
+                resolve(results)
+            })
+        })
+    
+    }
+    update(){
+        return new Promise((resolve, reject) => {
+            this.dbconnection.query(`update postule set Etat = ? where Id_utilisateur = ? and Id_offre = ? `,[this.Etat,this.Id_utilisateur,this.Id_offre], (error, results, fields) => {
+                if (error) return reject(error)
+                resolve(results)
+            })
+        })
+    }
 }
