@@ -6,7 +6,19 @@
 
 <nav class="row navbar">
     <div>
-        <img class="logo" src="/public/img/logo2.png" alt="LOGO">
+        <%if (locals?.currentuser.Role=="etudiant" ) { %>
+            <a href="/metier">
+                <img class="logo" src="/public/img/logo2.png" alt="LOGO">
+            </a>
+            <% } else if (locals?.currentuser.Role=="entreprise" ) { %>
+                <a href="/etudiant">
+                    <img class="logo" src="/public/img/logo2.png" alt="LOGO">
+                </a>
+                <% } else if (locals?.currentuser.Role=="admin" || locals?.currentuser.Role=="pilote" ) { %>
+                    <a href="/home">
+                        <img class="logo" src="/public/img/logo2.png" alt="LOGO">
+                    </a>
+                    <%}%>
     </div>
     <%# Etudiant %>
         <%if (locals?.currentuser.Role=="etudiant" ) { %>

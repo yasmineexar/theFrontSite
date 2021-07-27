@@ -12,7 +12,7 @@ module.exports = class Entreprise extends User {
 
     static getAll = () => {
         return new Promise((resolve, reject) => {
-            this.dbconnection.query(`SELECT * from entrepold`, (error, results, fields) => {
+            this.dbconnection.query(`SELECT * from ${this.tablename}`, (error, results, fields) => {
                 if (error) return reject(error)
                 resolve(results)
             })
@@ -20,7 +20,9 @@ module.exports = class Entreprise extends User {
     }
 
     static getById = (Id_entreprise) => {
+        console.log(10)
         return new Promise((resolve, reject) => {
+            console.log(11)
             this.dbconnection.query(`SELECT * from ${this.tablename} where Id_utilisateur = ${Id_entreprise}`, (error, results, fields) => {
                 if (error) return reject(error)
                 resolve(results[0])
@@ -37,18 +39,19 @@ module.exports = class Entreprise extends User {
         })
     }
 
-    update = (Id_entrepold) => {
+    update = () => {
         return new Promise((resolve, reject) => {
-            this.dbconnection.query(`UPDATE entrepold SET Raison_social = ?, Secteur_activite = ?, Site_web = ?, Localite = ?, Description = ? where Id_entrepold = ${Id_entrepold}`, [this.Raison_social, this.Secteur_activite, this.Site_web, this.Localite, this.Description], (error, results, fields) => {
+            console.log('id', this.Id_utilisateur)
+            this.dbconnection.query(`UPDATE ${this.tablename} SET Raison_social = ?, Secteur_activite = ?, Site_web = ?, Localite = ?, Description = ? where Id_utilisateur = ${this.Id_utilisateur}`, [this.Raison_social, this.Secteur_activite, this.Site_web, this.Localite, this.Description], (error, results, fields) => {
                 if (error) return reject(error)
                 resolve(results)
             })
         })
     }
 
-    static delet(Id_entrepold) {
+    static delet(Id_entreprise) {
         return new Promise((resolve, reject) => {
-            this.dbconnection.query(`DELETE FROM entrepold where Id_entrepold = ${Id_entrepold}`, (error, results, fields) => {
+            this.dbconnection.query(`DELETE FROM ${this.tablename} where Id_utilisateur = ${Id_entreprise}`, (error, results, fields) => {
                 if (error) return reject(error)
                 resolve(results)
             })

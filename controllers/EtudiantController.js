@@ -9,7 +9,7 @@ exports.read = (req, res) => {
             rows.forEach(element => {
                 c.push(
                     faculte.getById(element.Id_faculte).then((rows) => {
-                        element.faculte = rows[0]
+                        element.faculte = rows
                     })
                 )
             });

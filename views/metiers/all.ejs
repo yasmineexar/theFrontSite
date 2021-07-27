@@ -22,13 +22,13 @@
 
 <body>
     <%- include('../layouts/header.ejs') %>
-        <div style="height: 10vh;" class="row"></div>
-        <div class="viewoffres">
-            <a href="/offre" class="viewoffresbtn"> Consulter les offres de stage <i id="anim"
-                    class="fa fa-angle-double-right" aria-hidden="true"></i></a>
-        </div>
 
+        <div style="height: 10vh;" class="row"></div>
         <% if (currentuser.Role=="etudiant" ) { %>
+            <div class="viewoffres">
+                <a href="/offre" class="viewoffresbtn"> Consulter les offres de stage <i id="anim"
+                        class="fa fa-angle-double-right" aria-hidden="true"></i></a>
+            </div>
 
             <div class="fancy row">
                 <div class="col-md-6 catch">
