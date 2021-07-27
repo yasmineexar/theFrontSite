@@ -99,20 +99,21 @@
                                 class="img-thumbnail rounded-circle navbar-brand pdp" alt="">
                         </a>
                         <div class="dropdown-menu dropdown-menu-right" aria-labelledby="dropdownMenuLink">
-                            <div class="info">
-                                <span>
-                                    <%=currentuser.Raison_social%>
-                                </span>
-                                <br>
+                            <a style="text-decoration: none; color: black;" href="/entreprise/<%=currentuser.id%>">
+                                <div class="info">
+                                    <span>
+                                        <%=currentuser.Raison_social%>
+                                    </span>
+                                    <br>
 
-                                <h6 class="pt-2">
-                                    <%=currentuser.Nom.toUpperCase()%>
-                                        <%=currentuser.Prenom.charAt(0).toUpperCase()+currentuser.Prenom.slice(1).toLowerCase()%>
-                                </h6>
-                            </div>
-
+                                    <h6 class="pt-2">
+                                        <%=currentuser.Nom.toUpperCase()%>
+                                            <%=currentuser.Prenom.charAt(0).toUpperCase()+currentuser.Prenom.slice(1).toLowerCase()%>
+                                    </h6>
+                                </div>
+                            </a>
                             <div class="logout">
-                                <a class="dropdown-item" href="/entreprise/<%=currentuser.id%>">Mettre à jour le
+                                <a class="dropdown-item" href="/entreprise/edit/<%=currentuser.id%>">Mettre à jour le
                                     profil<i class="fa fa-pencil icone" aria-hidden="true"></i></a>
                                 <a class="dropdown-item" href="/logout">Déconnexion<i class="fa fa-sign-out icone"
                                         aria-hidden="true"></i></a>
