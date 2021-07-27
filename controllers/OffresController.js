@@ -1,37 +1,45 @@
 const Offre = require("../Models/Offre");
 const Entreprise = require("../models/Entreprise");
 const Faculte = require("../Models/Faculte");
-const Wish = require('../models/Souhaite')
+const Wish = require("../models/Souhaite");
+const Postulation = require("../models/Postulation");
 
-exports.addtowish = (req,res)=>{
-  if(req.body.Id_offre && req.session.currentuser.Role == 'etudiant'){
-    let wish = new Wish()
-    wish.Id_utilisateur = req.session.currentuser.id
-    wish.Id_offre = req.body.Id_offre
-    wish.create().then(()=>{
-      res.send('ok')
-    }).catch(e=>console.log(e))
-
+exports.addtowish = (req, res) => {
+  if (req.body.Id_offre && req.session.currentuser.Role == "etudiant") {
+    let wish = new Wish();
+    wish.Id_utilisateur = req.session.currentuser.id;
+    wish.Id_offre = req.body.Id_offre;
+    wish
+      .create()
+      .then(() => {
+        res.send("ok");
+      })
+      .catch((e) => console.log(e));
   }
-
-}
+};
 
 exports.read = (req, res) => {
   if (req.query.json) {
     return Offre.getAll().then((offres) => {
       let c = [];
       Wish.getByIdUser(req.session.currentuser.id).then((wish) => {
-        console.log(wish)
-        offres.forEach((element, i) => {
-          if(wish.find(e=>e.Id_offre == element.Id_offre)) offres[i].isWish = true;
-          c.push(
-            Entreprise.getById(element.Id_utilisateur).then((entr) => {
-              offres[i].Entreprise = entr;
-            })
-          );
-        });
-        Promise.all(c).then(() => {
-          return res.json(offres);
+        Postulation.getByIdUser().then((postulations) => {
+          console.log("postulation: ", wish);
+          offres.forEach((element, i) => {
+            if (wish.find((e) => e.Id_offre == element.Id_offre)) offres[i].isWish = true;
+
+
+            
+            c.push(
+              Entreprise.getById(element.Id_utilisateur).then((entr) => {
+                offres[i].Entreprise = entr;
+              })
+            );
+          });
+          console.log(offres);
+          Promise.all(c).then(() => {
+            return res.json(offres);
+          });
         });
       });
     });

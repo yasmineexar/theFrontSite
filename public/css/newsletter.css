@@ -65,20 +65,16 @@ body {
   float: left;
 }
 
-.viewoffres {
+.special .viewoffres {
   display: inline;
   float: left;
-  position: fixed;
-  margin: 20px;
-  top: 0px;
-  left: 680px;
-  z-index: 10000;
+  margin: 25px;
 }
 
-.viewoffres .viewoffresbtn {
+.special .viewoffres .viewoffresbtn {
   border: 3px solid #105F7F;
   padding: 3px 20px 7px 10px;
-  position: fixed;
+  margin: 20px;
   background: none;
   font-weight: bold;
   font-size: 1.2em;
@@ -88,11 +84,11 @@ body {
   transition: .3s;
 }
 
-.viewoffres .viewoffresbtn .viewoffresbtn i {
+.special .viewoffres .viewoffresbtn .viewoffresbtn i {
   margin-left: 5px;
 }
 
-.viewoffres .viewoffresbtn #anim {
+.special .viewoffres .viewoffresbtn #anim {
   -webkit-animation-duration: 1s;
   animation-duration: 1s;
   -webkit-animation-iteration-count: infinite;
@@ -103,30 +99,7 @@ body {
   animation-direction: normal;
 }
 
-.viewoffres .viewoffresbtn:hover {
-  background: #105F7F;
-  opacity: 0.9;
-  text-decoration: none;
-  border: 3px solid #105F7F;
-  color: white;
-}
-
-.nvmetier {
-  border: 3px solid #105F7F;
-  padding: 3px 20px 7px 10px;
-  background: none;
-  font-weight: bold;
-  font-size: 1.2em;
-  color: #105F7F;
-  cursor: pointer;
-  -webkit-transition: .3s;
-  transition: .3s;
-  float: right;
-  text-decoration: none;
-  margin: 50px 120px 10px 20px;
-}
-
-.nvmetier:hover {
+.special .viewoffres .viewoffresbtn:hover {
   background: #105F7F;
   opacity: 0.9;
   text-decoration: none;
@@ -308,11 +281,10 @@ body {
   -webkit-box-flex: 1;
       -ms-flex: 1 0 auto;
           flex: 1 0 auto;
-  min-height: 350px;
   padding: 20px;
   background: white;
-  -webkit-transform: translateY(200px);
-          transform: translateY(200px);
+  -webkit-transform: translateY(206px);
+          transform: translateY(206px);
   -webkit-transition: .3s;
   transition: .3s;
 }
@@ -320,8 +292,8 @@ body {
 .job-cards .job-card .informations-container .title {
   position: relative;
   padding-bottom: 10px;
-  margin-bottom: 30px;
-  padding-top: 20px;
+  margin-bottom: 10px;
+  padding-top: 40px;
   font-weight: bold;
   font-size: 1.6em;
 }

@@ -1,0 +1,67 @@
+.entreprise{
+    margin: 120px 100px 80px 100px;
+}
+
+
+.profile-head {
+    transform: translateY(5rem)
+}
+
+.cover {
+    background-color: #040f21;
+}
+
+.lead{
+    line-height: 25px;
+    font-size: 15px;
+}
+
+body {
+    background: #eee;
+    min-height: 100vh
+}
+.modifier{
+    padding: 4px 40px;
+    position: absolute;
+    transform: translateY(5px);
+}
+.creer{
+    margin-top: 100px;
+    font-size: 20px;
+    padding-top: 10px;
+    padding-bottom: 10px;
+    letter-spacing: 5px;
+}
+
+.ent{
+    top: 5px;
+    right: 5px;
+    position: absolute;
+    cursor: pointer;
+    padding-right: 10px;
+}
+.card-header button{
+    background: none;
+    border: none;
+    outline: none;
+}
+.ent:hover {
+    color: #000;
+    transform: scale(1.1);
+}
+.modify:active {
+    color: #3d3d3d;
+    transform: scale(1);
+}
+.modify{
+    top: 5px;
+    right: 5px;
+}
+.bin{
+    top: 5px;
+    right: 45px;
+}
+.bin:active {
+    color: rgb(221, 0, 0);
+    transform: scale(1);
+}

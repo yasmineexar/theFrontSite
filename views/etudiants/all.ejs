@@ -1,0 +1,335 @@
+<!-- Cette page sera visible par 
+    l'entreprise
+    le pilote
+    l'admin -->
+
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
+    <link href="https://maxcdn.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css" rel="stylesheet">
+    <link rel="preconnect" href="https://fonts.gstatic.com">
+    <link href="https://fonts.googleapis.com/css2?family=Poppins&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="/public/css/navbar.css">
+    <link rel="stylesheet" href="/public/css/sidenav.css">
+    <link rel="stylesheet" href="/public/css/AllEntreprises.css">
+    <title>Document</title>
+</head>
+
+<body>
+
+    <%- include ../layouts/header.ejs %>
+
+        <div class="wrapper">
+            <!-- Sidebar  -->
+
+            <%- include ../layouts/verticalNav.ejs %>
+
+                <!-- Page Content  -->
+
+                <div class="database col-12">
+                    <h2>Etudiants</h2>
+                    <section class="search-sec">
+                        <div class="container">
+                            <form action="#" method="post" novalidate="novalidate">
+                                <div class="row">
+                                    <div class="col-lg-12">
+                                        <div class="row">
+                                            <div class="col-lg-2 col-md-2 col-sm-12 p-0">
+                                                <input type="text" class="form-control search-slt" placeholder="Nom">
+                                            </div>
+                                            <div class="col-lg-2 col-md-2 col-sm-12 p-0">
+                                                <input type="text" class="form-control search-slt" placeholder="Prénom">
+                                            </div>
+                                            <div class="col-lg-3 col-md-3 col-sm-12 p-0">
+                                                <select class="form-control search-slt" id="exampleFormControlSelect1">
+                                                    <option>Choisir une Faculté</option>
+                                                    <option>Example one</option>
+                                                    <option>Example one</option>
+                                                    <option>Example one</option>
+                                                    <option>Example one</option>
+                                                    <option>Example one</option>
+                                                    <option>Example one</option>
+                                                </select>
+                                            </div>
+                                            <div class="col-lg-3 col-md-3 col-sm-12 p-0">
+                                                <select class="form-control search-slt" id="exampleFormControlSelect1">
+                                                    <option>Choisir une Spécialité</option>
+                                                    <option>Example one</option>
+                                                    <option>Example one</option>
+                                                    <option>Example one</option>
+                                                    <option>Example one</option>
+                                                    <option>Example one</option>
+                                                    <option>Example one</option>
+                                                    <option>Example one</option>
+                                                    <option>Example one</option>
+                                                    <option>Example one</option>
+                                                    <option>Example one</option>
+                                                    <option>Example one</option>
+                                                    <option>Example one</option>
+                                                    <option>Example one</option>
+                                                    <option>Example one</option>
+                                                    <option>Example one</option>
+                                                    <option>Example one</option>
+                                                    <option>Example one</option>
+                                                    <option>Example one</option>
+                                                    <option>Example one</option>
+                                                    <option>Example one</option>
+                                                    <option>Example one</option>
+                                                    <option>Example one</option>
+                                                    <option>Example one</option>
+                                                    <option>Example one</option>
+                                                    <option>Example one</option>
+                                                    <option>Example one</option>
+                                                </select>
+                                            </div>
+                                            <div class="col-lg-2 col-md-2 col-sm-12 p-0">
+                                                <button type="button" class="btn wrn-btn">Search</button>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </form>
+                        </div>
+                    </section>
+                    <div class="grid">
+
+                        <div class="grid-item">
+                            <div class="card">
+                                <div class="info">
+                                    <img width='60px' height='60px' src="./static/img/user.png"
+                                        class="img-thumbnail rounded-circle navbar-brand pdp" alt="User">
+                                    <br>
+                                    <span>Nom Prénom</span>
+                                    <br>
+                                </div>
+                                <div class="detail">
+                                    <table>
+                                        <tr>
+                                            <td class="icone"><i class="fa fa-envelope-o" aria-hidden="true"></i></td>
+                                            <td><span>monmail@gmail.com</span></td>
+                                        </tr>
+                                        <tr>
+                                            <td class="icone"><i class="fa fa-barcode" aria-hidden="true"></i></td>
+                                            <td><span>157758710025</span></td>
+                                        </tr>
+                                        <tr>
+                                            <td class="icone"><i class="fa fa-graduation-cap" aria-hidden="true"></i>
+                                            </td>
+                                            <td><span>L2</span></td>
+                                        </tr>
+                                        <tr>
+                                            <td class="icone"><i class="fa fa-university" aria-hidden="true"></i></td>
+                                            <td><span>Faculté d'électronique</span></td>
+                                        </tr>
+                                        <tr>
+                                            <td class="icone"><i class="fa fa-bookmark-o" aria-hidden="true"></i></td>
+                                            <td><span>Nom de la spécialité</span></td>
+                                        </tr>
+                                    </table>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="grid-item">
+                            <div class="card">
+                                <div class="info">
+                                    <img width='60px' height='60px' src="./static/img/user.png"
+                                        class="img-thumbnail rounded-circle navbar-brand pdp" alt="User">
+                                    <br>
+                                    <span>Nom Prénom</span>
+                                    <br>
+                                </div>
+                                <div class="detail">
+                                    <table>
+                                        <tr>
+                                            <td class="icone"><i class="fa fa-envelope-o" aria-hidden="true"></i></td>
+                                            <td><span>monmail@gmail.com</span></td>
+                                        </tr>
+                                        <tr>
+                                            <td class="icone"><i class="fa fa-barcode" aria-hidden="true"></i></td>
+                                            <td><span>157758710025</span></td>
+                                        </tr>
+                                        <tr>
+                                            <td class="icone"><i class="fa fa-graduation-cap" aria-hidden="true"></i>
+                                            </td>
+                                            <td><span>L2</span></td>
+                                        </tr>
+                                        <tr>
+                                            <td class="icone"><i class="fa fa-university" aria-hidden="true"></i></td>
+                                            <td><span>Faculté d'électronique</span></td>
+                                        </tr>
+                                        <tr>
+                                            <td class="icone"><i class="fa fa-bookmark-o" aria-hidden="true"></i></td>
+                                            <td><span>Nom de la spécialité</span></td>
+                                        </tr>
+                                    </table>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="grid-item">
+                            <div class="card">
+                                <div class="info">
+                                    <img width='60px' height='60px' src="./static/img/user.png"
+                                        class="img-thumbnail rounded-circle navbar-brand pdp" alt="User">
+                                    <br>
+                                    <span>Nom Prénom</span>
+                                    <br>
+                                </div>
+                                <div class="detail">
+                                    <table>
+                                        <tr>
+                                            <td class="icone"><i class="fa fa-envelope-o" aria-hidden="true"></i></td>
+                                            <td><span>monmail@gmail.com</span></td>
+                                        </tr>
+                                        <tr>
+                                            <td class="icone"><i class="fa fa-barcode" aria-hidden="true"></i></td>
+                                            <td><span>157758710025</span></td>
+                                        </tr>
+                                        <tr>
+                                            <td class="icone"><i class="fa fa-graduation-cap" aria-hidden="true"></i>
+                                            </td>
+                                            <td><span>L2</span></td>
+                                        </tr>
+                                        <tr>
+                                            <td class="icone"><i class="fa fa-university" aria-hidden="true"></i></td>
+                                            <td><span>Faculté d'électronique</span></td>
+                                        </tr>
+                                        <tr>
+                                            <td class="icone"><i class="fa fa-bookmark-o" aria-hidden="true"></i></td>
+                                            <td><span>Nom de la spécialité</span></td>
+                                        </tr>
+                                    </table>
+                                </div>
+                            </div>
+                        </div>
+
+                        <div class="grid-item">
+                            <div class="card">
+                                <div class="info">
+                                    <img width='60px' height='60px' src="./static/img/user.png"
+                                        class="img-thumbnail rounded-circle navbar-brand pdp" alt="User">
+                                    <br>
+                                    <span>Nom Prénom</span>
+                                    <br>
+                                </div>
+                                <div class="detail">
+                                    <table>
+                                        <tr>
+                                            <td class="icone"><i class="fa fa-envelope-o" aria-hidden="true"></i></td>
+                                            <td><span>monmail@gmail.com</span></td>
+                                        </tr>
+                                        <tr>
+                                            <td class="icone"><i class="fa fa-barcode" aria-hidden="true"></i></td>
+                                            <td><span>157758710025</span></td>
+                                        </tr>
+                                        <tr>
+                                            <td class="icone"><i class="fa fa-graduation-cap" aria-hidden="true"></i>
+                                            </td>
+                                            <td><span>L2</span></td>
+                                        </tr>
+                                        <tr>
+                                            <td class="icone"><i class="fa fa-university" aria-hidden="true"></i></td>
+                                            <td><span>Faculté d'électronique</span></td>
+                                        </tr>
+                                        <tr>
+                                            <td class="icone"><i class="fa fa-bookmark-o" aria-hidden="true"></i></td>
+                                            <td><span>Nom de la spécialité</span></td>
+                                        </tr>
+                                    </table>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="grid-item">
+                            <div class="card">
+                                <div class="info">
+                                    <img width='60px' height='60px' src="./static/img/user.png"
+                                        class="img-thumbnail rounded-circle navbar-brand pdp" alt="User">
+                                    <br>
+                                    <span>Nom Prénom</span>
+                                    <br>
+                                </div>
+                                <div class="detail">
+                                    <table>
+                                        <tr>
+                                            <td class="icone"><i class="fa fa-envelope-o" aria-hidden="true"></i></td>
+                                            <td><span>monmail@gmail.com</span></td>
+                                        </tr>
+                                        <tr>
+                                            <td class="icone"><i class="fa fa-barcode" aria-hidden="true"></i></td>
+                                            <td><span>157758710025</span></td>
+                                        </tr>
+                                        <tr>
+                                            <td class="icone"><i class="fa fa-graduation-cap" aria-hidden="true"></i>
+                                            </td>
+                                            <td><span>L2</span></td>
+                                        </tr>
+                                        <tr>
+                                            <td class="icone"><i class="fa fa-university" aria-hidden="true"></i></td>
+                                            <td><span>Faculté d'électronique</span></td>
+                                        </tr>
+                                        <tr>
+                                            <td class="icone"><i class="fa fa-bookmark-o" aria-hidden="true"></i></td>
+                                            <td><span>Nom de la spécialité</span></td>
+                                        </tr>
+                                    </table>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="grid-item">
+                            <div class="card">
+                                <div class="info">
+                                    <img width='60px' height='60px' src="./static/img/user.png"
+                                        class="img-thumbnail rounded-circle navbar-brand pdp" alt="User">
+                                    <br>
+                                    <span>Nom Prénom</span>
+                                    <br>
+                                </div>
+                                <div class="detail">
+                                    <table>
+                                        <tr>
+                                            <td class="icone"><i class="fa fa-envelope-o" aria-hidden="true"></i></td>
+                                            <td><span>monmail@gmail.com</span></td>
+                                        </tr>
+                                        <tr>
+                                            <td class="icone"><i class="fa fa-barcode" aria-hidden="true"></i></td>
+                                            <td><span>157758710025</span></td>
+                                        </tr>
+                                        <tr>
+                                            <td class="icone"><i class="fa fa-graduation-cap" aria-hidden="true"></i>
+                                            </td>
+                                            <td><span>L2</span></td>
+                                        </tr>
+                                        <tr>
+                                            <td class="icone"><i class="fa fa-university" aria-hidden="true"></i></td>
+                                            <td><span>Faculté d'électronique</span></td>
+                                        </tr>
+                                        <tr>
+                                            <td class="icone"><i class="fa fa-bookmark-o" aria-hidden="true"></i></td>
+                                            <td><span>Nom de la spécialité</span></td>
+                                        </tr>
+                                    </table>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+
+
+                </div>
+
+        </div>
+
+        <%- include ../layouts/footer.ejs %>
+
+            <script src="https://code.jquery.com/jquery-3.4.1.slim.min.js"></script>
+            <script src="https://cdn.jsdelivr.net/npm/popper.js@1.16.0/dist/umd/popper.min.js"></script>
+            <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/js/bootstrap.min.js"></script>
+
+
+</body>
+
+</html>

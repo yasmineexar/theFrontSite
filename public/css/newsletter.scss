@@ -122,69 +122,47 @@ body{
 }
 
 .show{
+  
   display: inline;
   float: left;
 }
 
-.viewoffres {
-  display: inline;
-  float: left;
-  position: fixed;
-  margin: 20px;
-  top: 0px ;
-  left: 680px;
-  z-index: 10000;
-
-    .viewoffresbtn {      
-    border: 3px solid #105F7F;
-    padding: 3px 20px 7px 10px;
-    position: fixed;
-
-    background: none;
-
-    font-weight: bold;
-    font-size: 1.2em;
-    color: #105F7F;
-    
-    cursor: pointer;
-    
-    transition: .3s;
-
-    .viewoffresbtn i{
-      margin-left: 5px;
-    }
-    #anim {
-        @include anim;
-    }
-    &:hover {
-      background: #105F7F;
-      opacity: 0.9;
-      text-decoration: none;  
+.special {
+  .viewoffres {
+    display: inline;
+    float: left;
+    margin: 25px;
+  
+      .viewoffresbtn {      
       border: 3px solid #105F7F;
-        
-      color: white;
-    }
-  }
-}
+      padding: 3px 20px 7px 10px;
+      margin: 20px;
+      
+      background: none;
+  
+      font-weight: bold;
+      font-size: 1.2em;
+      color: #105F7F;
+      
+      cursor: pointer;
+      
+      transition: .3s;
 
-.nvmetier{
-  border: 3px solid #105F7F;
-  padding: 3px 20px 7px 10px;
-  background: none;
-  font-weight: bold;
-  font-size: 1.2em;
-  color: #105F7F;
-  cursor: pointer;
-  transition: .3s;
-  float: right;
-  text-decoration: none;
-  margin: 50px 120px 10px 20px;
-  &:hover {
-    background: #105F7F;
-    opacity: 0.9;
-    text-decoration: none;  
-    border: 3px solid #105F7F;
-    color: white;
+      .viewoffresbtn i{
+        margin-left: 5px;
+      }
+      #anim {
+          @include anim;
+      }
+      &:hover {
+        background: #105F7F;
+        opacity: 0.9;
+        text-decoration: none;  
+        border: 3px solid #105F7F;
+          
+        color: white;
+      }
+    }
   }
 }
 
@@ -338,12 +316,12 @@ body{
     
     .informations-container{      
       flex: 1 0 auto;
-      min-height: 350px;
+      
       padding: 20px;
       
       background: white;
       
-      transform: translateY(200px);
+      transform: translateY(206px);
       
       transition: .3s;
       
@@ -351,8 +329,8 @@ body{
         position: relative;
         
         padding-bottom: 10px;
-        margin-bottom: 30px;
-        padding-top: 20px;
+        margin-bottom: 10px;
+        padding-top: 40px;
         
         font-weight: bold;
         font-size: 1.6em;
