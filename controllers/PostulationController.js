@@ -65,6 +65,10 @@ exports.create = (req, res) => {
     })
 }
 
+exports.delet = (req,res)=>{
+    Postulation.delete(req.session.currentuser.id,req.body.id).then(()=>res.send('ok'))
+}
+
 
 exports.download = (req, res) => {
     let path = __dirname.split('\\')

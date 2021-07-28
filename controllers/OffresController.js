@@ -31,10 +31,7 @@ exports.read = (req, res) => {
           // console.log(p)
           c.push(
             Postulation.read(req.session.currentuser.id, element.Id_offre).then(results => {
-              console.log("postulation", results)
-
               if (results && results.length == 1) offres[i].postulationstate = results[0].Etat
-              console.log("offre", offres[i])
             })
           )
           c.push(
@@ -151,3 +148,8 @@ exports.delet = (req, res) => {
     });
   });
 };
+
+
+exports.deletewish =(req,res)=>{
+  Wish.delete(req.session.currentuser.id,req.params.id).then(()=>res.send('ok'))
+}

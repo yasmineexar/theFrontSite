@@ -1,6 +1,6 @@
 const router = require("express").Router()
 const { entreprise } = require(".")
-const { creat, edit, add, read, update, delet,addtowish } = require("../Controllers/OffresController")
+const { creat, edit, add, read, update, delet,addtowish ,deletewish} = require("../Controllers/OffresController")
 
 router.get('/add',(req,res,next)=>{
     if(req.session.currentuser.Role !='entreprise') return res.status(403).send('unauthorized')
@@ -27,5 +27,5 @@ router.get('/delete/:id',(req,res,next)=>{
     if(req.session.currentuser.Role !='entreprise') return res.status(403).send('unauthorized')
     return next()
 }, delet)
-
+router.delete('/wish/:id',deletewish)
 module.exports = router
