@@ -97,14 +97,14 @@ exports.edit = (req, res) => {
   Promise.all([Offre.getById(req.params.id), Faculte.getAll()]).then((a) => {
     offre = a[0];
     facultes = a[1];
-    return res.render("offres/edit", { offre: offre[0], facultes });
+    console.log(a)
+    return res.render("offres/edit", { offre, facultes });
   });
 };
 exports.update = (req, res) => {
   let o = new Offre();
   Offre.getById(req.params.id).then((offre) => {
-    if (offre.Id_ustilisateur != req.session.currentuser.id)
-      return res.status(403).send("unauthorized");
+    if(req.session.currentuser.id != offre.Id_utilisateur) return res.status(403).render('forbidden')
     o.Id_offre = req.params.id;
     o.Base_remuneration = req.body.Base_remuneration || offre.Base_remuneration;
     o.Duree_stage = req.body.Duree_stage || offre.Duree_stage;

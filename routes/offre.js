@@ -15,10 +15,7 @@ router.get('/edit/:id',(req,res,next)=>{
     if(req.session.currentuser.Role !='entreprise') return res.status(403).send('unauthorized')
     return next()
 },edit)
-router.post('/edit/:id',(req,res,next)=>{
-    if(req.session.currentuser.Role !='entreprise') return res.status(403).send('unauthorized')
-    return next()
-}, update)
+router.post('/edit/:id', update)
 
 router.get('/', read)
 router.get('/:id', read)
