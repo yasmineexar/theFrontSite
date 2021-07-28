@@ -56,7 +56,7 @@ module.exports = class Entreprise extends User {
 
     static delet(Id_entrepold) {
         return new Promise((resolve, reject) => {
-            this.dbconnection.query(`DELETE FROM ${this.tablename} where Id_utilisateur = ${Id_entrepold}`, (error, results, fields) => {
+            this.dbconnection.query(`DELETE FROM utilisateur where Id_utilisateur = ${Id_entrepold}`, (error, results, fields) => {
                 if (error) return reject(error)
                 resolve(results)
             })
