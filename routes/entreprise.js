@@ -46,7 +46,7 @@ router.get('/edit/:id', (req, res, next) => {
 
 router.get('/delete/:id', (req, res, next) => {
     if (req.session.currentuser.Role == 'admin' || req.session.currentuser.Role == 'pilote') return next()
-    return res.status(403).send('unauthorized')
+    return res.status(403).render('forbidden')
 }, delet)
 
 module.exports = router
