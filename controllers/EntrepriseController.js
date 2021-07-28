@@ -80,6 +80,7 @@ exports.update = (req, res) => {
     let e = new Entreprise()
     Entreprise.getById(req.params.id).then((entreprise) => {
         e.Id_utilisateur = req.params.id
+        console.log('ID:', e.Id_utilisateur)
         e.Secteur_activite = req.body.Secteur_activite || entreprise.Secteur_activite
         e.Raison_social = req.body.Raison_social || entreprise.Raison_social
         e.Description = req.body.Description || entreprise.Description
@@ -93,7 +94,7 @@ exports.update = (req, res) => {
             }
         }
         else {
-            e.update().then(() => {
+            e.update(e.Id_utilisateur).then(() => {
                 req.session.message = {
                     type: 'success',
                     intro: 'Succés !',

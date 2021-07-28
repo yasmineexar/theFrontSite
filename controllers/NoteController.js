@@ -8,7 +8,7 @@ exports.create = (req, res) => {
     note.Note = req.body.note
     note.Commentaire = req.body.commentaire
     note.create().then(() => {
-        res.send(200)
+        res.redirect('/etudiant/' + req.params.id)
     })
 };
 
