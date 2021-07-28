@@ -31,10 +31,7 @@ exports.read = (req, res) => {
           // console.log(p)
           c.push(
             Postulation.read(req.session.currentuser.id, element.Id_offre).then(results => {
-              console.log("postulation", results)
-
               if (results && results.length == 1) offres[i].postulationstate = results[0].Etat
-              console.log("offre", offres[i])
             })
           )
           c.push(
@@ -100,14 +97,14 @@ exports.edit = (req, res) => {
   Promise.all([Offre.getById(req.params.id), Faculte.getAll()]).then((a) => {
     offre = a[0];
     facultes = a[1];
-    return res.render("offres/edit", { offre: offre[0], facultes });
+    console.log(a)
+    return res.render("offres/edit", { offre, facultes });
   });
 };
 exports.update = (req, res) => {
   let o = new Offre();
   Offre.getById(req.params.id).then((offre) => {
-    if (offre.Id_ustilisateur != req.session.currentuser.id)
-      return res.status(403).send("unauthorized");
+    if(req.session.currentuser.id != offre.Id_utilisateur) return res.status(403).render('forbidden')
     o.Id_offre = req.params.id;
     o.Base_remuneration = req.body.Base_remuneration || offre.Base_remuneration;
     o.Duree_stage = req.body.Duree_stage || offre.Duree_stage;
@@ -139,15 +136,23 @@ exports.update = (req, res) => {
 };
 exports.delet = (req, res) => {
   Offre.getById(req.params.id).then((offre) => {
-    if (req.session.currentuser.id != offre.Id_ustilisateur)
-      return res.status(403).send("unautorized");
-    return Offre.delet(req.params.id).then(() => {
-      req.session.message = {
-        type: "success",
-        intro: "Succés !",
-        message: "Offre a bien été supprimé.",
-      };
-      return res.redirect("/offre");
-    });
+    if (parseInt(req.session.currentuser.id) == parseInt(offre.Id_utilisateur)){
+      console.log(req.session.currentuser.id , offre.Id_utilisateur)
+      
+      return Offre.delet(req.params.id).then(() => {
+        req.session.message = {
+          type: "success",
+          intro: "Succés !",
+          message: "Offre a bien été supprimé.",
+        };
+        return res.redirect("/entreprise/"+req.session.currentuser.id);
+      });
+    }
+    return res.status(403).render('forbidden')
   });
 };
+
+
+exports.deletewish =(req,res)=>{
+  Wish.delete(req.session.currentuser.id,req.params.id).then(()=>res.send('ok'))
+}

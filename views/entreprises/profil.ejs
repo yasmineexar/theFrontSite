@@ -109,11 +109,11 @@
                                                 aria-hidden="true"></i></button>
                                         <%}%>
                                             <%if (currentuser.id==entreprises.Id_utilisateur) {%>
-                                                <a href="/offre/edit/<%= element.id%>" type="button" class="ent modify">
+                                                <a href="/offre/edit/<%= element.Id_offre%>" type="button" class="ent modify">
                                                     <i class="fa fa-pencil" data-toggle='modifier'
                                                         data-target="<%=element.id%>" aria-hidden="true"></i>
                                                 </a>
-                                                <a href="/offre/delete/<%=element.id%>" type="button" class="ent bin">
+                                                <a href="/offre/delete/<%=element.Id_offre%>" type="button" class="ent bin">
                                                     <i class="fa fa-trash-o" data-toggle='supprimer'
                                                         data-target="<%=element.id%>" aria-hidden="true"></i>
                                                 </a>

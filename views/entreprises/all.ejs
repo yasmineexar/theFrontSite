@@ -46,13 +46,12 @@
                     </div>
                     <section class="search-sec">
                         <div class="container">
-                            <form action="/entreprise" method="get" novalidate="novalidate">
                                 <div class="row">
                                     <div class="col-lg-12">
                                         <div class="row">
                                             <div class="col-lg-3 col-md-3 col-sm-12 p-0">
                                                 <input type="text" class="form-control search-slt"
-                                                    placeholder="Raison sociale">
+                                                    placeholder="Raison sociale" id="raison-social">
                                             </div>
                                             <div class="col-lg-3 col-md-3 col-sm-12 p-0">
                                                 <select class="form-control search-slt" id="Secteur_activite">
@@ -67,14 +66,13 @@
                                             </div>
                                             <div class="col-lg-3 col-md-3 col-sm-12 p-0">
                                                 <button type="submit" class="btn wrn-btn"
-                                                    onclick="event.preventDefault();getEntreprise()">Search</button>
+                                                    onclick="event.preventDefault();filtre()">Search</button>
                                                 <!-- <button type="button" onclick="filtre()"
                                                     class="btn wrn-btn">Search</button>
                                             </div> -->
                                             </div>
                                         </div>
                                     </div>
-                            </form>
                         </div>
                     </section>
                     <%if (message) {%>
@@ -138,20 +136,8 @@
                             </div>
                     </li>
                 `}
-                const showcards = () => {
-                    $('#card-body').html(entreprise.map(element => {
-                        console.log(element)
-                        return card(element)
-                    }).join(''))
-                }
-                const genfilter = () => {
-
-                    Secteur_activite = entreprise.map((f) => { return f.Secteur_activite })
-                    $('#Secteur_activite').html(`
-                        <option>Secteur d'activité</option>
-                        ${Secteur_activite.map((f) => { return `<option value="${f}">${f}</option>` }).join('')}
-                    `)
-                    showcards()
+                const showCards = (s) => {
+                    $('#card-body').append(s.map(element =>card(element)).join(''))
                 }
                 const getEntreprise = () => {
                     let xhr = new XMLHttpRequest()
@@ -159,33 +145,24 @@
                     xhr.responseType = 'json'
                     xhr.onload = () => {
                         entreprise = xhr.response
-                        localite = entreprise.map((e) => { return e.Localite })
-                        $('#localite').html(`
-                            <option>Ville</option>
-                        ${localite.map((e) => { return `<option value="${e}">${e}</option>` }).join('')}
-                    `)
+                        $('#localite').html(`<option>Ville</option>${xhr.response.map(e=>e.Localite).map((e) => { return `<option value="${e}">${e}</option>` }).join('')}`)
+                        $('#Secteur_activite').html(`<option>Secteur d'activité</option>${xhr.response.map(e=>e.Secteur_activite).map((f) => { return `<option value="${f}">${f}</option>` }).join('')}`)
+                        showCards(entreprise)
                     }
                     xhr.send()
                 }
                 const filtre = () => {
                     let v = $('#localite').val()
                     let w = $('#Secteur_activite').val()
-                    getEntreprise()
-                    if (v != "Ville") {
-                        $('#localite').val(v)
-                        entreprise = entreprise.filter((e) => { return e.Localite == v })
-                        console.log(entreprise)
-                        $('#card-body').html(entreprise.map(element => {
-                            return card(element)
-                        }).join(''))
-                    }
-                    if (w != "Secteur d'activité") {
-                        $('#Secteur_activite').val(w)
-                        entreprise = entreprise.filter((f) => { return f.Secteur_activite == w })
-                        $('#card-body').html(entreprise.map(element => {
-                            return card(element)
-                        }).join(''))
-                    }
+                    let r = $('#raison-social').val()
+                    console.log(v,w,r)
+                    $('#card-body').html('')
+                    if(r) return showCards(entreprise.filter(e=>RegExp(r,'i').test(e.Raison_social)))
+                    if(w != "Secteur d'activité" && v == 'Ville') return showCards(entreprise.filter(e=>e.Secteur_activite == w))
+                    if(w == "Secteur d'activité" && v!= 'Ville' ) return showCards(entreprise.filter(e=>e.Localite == v))
+                    if(w != "Secteur d'activité" && v != 'Ville') return showCards(entreprise.filter(e=> e.Secteur_activite == w && e.Localite == v))
+                    if(w == "Secteur d'activité" && v == 'Ville') return showCards(entreprise)
+
                 }
                 getEntreprise()
 
