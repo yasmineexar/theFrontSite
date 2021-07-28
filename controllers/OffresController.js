@@ -136,16 +136,19 @@ exports.update = (req, res) => {
 };
 exports.delet = (req, res) => {
   Offre.getById(req.params.id).then((offre) => {
-    if (req.session.currentuser.id != offre.Id_ustilisateur)
-      return res.status(403).send("unautorized");
-    return Offre.delet(req.params.id).then(() => {
-      req.session.message = {
-        type: "success",
-        intro: "Succés !",
-        message: "Offre a bien été supprimé.",
-      };
-      return res.redirect("/offre");
-    });
+    if (parseInt(req.session.currentuser.id) == parseInt(offre.Id_utilisateur)){
+      console.log(req.session.currentuser.id , offre.Id_utilisateur)
+      
+      return Offre.delet(req.params.id).then(() => {
+        req.session.message = {
+          type: "success",
+          intro: "Succés !",
+          message: "Offre a bien été supprimé.",
+        };
+        return res.redirect("/entreprise/"+req.session.currentuser.id);
+      });
+    }
+    return res.status(403).render('forbidden')
   });
 };
 
