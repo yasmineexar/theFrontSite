@@ -26,8 +26,15 @@
                             <h2>Creation Compte Entreprise</h2>
                         </div>
                         <div class="form-group">
-                            <input type="text" class="form-control item" name="Raison_social"
-                                placeholder="Veuillez entrer le nom de l'entreprise" required>
+                            <select name="Raison_social" id="">
+                                <option value="">Sélectionner le nom de l'entreprise</option>
+                                <% old.forEach(e=>{%>
+                                    <option value="<%= e.Raison_social %>">
+                                        <%= e.Raison_social %>
+                                    </option>
+                                    <% }) %>
+
+                            </select>
                         </div>
                         <div class="form-group">
                             <input type="text" class="form-control item" name="nom" placeholder="Nom" required>

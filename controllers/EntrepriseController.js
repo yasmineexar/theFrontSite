@@ -66,7 +66,7 @@ exports.creat = (req, res) => {
                     intro: 'Succés !',
                     message: 'Entreprise a bien été créée.'
                 }
-                return res.redirect('add')
+                return res.redirect('/entreprise/compte')
             })
         })
     }
@@ -133,10 +133,11 @@ exports.createcompte = (req, res) => {
     saltRounds = 10
     bcrypt.genSalt(saltRounds, function (err, salt) {
         bcrypt.hash(password, salt, function (err, hash) {
+            compte.password = hash
+            compte.Raison_social = Raison_social
+            compte.createcompte().then(() => {
+                res.render('entreprises/compteentreprise')
+            })
         });
     });
-    compte.Raison_social = Raison_social
-    compte.createcompte().then(() => {
-        res.render('entreprises/compteentreprise')
-    })
 }
