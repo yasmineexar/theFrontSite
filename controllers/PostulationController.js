@@ -1,49 +1,50 @@
 const Postulation = require("../models/Postulation")
 const pdf = require("pdf-creator-node");
-const Offre= require('../models/Offre')
-const Entreprise= require('../models/Entreprise')
+const Offre = require('../models/Offre')
+const Entreprise = require('../models/Entreprise')
 const Etudiant = require('../models/Etudiant')
 const Faculte = require('../models/Faculte')
-const fs = require('fs')
+const fs = require('fs');
+const Note = require("../Models/Note");
 
 
 
-exports.state = (req,res)=>{
-    Postulation.read(req.body.Id_utilisateur,req.body.Id_offre).then((postulation)=>{
-        let p = new Postulation(req.body.Id_offre,req.body.Id_utilisateur)
+exports.state = (req, res) => {
+    Postulation.read(req.body.Id_utilisateur, req.body.Id_offre).then((postulation) => {
+        let p = new Postulation(req.body.Id_offre, req.body.Id_utilisateur)
         p.Etat = req.body.etat
 
-        p.update().then(()=>{
+        p.update().then(() => {
             return res.send('ok')
         })
     })
 }
 
-exports.read = (req,res)=>{
-    if(req.query.json){
-        Postulation.getAll().then((postulations)=>{
-            let c =[]
-            postulations.forEach((postulation,index)=>{
+exports.read = (req, res) => {
+    if (req.query.json) {
+        Postulation.getAll().then((postulations) => {
+            let c = []
+            postulations.forEach((postulation, index) => {
                 c.push(
-                    Offre.getById(postulation.Id_offre).then((offre)=>{
+                    Offre.getById(postulation.Id_offre).then((offre) => {
                         postulations[index].Offre = offre
                     })
                 )
                 c.push(
-                    Etudiant.getById(postulation.Id_utilisateur).then(etudiant=>{
+                    Etudiant.getById(postulation.Id_utilisateur).then(etudiant => {
                         postulations[index].Etudiant = etudiant
                     })
                 )
             })
-            Promise.all(c).then(()=>{
-                let a =[]
-                postulations = postulations.filter(e=>e.Offre.Id_utilisateur == req.session.currentuser.id && e.Etat == "en attente")
-                postulations.forEach((postulation,index)=>{
-                    a.push(Faculte.getById(postulation.Etudiant.Id_faculte).then((fac)=>{
-                        postulations[index].Etudiant.Faculte = fac 
+            Promise.all(c).then(() => {
+                let a = []
+                postulations = postulations.filter(e => e.Offre.Id_utilisateur == req.session.currentuser.id && e.Etat == "en attente")
+                postulations.forEach((postulation, index) => {
+                    a.push(Faculte.getById(postulation.Etudiant.Id_faculte).then((fac) => {
+                        postulations[index].Etudiant.Faculte = fac
                     }))
                 })
-                Promise.all(a).then(()=>{
+                Promise.all(a).then(() => {
                     res.json(postulations)
                 })
             })
@@ -65,8 +66,8 @@ exports.create = (req, res) => {
     })
 }
 
-exports.delet = (req,res)=>{
-    Postulation.delete(req.session.currentuser.id,req.body.id).then(()=>res.send('ok'))
+exports.delet = (req, res) => {
+    Postulation.delete(req.session.currentuser.id, req.body.id).then(() => res.send('ok'))
 }
 
 
@@ -85,26 +86,26 @@ exports.download = (req, res) => {
             orientation: "portrait",
 
         };
-        
+
         if (postulation.Etat == "en attente") {
             var html = fs.readFileSync("demande_stage.html", "utf8");
             let c = []
-            let etudiant = offre =  undefined 
-            
-            c.push(Etudiant.getById(postulation.Id_utilisateur).then((e)=>{
-                
+            let etudiant = offre = undefined
+
+            c.push(Etudiant.getById(postulation.Id_utilisateur).then((e) => {
+
                 etudiant = e
             }))
             c.push(
-                Offre.getById(postulation.Id_offre).then((o)=>{
-                    
+                Offre.getById(postulation.Id_offre).then((o) => {
+
                     offre = o
                 })
             )
-            Promise.all(c).then(()=>{
-                Entreprise.getById(offre.Id_utilisateur).then((e)=>{
+            Promise.all(c).then(() => {
+                Entreprise.getById(offre.Id_utilisateur).then((e) => {
                     offre.Entreprise = e
-                    Faculte.getById(etudiant.Id_faculte).then((f)=>{
+                    Faculte.getById(etudiant.Id_faculte).then((f) => {
                         etudiant.Faculte = f
                         var document = {
                             html: html,
@@ -126,38 +127,38 @@ exports.download = (req, res) => {
                             });
                     })
                 })
-                
+
             })
-        }else if(postulation.Etat == "accepter"){
+        } else if (postulation.Etat == "accepter") {
             options.header = {
                 height: "30mm",
                 contents: ''
             }
-            options.footer= {
+            options.footer = {
                 height: "28mm",
                 contents: {
-                    first:'',
+                    first: '',
                     default: '<div style="width:100%;text-align:right;padding-right:40px"><span style="color: #444;">{{page}}</span>/<span>{{pages}}</span></div>', // fallback value
                 }
             }
             var html = fs.readFileSync("convention_stage.html", "utf8");
             let c = []
-            let etudiant = offre =  undefined
-            c.push(Etudiant.getById(postulation.Id_utilisateur).then((e)=>{
-                
+            let etudiant = offre = undefined
+            c.push(Etudiant.getById(postulation.Id_utilisateur).then((e) => {
+
                 etudiant = e
             }))
             c.push(
-                Offre.getById(postulation.Id_offre).then((o)=>{
-                    
+                Offre.getById(postulation.Id_offre).then((o) => {
+
                     offre = o
                 })
             )
-            Promise.all(c).then(()=>{
-                Entreprise.getById(offre.Id_utilisateur).then((e)=>{
+            Promise.all(c).then(() => {
+                Entreprise.getById(offre.Id_utilisateur).then((e) => {
                     offre.Entreprise = e
 
-                    Faculte.getById(etudiant.Id_faculte).then((f)=>{
+                    Faculte.getById(etudiant.Id_faculte).then((f) => {
                         etudiant.Faculte = f
                         var document = {
                             html: html,
@@ -166,8 +167,8 @@ exports.download = (req, res) => {
                                 offre,
                                 etudiant,
                                 postulation,
-                                usthb : fs.readFileSync("public/img/logo.png").toString('base64'),
-                                logoentreprise : fs.readFileSync("upload/logo/"+e.Logo).toString('base64')
+                                usthb: fs.readFileSync("public/img/logo.png").toString('base64'),
+                                logoentreprise: fs.readFileSync("upload/logo/" + e.Logo).toString('base64')
                             },
                             path: `./generated/${req.session.currentuser.Nom.toUpperCase()}_${req.session.currentuser.Prenom}_Convention.pdf`,
                             type: "",
@@ -182,7 +183,34 @@ exports.download = (req, res) => {
                             });
                     })
                 })
-                
+
+            })
+        } else if (postulation.Etat == "terminer") {
+            Etudiant.getById(req.session.currentuser.id).then((etudiant) => {
+                Note.getByUser(req.session.currentuser.id).then((note) => {
+                    Faculte.getById(etudiant.Id_faculte).then((faculte) => {
+                        etudiant.faculte = faculte
+                        var html = fs.readFileSync("fiche_evaluation.html", "utf8");
+                        var document = {
+                            html: html,
+                            data: {
+                                note,
+                                etudiant,
+                                observatoire
+                            },
+                            path: `./generated/${req.session.currentuser.Nom.toUpperCase()}_${req.session.currentuser.Prenom}_evaluation.pdf`,
+                            type: "",
+                        };
+                        pdf.create(document, options)
+                            .then((d) => {
+                                console.log(d);
+                                return res.download(d.filename)
+                            })
+                            .catch((error) => {
+                                console.error(error);
+                            });
+                    })
+                })
             })
         }
     })

@@ -32,10 +32,11 @@
             <br>
             <p> <br>Dans le cadre du stage de <span>12</span> semaines que notre étudiant a éffectué dans vos locaux
                 nous vous demandons de bien vouloir évaluer le (ou la) stagiaire :
-                <br><br>Nom & Prénom : <span style="color: #fff;">______________________________</span>Matricule :
-                <br><br>Année d'étude :
-                <br><br>Faculté :
-                <br><br>Spécialité :
+                <br><br>Nom & Prénom :{{this.etudiant.Nom}} {{this.etudiant.Prenom}} <span
+                    style="color: #fff;">______________________________</span>Matricule : {{this.etudiant.Matricule}}
+                <br><br>Année d'étude :{{this.etudiant.Annee_etude}}
+                <br><br>Faculté :{{this.etudiant.faculte.Nom}}
+                <br><br>Spécialité : {{this.etudiant.Specialite}}
             </p>
             <table style="border-collapse: collapse; width: 100%; font-size: 110%;">
                 <tr>
@@ -44,7 +45,7 @@
                         Remarque et appréciation
                         <br><br>
                     </td>
-                    <td style=" border: 1px solid black; text-align: center;">Commentaire</td>
+                    <td style=" border: 1px solid black; text-align: center;">{{this.note.Commentaire}}</td>
                 </tr>
                 <tr>
                     <td style="width: 50%; border: 1px solid black; padding: 10px;">
@@ -52,7 +53,7 @@
                         Donnez une note entre A, B, C et D
                         <br><br>
                     </td>
-                    <td style=" border: 1px solid black; text-align: center;">A</td>
+                    <td style=" border: 1px solid black; text-align: center;">{{this.note.Note}}</td>
                 </tr>
             </table>
             <div>

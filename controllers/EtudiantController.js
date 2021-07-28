@@ -2,6 +2,7 @@ const etudiant = require('../models/etudiant')
 const faculte = require('../models/faculte')
 const bcrypt = require('bcryptjs')
 const Etudiant = require('../models/etudiant')
+const Postulation = require('../models/Postulation')
 
 exports.read = (req, res) => {
     if (req.query.json) {
@@ -23,8 +24,11 @@ exports.read = (req, res) => {
     if (req.params.id) {
         return etudiant.getById(req.params.id).then((etudiants) => {
             faculte.getById(etudiants.Id_faculte).then(f => {
-                etudiants.faculte = f
-                return res.render('etudiants/profil', { etudiants })
+                Postulation.getByIdUser(etudiants.Id_utilisateur).then((pos) => {
+
+                    etudiants.faculte = f
+                    return res.render('etudiants/profil', { etudiants, accepted: pos.some(e => e.Etat == 'accepter') })
+                })
             })
         })
     }

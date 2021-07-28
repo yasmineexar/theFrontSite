@@ -125,52 +125,57 @@
                                     <%}%>
                     </div>
                 </div>
-                <%if (currentuser.Role=="entreprise" ) {%>
-                    <div class="px-0">
-                        <h2 style="margin-top: 1em;">Note et Appréciation stagiaire</h2>
-                        <div class="row ligne">
-                            <div class="p-4 rounded shadow-sm bg-light col-7 profilcard" style="margin-top: 3em;">
+                <%if (currentuser.Role=="entreprise" && accepted ) {%>
+                    <form action="/note/<%=etudiants.Id_utilisateur%>" method="POST">
+                        <div class="px-0">
+                            <h2 style="margin-top: 1em;">Note et Appréciation stagiaire</h2>
+                            <div class="row ligne">
+                                <div class="p-4 rounded shadow-sm bg-light col-7 profilcard" style="margin-top: 3em;">
 
-                                <textarea class="form-control" name="commentaire" id="comment" cols="30" rows="7"
-                                    placeholder="Laissez une appréciation/commentaire concernant le stagiaire"
-                                    required></textarea>
-                            </div>
-                            <div class="p-4 rounded shadow-sm bg-light col" style="font-size: 13px; margin-top: 3em;">
-                                <h3 style="margin-bottom: 10px;">Veuillez choisir une note parmi les notes suivantes
-                                </h3>
-                                A : Les objectifs sont atteints
-                                <br>B : Les objectifs définis sont partiellement atteints (écarts mineurs)
-                                <br>B : Les objectifs définis ne sont pas atteints (écarts majeurs)
-                                <br>D : Aucun objectif défini n'est atteint (écarts critiques)
-                                <br>
-                                <div class="note">
-                                    <table style="border-collapse: collapse; width: 100%; font-size: 110%;">
-                                        <tr>
-                                            <td style=" text-align: center;">A</td>
-                                            <td style=" text-align: center;">B</td>
-                                            <td style=" text-align: center;">C</td>
-                                            <td style=" text-align: center;">D</td>
-                                            <br>
-                                        </tr>
-                                        <tr>
-                                            <td style="width: 25%; text-align: center;">
-                                                <input type="radio" name="note" value="A">
-                                            </td>
-                                            <td style="width: 25%; text-align: center;">
-                                                <input type="radio" name="note" value="B">
-                                            </td>
-                                            <td style="width: 25%; text-align: center;">
-                                                <input type="radio" name="note" value="C">
-                                            </td>
-                                            <td style="width: 25%; text-align: center;">
-                                                <input type="radio" name="note" value="Dx">
-                                            </td>
-                                        </tr>
-                                    </table>
+                                    <textarea class="form-control" name="commentaire" id="comment" cols="30" rows="7"
+                                        placeholder="Laissez une appréciation/commentaire concernant le stagiaire"
+                                        required></textarea>
+                                </div>
+                                <div class="p-4 rounded shadow-sm bg-light col"
+                                    style="font-size: 13px; margin-top: 3em;">
+                                    <h3 style="margin-bottom: 10px;">Veuillez choisir une note parmi les notes suivantes
+                                    </h3>
+                                    A : Les objectifs sont atteints
+                                    <br>B : Les objectifs définis sont partiellement atteints (écarts mineurs)
+                                    <br>B : Les objectifs définis ne sont pas atteints (écarts majeurs)
+                                    <br>D : Aucun objectif défini n'est atteint (écarts critiques)
+                                    <br>
+                                    <div class="note">
+                                        <table style="border-collapse: collapse; width: 100%; font-size: 110%;">
+                                            <tr>
+                                                <td style=" text-align: center;">A</td>
+                                                <td style=" text-align: center;">B</td>
+                                                <td style=" text-align: center;">C</td>
+                                                <td style=" text-align: center;">D</td>
+                                                <br>
+                                            </tr>
+                                            <tr>
+                                                <td style="width: 25%; text-align: center;">
+                                                    <input type="radio" name="note" value="A">
+                                                </td>
+                                                <td style="width: 25%; text-align: center;">
+                                                    <input type="radio" name="note" value="B">
+                                                </td>
+                                                <td style="width: 25%; text-align: center;">
+                                                    <input type="radio" name="note" value="C">
+                                                </td>
+                                                <td style="width: 25%; text-align: center;">
+                                                    <input type="radio" name="note" value="Dx">
+                                                </td>
+                                            </tr>
+                                        </table>
+                                    </div>
+                                    <button type="submit" class="btn btn-dark btn btn-block showw">Confirmer la
+                                        notation</button>
                                 </div>
                             </div>
                         </div>
-                    </div>
+                    </form>
                     <%}%>
             </div>
         </div>

@@ -31,6 +31,7 @@ app.use('/etudiant', isAuth, routes.etudiant)
 app.use('/faculte', isAuth, routes.faculte)
 app.use('/offre', isAuth, routes.offre)
 app.use('/postulation', isAuth, routes.postulation)
+app.use('/note', isAuth, routes.note)
 app.use('/metier', isAuth, (req, res, next) => {
     if (req.session.currentuser.Role != 'entreprise') return next()
     return res.status(403).send('unauthorized')
