@@ -138,20 +138,8 @@
                             </div>
                     </li>
                 `}
-                const showcards = () => {
-                    $('#card-body').html(entreprise.map(element => {
-                        console.log(element)
-                        return card(element)
-                    }).join(''))
-                }
-                const genfilter = () => {
-
-                    Secteur_activite = entreprise.map((f) => { return f.Secteur_activite })
-                    $('#Secteur_activite').html(`
-                        <option>Secteur d'activité</option>
-                        ${Secteur_activite.map((f) => { return `<option value="${f}">${f}</option>` }).join('')}
-                    `)
-                    showcards()
+                const showCards = (s) => {
+                    $('#card-body').append(s.map(element =>card(element)).join(''))
                 }
                 const getEntreprise = () => {
                     let xhr = new XMLHttpRequest()
@@ -159,11 +147,9 @@
                     xhr.responseType = 'json'
                     xhr.onload = () => {
                         entreprise = xhr.response
-                        localite = entreprise.map((e) => { return e.Localite })
-                        $('#localite').html(`
-                            <option>Ville</option>
-                        ${localite.map((e) => { return `<option value="${e}">${e}</option>` }).join('')}
-                    `)
+                        $('#localite').html(`<option>Ville</option>${localite.map((e) => { return `<option value="${e}">${e}</option>` }).join('')}`)
+                        $('#Secteur_activite').html(`<option>Secteur d'activité</option>${Secteur_activite.map((f) => { return `<option value="${f}">${f}</option>` }).join('')}`)
+                        showCards(entreprise)
                     }
                     xhr.send()
                 }
