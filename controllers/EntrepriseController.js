@@ -136,7 +136,12 @@ exports.createcompte = (req, res) => {
             compte.password = hash
             compte.Raison_social = Raison_social
             compte.createcompte().then(() => {
-                res.render('entreprises/compteentreprise')
+                req.session.message = {
+                    type: 'success',
+                    intro: 'Succés !',
+                    message: 'Compte entreprise a été créé.'
+                }
+                res.redirect('/entreprise/compte')
             })
         });
     });

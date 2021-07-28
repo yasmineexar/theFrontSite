@@ -26,37 +26,50 @@
                         <div class="titre">
                             <h2>Creation Compte Entreprise</h2>
                         </div>
-                        <div class="form-group">
-                            <select name="Raison_social" class="form-control item" id="">
-                                <option value="">Sélectionner le nom de l'entreprise</option>
-                                <% old.forEach(e=>{%>
-                                    <option value="<%= e.Raison_social %>">
-                                        <%= e.Raison_social %>
-                                    </option>
-                                    <% }) %>
+                        <%if (message) {%>
+                            <div class="mt-5 alert alert-<%= message.type %>  alert-dismissible fade show">
+                                <strong>
+                                    <%= message.intro %>
+                                </strong><br>
+                                <%= message.message %>
+                                    <button type="button" class="close" data-dismiss="alert" aria-label="Close">
+                                        <span aria-hidden="true">&times;</span>
+                                    </button>
+                            </div>
+                            <%}%>
+                                <div class="form-group">
+                                    <select name="Raison_social" class="form-control item" id="">
+                                        <option value="">Sélectionner le nom de l'entreprise</option>
+                                        <% old.forEach(e=>{%>
+                                            <option value="<%= e.Raison_social %>">
+                                                <%= e.Raison_social %>
+                                            </option>
+                                            <% }) %>
 
-                            </select>
-                        </div>
-                        <div class="form-group">
-                            <input type="text" class="form-control item" name="nom" placeholder="Nom" required>
-                        </div>
-                        <div class="form-group">
-                            <input type="text" class="form-control item" name="prenom" placeholder="Prénom" required>
-                        </div>
-                        <div class="form-group">
-                            <input type="text" class="form-control item" name="email" placeholder="E-mail" required>
-                        </div>
-                        <div class="form-group">
-                            <input type="text" class="form-control item" name="username" placeholder="Username">
-                        </div>
-                        <div class="form-group">
-                            <input type="password" class="form-control item" name="password" placeholder="Mot de passe"
-                                required>
-                        </div>
-                        <div class="form-group">
-                            <button type="submit" class="btn btn-block create-company">Créer un compte
-                                entreprise</button>
-                        </div>
+                                    </select>
+                                </div>
+                                <div class="form-group">
+                                    <input type="text" class="form-control item" name="nom" placeholder="Nom" required>
+                                </div>
+                                <div class="form-group">
+                                    <input type="text" class="form-control item" name="prenom" placeholder="Prénom"
+                                        required>
+                                </div>
+                                <div class="form-group">
+                                    <input type="text" class="form-control item" name="email" placeholder="E-mail"
+                                        required>
+                                </div>
+                                <div class="form-group">
+                                    <input type="text" class="form-control item" name="username" placeholder="Username">
+                                </div>
+                                <div class="form-group">
+                                    <input type="password" class="form-control item" name="password"
+                                        placeholder="Mot de passe" required>
+                                </div>
+                                <div class="form-group">
+                                    <button type="submit" class="btn btn-block create-company">Créer un compte
+                                        entreprise</button>
+                                </div>
                     </form>
                 </div>
             </div>
